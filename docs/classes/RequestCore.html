@@ -1,0 +1,2112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>    LOG_PHP_SDK &raquo; \RequestCore
+</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+            <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+            <!--[if lt IE 9]>
+        <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+        <![endif]-->
+        <script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script>
+        <script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script>
+        <script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script>
+        <script src="../js/bootstrap.js" type="text/javascript"></script>
+        <script src="../js/template.js" type="text/javascript"></script>
+        <script src="../js/prettify/prettify.min.js" type="text/javascript"></script>
+    
+            <link rel="shortcut icon" href="../img/favicon.ico"/>
+        <link rel="apple-touch-icon" href="../img/apple-touch-icon.png"/>
+        <link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png"/>
+        <link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png"/>
+    </head>
+<body>
+
+        <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    <span class="icon-bar"></span> </a>
+                <a class="brand" href="../index.html">LOG_PHP_SDK</a>
+
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li class="dropdown">
+                            <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                API Documentation <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                                                                            </ul>
+                        </li>
+                        <li class="dropdown" id="charts-menu">
+                            <a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                Charts <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../graph_class.html">
+                                        <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown" id="reports-menu">
+                            <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                Reports <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../errors.html">
+                                        <i class="icon-list-alt"></i>&#160;Errors
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../markers.html">
+                                        <i class="icon-list-alt"></i>&#160;Markers
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../deprecated.html">
+                                        <i class="icon-list-alt"></i>&#160;Deprecated
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="go_to_top">
+            <a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>
+        </div>
+    </div>
+    
+    <div id="___" class="container">
+        <noscript>
+            <div class="alert alert-warning">
+                Javascript is disabled; several features are only available if Javascript is enabled.
+            </div>
+        </noscript>
+
+        
+            <style>
+        .deprecated h2 {
+            text-decoration: line-through;
+        }
+    </style>
+    <div class="row">
+        <div class="span4">
+                    <div class="btn-group view pull-right" data-toggle="buttons-radio">
+        <button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button>
+        <button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+    </div>
+    <div class="btn-group visibility" data-toggle="buttons-checkbox">
+        <button class="btn public active" title="Show public elements">Public</button>
+        <button class="btn protected" title="Show protected elements">Protected</button>
+        <button class="btn private" title="Show private elements">Private</button>
+        <button class="btn inherited active" title="Show inherited elements">Inherited</button>
+    </div>
+
+        <ul class="side-nav nav nav-list">
+        <li class="nav-header">
+            <i class="icon-custom icon-method"></i> Methods
+            <ul>
+                                                                                                    <li class="method public">
+        <a href="#method___construct" title="__construct :: Constructs a new instance of this class.">
+            <span class="description">Constructs a new instance of this class.</span><pre>__construct</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method___destruct" title="__destruct :: Destructs the instance. Closes opened file handles.">
+            <span class="description">Destructs the instance. Closes opened file handles.</span><pre>__destruct</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_add_header" title="add_header :: Adds a custom HTTP header to the cURL request.">
+            <span class="description">Adds a custom HTTP header to the cURL request.</span><pre>add_header</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_get_response_body" title="get_response_body :: Get the HTTP response body from the request.">
+            <span class="description">Get the HTTP response body from the request.</span><pre>get_response_body</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_get_response_code" title="get_response_code :: Get the HTTP response code from the request.">
+            <span class="description">Get the HTTP response code from the request.</span><pre>get_response_code</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_get_response_header" title="get_response_header :: Get the HTTP response headers from the request.">
+            <span class="description">Get the HTTP response headers from the request.</span><pre>get_response_header</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_prep_request" title="prep_request :: Prepares and adds the details of the cURL request. This can be passed along to a &lt;php:curl_multi_exec()&gt;
+function.">
+            <span class="description">Prepares and adds the details of the cURL request. This can be passed along to a &lt;php:curl_multi_exec()&gt;
+function.</span><pre>prep_request</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_process_response" title="process_response :: Take the post-processed cURL data and break it down into useful header/body/info chunks. Uses the
+data stored in the `curl_handle` and `response` properties unless replacement data is passed in via
+parameters.">
+            <span class="description">Take the post-processed cURL data and break it down into useful header/body/info chunks. Uses the
+data stored in the `curl_handle` and `response` properties unless replacement data is passed in via
+parameters.</span><pre>process_response</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_register_streaming_read_callback" title="register_streaming_read_callback :: Register a callback function to execute whenever a data stream is read from using
+&lt;CFRequest::streaming_read_callback()&gt;.">
+            <span class="description">Register a callback function to execute whenever a data stream is read from using
+&lt;CFRequest::streaming_read_callback()&gt;.</span><pre>register_streaming_read_callback</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_register_streaming_write_callback" title="register_streaming_write_callback :: Register a callback function to execute whenever a data stream is written to using
+&lt;CFRequest::streaming_write_callback()&gt;.">
+            <span class="description">Register a callback function to execute whenever a data stream is written to using
+&lt;CFRequest::streaming_write_callback()&gt;.</span><pre>register_streaming_write_callback</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_remove_header" title="remove_header :: Removes an HTTP header from the cURL request.">
+            <span class="description">Removes an HTTP header from the cURL request.</span><pre>remove_header</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_send_multi_request" title="send_multi_request :: Sends the request using &lt;php:curl_multi_exec()&gt;, enabling parallel requests. Uses the &quot;rolling&quot; method.">
+            <span class="description">Sends the request using &lt;php:curl_multi_exec()&gt;, enabling parallel requests. Uses the &quot;rolling&quot; method.</span><pre>send_multi_request</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_send_request" title="send_request :: Sends the request, calling necessary utility functions to update built-in properties.">
+            <span class="description">Sends the request, calling necessary utility functions to update built-in properties.</span><pre>send_request</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_set_body" title="set_body :: Set the body to send in the request.">
+            <span class="description">Set the body to send in the request.</span><pre>set_body</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_set_credentials" title="set_credentials :: Sets the credentials to use for authentication.">
+            <span class="description">Sets the credentials to use for authentication.</span><pre>set_credentials</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_set_curlopts" title="set_curlopts :: Set additional CURLOPT settings. These will merge with the default settings, and override if
+there is a duplicate.">
+            <span class="description">Set additional CURLOPT settings. These will merge with the default settings, and override if
+there is a duplicate.</span><pre>set_curlopts</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_set_method" title="set_method :: Set the method type for the request.">
+            <span class="description">Set the method type for the request.</span><pre>set_method</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_set_proxy" title="set_proxy :: Set the proxy to use for making requests.">
+            <span class="description">Set the proxy to use for making requests.</span><pre>set_proxy</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_set_read_file" title="set_read_file :: Sets the file to read from while streaming up.">
+            <span class="description">Sets the file to read from while streaming up.</span><pre>set_read_file</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_set_read_stream" title="set_read_stream :: Sets the resource to read from while streaming up. Reads the stream from its current position until
+EOF or `$size` bytes have been read. If `$size` is not given it will be determined by &lt;php:fstat()&gt; and
+&lt;php:ftell()&gt;.">
+            <span class="description">Sets the resource to read from while streaming up. Reads the stream from its current position until
+EOF or `$size` bytes have been read. If `$size` is not given it will be determined by &lt;php:fstat()&gt; and
+&lt;php:ftell()&gt;.</span><pre>set_read_stream</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_set_read_stream_size" title="set_read_stream_size :: Sets the length in bytes to read from the stream while streaming up.">
+            <span class="description">Sets the length in bytes to read from the stream while streaming up.</span><pre>set_read_stream_size</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_set_request_url" title="set_request_url :: Set the URL to make the request to.">
+            <span class="description">Set the URL to make the request to.</span><pre>set_request_url</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_set_seek_position" title="set_seek_position :: Set the intended starting seek position.">
+            <span class="description">Set the intended starting seek position.</span><pre>set_seek_position</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_set_useragent" title="set_useragent :: Sets a custom useragent string for the class.">
+            <span class="description">Sets a custom useragent string for the class.</span><pre>set_useragent</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_set_write_file" title="set_write_file :: Sets the file to write to while streaming down.">
+            <span class="description">Sets the file to write to while streaming down.</span><pre>set_write_file</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_set_write_stream" title="set_write_stream :: Sets the resource to write to while streaming down.">
+            <span class="description">Sets the resource to write to while streaming down.</span><pre>set_write_stream</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_streaming_read_callback" title="streaming_read_callback :: A callback function that is invoked by cURL for streaming up.">
+            <span class="description">A callback function that is invoked by cURL for streaming up.</span><pre>streaming_read_callback</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_streaming_write_callback" title="streaming_write_callback :: A callback function that is invoked by cURL for streaming down.">
+            <span class="description">A callback function that is invoked by cURL for streaming down.</span><pre>streaming_write_callback</pre>
+        </a>
+    </li>
+
+                                                </ul>
+        </li>
+        <li class="nav-header protected">» Protected
+            <ul>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </ul>
+        </li>
+        <li class="nav-header private">» Private
+            <ul>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </ul>
+        </li>
+        <li class="nav-header">
+            <i class="icon-custom icon-constant"></i> Constants
+            <ul>
+                                <li class="constant ">
+                    <a href="#constant_HTTP_DELETE" title="HTTP_DELETE :: DELETE HTTP Method">
+                        <span class="description">DELETE HTTP Method</span><pre>HTTP_DELETE</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_HTTP_GET" title="HTTP_GET :: GET HTTP Method">
+                        <span class="description">GET HTTP Method</span><pre>HTTP_GET</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_HTTP_HEAD" title="HTTP_HEAD :: HEAD HTTP Method">
+                        <span class="description">HEAD HTTP Method</span><pre>HTTP_HEAD</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_HTTP_POST" title="HTTP_POST :: POST HTTP Method">
+                        <span class="description">POST HTTP Method</span><pre>HTTP_POST</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_HTTP_PUT" title="HTTP_PUT :: PUT HTTP Method">
+                        <span class="description">PUT HTTP Method</span><pre>HTTP_PUT</pre>
+                    </a>
+                </li>
+                            </ul>
+        </li>
+    </ul>
+
+
+        </div>
+
+        <div class="span8">
+            <div class="element class">
+                <h1>RequestCore</h1>
+                <small style="display: block; text-align: right">
+                                                        </small>
+                <p class="short_description">Handles all HTTP requests using cURL and manages the responses.</p>
+                <div class="details">
+                    <div class="long_description">
+                        
+                    </div>
+                    <table class="table table-bordered">
+                                                                                    <tr>
+                                    <th>
+                                        version
+                                                                            </th>
+                                    <td>
+                                                                                    2011.06.07
+                                                                                
+                                    </td>
+                                </tr>
+                                                                                                                <tr>
+                                    <th>
+                                        copyright
+                                                                            </th>
+                                    <td>
+                                                                                    
+                                                                                <p>2006-2011 Ryan Parman</p>
+                                    </td>
+                                </tr>
+                                                            <tr>
+                                    <th>
+                                        copyright
+                                                                            </th>
+                                    <td>
+                                                                                    
+                                                                                <p>2006-2010 Foleeo Inc.</p>
+                                    </td>
+                                </tr>
+                                                            <tr>
+                                    <th>
+                                        copyright
+                                                                            </th>
+                                    <td>
+                                                                                    
+                                                                                <p>2010-2011 Amazon.com, Inc. or its affiliates.</p>
+                                    </td>
+                                </tr>
+                                                            <tr>
+                                    <th>
+                                        copyright
+                                                                            </th>
+                                    <td>
+                                                                                    
+                                                                                <p>2008-2011 Contributors</p>
+                                    </td>
+                                </tr>
+                                                                                                                <tr>
+                                    <th>
+                                        license
+                                                                            </th>
+                                    <td>
+                                                                                    
+                                                                                <p><a href="http://opensource.org/licenses/bsd-license.php">http://opensource.org/licenses/bsd-license.php</a> Simplified BSD License</p>
+                                    </td>
+                                </tr>
+                                                                                                                <tr>
+                                    <th>
+                                        package
+                                                                            </th>
+                                    <td>
+                                                                                    
+                                                                                <p>LOG_PHP_SDK</p>
+                                    </td>
+                                </tr>
+                                                                                                                                                                                </table>
+
+                    <h3><i class="icon-custom icon-method"></i> Methods</h3>
+                                                                <a id="method___construct"></a>
+                        <div class="element clickable method public  method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
+                            <h2>Constructs a new instance of this class.</h2>
+                            <pre>__construct(string $url = null, string $proxy = null, array $helpers = null) : $this</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$url</h4>
+                                                <code>string</code><p><p>(Optional) The URL to request or service endpoint to query.</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$proxy</h4>
+                                                <code>string</code><p><p>(Optional) The faux-url to use for proxy settings. Takes the following format: <code>proxy://user:pass@hostname:port</code></p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$helpers</h4>
+                                                <code>array</code><p><p>(Optional) An associative array of classnames to use for request, and response functionality. Gets passed in automatically by the calling class.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>$this</code><p><p>A reference to the current instance.</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method___destruct"></a>
+                        <div class="element clickable method public  method___destruct" data-toggle="collapse" data-target=".method___destruct .collapse">
+                            <h2>Destructs the instance. Closes opened file handles.</h2>
+                            <pre>__destruct() : $this</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>$this</code><p><p>A reference to the current instance.</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_add_header"></a>
+                        <div class="element clickable method public  method_add_header" data-toggle="collapse" data-target=".method_add_header .collapse">
+                            <h2>Adds a custom HTTP header to the cURL request.</h2>
+                            <pre>add_header(string $key, mixed $value) : $this</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$key</h4>
+                                                <code>string</code><p><p>(Required) The custom HTTP header to set.</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$value</h4>
+                                                <code>mixed</code><p><p>(Required) The value to assign to the custom HTTP header.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>$this</code><p><p>A reference to the current instance.</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_get_response_body"></a>
+                        <div class="element clickable method public  method_get_response_body" data-toggle="collapse" data-target=".method_get_response_body .collapse">
+                            <h2>Get the HTTP response body from the request.</h2>
+                            <pre>get_response_body() : string</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p><p>The response body.</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_get_response_code"></a>
+                        <div class="element clickable method public  method_get_response_code" data-toggle="collapse" data-target=".method_get_response_code .collapse">
+                            <h2>Get the HTTP response code from the request.</h2>
+                            <pre>get_response_code() : string</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p><p>The HTTP response code.</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_get_response_header"></a>
+                        <div class="element clickable method public  method_get_response_header" data-toggle="collapse" data-target=".method_get_response_header .collapse">
+                            <h2>Get the HTTP response headers from the request.</h2>
+                            <pre>get_response_header(string $header = null) : string|array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$header</h4>
+                                                <code>string</code><p><p>(Optional) A specific header value to return. Defaults to all headers.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>string|array</code><p><p>All or selected header values.</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_prep_request"></a>
+                        <div class="element clickable method public  method_prep_request" data-toggle="collapse" data-target=".method_prep_request .collapse">
+                            <h2>Prepares and adds the details of the cURL request. This can be passed along to a &lt;php:curl_multi_exec()&gt;
+function.</h2>
+                            <pre>prep_request() : resource</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>resource</code><p><p>The handle for the cURL object.</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_process_response"></a>
+                        <div class="element clickable method public  method_process_response" data-toggle="collapse" data-target=".method_process_response .collapse">
+                            <h2>Take the post-processed cURL data and break it down into useful header/body/info chunks. Uses the
+data stored in the `curl_handle` and `response` properties unless replacement data is passed in via
+parameters.</h2>
+                            <pre>process_response(resource $curl_handle = null, string $response = null) : \ResponseCore</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$curl_handle</h4>
+                                                <code>resource</code><p><p>(Optional) The reference to the already executed cURL request.</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$response</h4>
+                                                <code>string</code><p><p>(Optional) The actual response content itself that needs to be parsed.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/ResponseCore.html">\ResponseCore</a></code><p><p>A <ResponseCore> object containing a parsed HTTP response.</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_register_streaming_read_callback"></a>
+                        <div class="element clickable method public  method_register_streaming_read_callback" data-toggle="collapse" data-target=".method_register_streaming_read_callback .collapse">
+                            <h2>Register a callback function to execute whenever a data stream is read from using
+&lt;CFRequest::streaming_read_callback()&gt;.</h2>
+                            <pre>register_streaming_read_callback(string|array|\function $callback) : $this</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"><p>The user-defined callback function should accept three arguments:</p>
+<ul>
+    <li><code>$curl_handle</code> - <code>resource</code> - Required - The cURL handle resource that represents the in-progress transfer.</li>
+    <li><code>$file_handle</code> - <code>resource</code> - Required - The file handle resource that represents the file on the local file system.</li>
+    <li><code>$length</code> - <code>integer</code> - Required - The length in kilobytes of the data chunk that was transferred.</li>
+</ul></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$callback</h4>
+                                                <code>string|array|\function</code><p><p>(Required) The callback function is called by &lt;php:call_user_func()&gt;, so you can pass the following values: <ul></p>
+<li>The name of a global function to execute, passed as a string.</li>
+<pre><code>&lt;li&gt;A method to execute, passed as &lt;code&gt;array('ClassName', 'MethodName')&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;An anonymous function (PHP 5.3+).&lt;/li&gt;&lt;/ul&gt;</code></pre></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>$this</code><p><p>A reference to the current instance.</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_register_streaming_write_callback"></a>
+                        <div class="element clickable method public  method_register_streaming_write_callback" data-toggle="collapse" data-target=".method_register_streaming_write_callback .collapse">
+                            <h2>Register a callback function to execute whenever a data stream is written to using
+&lt;CFRequest::streaming_write_callback()&gt;.</h2>
+                            <pre>register_streaming_write_callback(string|array|\function $callback) : $this</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"><p>The user-defined callback function should accept two arguments:</p>
+<ul>
+    <li><code>$curl_handle</code> - <code>resource</code> - Required - The cURL handle resource that represents the in-progress transfer.</li>
+    <li><code>$length</code> - <code>integer</code> - Required - The length in kilobytes of the data chunk that was transferred.</li>
+</ul></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$callback</h4>
+                                                <code>string|array|\function</code><p><p>(Required) The callback function is called by &lt;php:call_user_func()&gt;, so you can pass the following values: <ul></p>
+<li>The name of a global function to execute, passed as a string.</li>
+<pre><code>&lt;li&gt;A method to execute, passed as &lt;code&gt;array('ClassName', 'MethodName')&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;An anonymous function (PHP 5.3+).&lt;/li&gt;&lt;/ul&gt;</code></pre></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>$this</code><p><p>A reference to the current instance.</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_remove_header"></a>
+                        <div class="element clickable method public  method_remove_header" data-toggle="collapse" data-target=".method_remove_header .collapse">
+                            <h2>Removes an HTTP header from the cURL request.</h2>
+                            <pre>remove_header(string $key) : $this</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$key</h4>
+                                                <code>string</code><p><p>(Required) The custom HTTP header to set.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>$this</code><p><p>A reference to the current instance.</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_send_multi_request"></a>
+                        <div class="element clickable method public  method_send_multi_request" data-toggle="collapse" data-target=".method_send_multi_request .collapse">
+                            <h2>Sends the request using &lt;php:curl_multi_exec()&gt;, enabling parallel requests. Uses the &quot;rolling&quot; method.</h2>
+                            <pre>send_multi_request(array $handles, array $opt = null) : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$handles</h4>
+                                                <code>array</code><p><p>(Required) An indexed array of cURL handles to process simultaneously.</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$opt</h4>
+                                                <code>array</code><p><p>(Optional) An associative array of parameters that can have the following keys: <ul></p>
+<li><code>callback</code> - <code>string|array</code> - Optional - The string name of a function to pass the response data to. If this is a method, pass an array where the <code>[0]</code> index is the class and the <code>[1]</code> index is the method name.</li>
+<pre><code>&lt;li&gt;&lt;code&gt;limit&lt;/code&gt; - &lt;code&gt;integer&lt;/code&gt; - Optional - The number of simultaneous requests to make. This can be useful for scaling around slow server responses. Defaults to trusting cURLs judgement as to how many to use.&lt;/li&gt;&lt;/ul&gt;</code></pre></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p><p>Post-processed cURL responses.</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_send_request"></a>
+                        <div class="element clickable method public  method_send_request" data-toggle="collapse" data-target=".method_send_request .collapse">
+                            <h2>Sends the request, calling necessary utility functions to update built-in properties.</h2>
+                            <pre>send_request(boolean $parse = false) : string</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$parse</h4>
+                                                <code>boolean</code><p><p>(Optional) Whether to parse the response with ResponseCore or not.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p><p>The resulting unparsed data from the request.</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_set_body"></a>
+                        <div class="element clickable method public  method_set_body" data-toggle="collapse" data-target=".method_set_body .collapse">
+                            <h2>Set the body to send in the request.</h2>
+                            <pre>set_body(string $body) : $this</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$body</h4>
+                                                <code>string</code><p><p>(Required) The textual content to send along in the body of the request.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>$this</code><p><p>A reference to the current instance.</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_set_credentials"></a>
+                        <div class="element clickable method public  method_set_credentials" data-toggle="collapse" data-target=".method_set_credentials .collapse">
+                            <h2>Sets the credentials to use for authentication.</h2>
+                            <pre>set_credentials(string $user, string $pass) : $this</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$user</h4>
+                                                <code>string</code><p><p>(Required) The username to authenticate with.</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$pass</h4>
+                                                <code>string</code><p><p>(Required) The password to authenticate with.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>$this</code><p><p>A reference to the current instance.</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_set_curlopts"></a>
+                        <div class="element clickable method public  method_set_curlopts" data-toggle="collapse" data-target=".method_set_curlopts .collapse">
+                            <h2>Set additional CURLOPT settings. These will merge with the default settings, and override if
+there is a duplicate.</h2>
+                            <pre>set_curlopts(array $curlopts) : $this</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$curlopts</h4>
+                                                <code>array</code><p><p>(Optional) A set of key-value pairs that set <code>CURLOPT</code> options. These will merge with the existing CURLOPTs, and ones passed here will override the defaults. Keys should be the <code>CURLOPT_*</code> constants, not strings.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>$this</code><p><p>A reference to the current instance.</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_set_method"></a>
+                        <div class="element clickable method public  method_set_method" data-toggle="collapse" data-target=".method_set_method .collapse">
+                            <h2>Set the method type for the request.</h2>
+                            <pre>set_method(string $method) : $this</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$method</h4>
+                                                <code>string</code><p><p>(Required) One of the following constants: <HTTP_GET>, <HTTP_POST>, <HTTP_PUT>, <HTTP_HEAD>, <HTTP_DELETE>.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>$this</code><p><p>A reference to the current instance.</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_set_proxy"></a>
+                        <div class="element clickable method public  method_set_proxy" data-toggle="collapse" data-target=".method_set_proxy .collapse">
+                            <h2>Set the proxy to use for making requests.</h2>
+                            <pre>set_proxy(string $proxy) : $this</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$proxy</h4>
+                                                <code>string</code><p><p>(Required) The faux-url to use for proxy settings. Takes the following format: <code>proxy://user:pass@hostname:port</code></p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>$this</code><p><p>A reference to the current instance.</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_set_read_file"></a>
+                        <div class="element clickable method public  method_set_read_file" data-toggle="collapse" data-target=".method_set_read_file .collapse">
+                            <h2>Sets the file to read from while streaming up.</h2>
+                            <pre>set_read_file(string $location) : $this</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$location</h4>
+                                                <code>string</code><p><p>(Required) The readable location to read from.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>$this</code><p><p>A reference to the current instance.</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_set_read_stream"></a>
+                        <div class="element clickable method public  method_set_read_stream" data-toggle="collapse" data-target=".method_set_read_stream .collapse">
+                            <h2>Sets the resource to read from while streaming up. Reads the stream from its current position until
+EOF or `$size` bytes have been read. If `$size` is not given it will be determined by &lt;php:fstat()&gt; and
+&lt;php:ftell()&gt;.</h2>
+                            <pre>set_read_stream(resource $resource, integer $size = null) : $this</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$resource</h4>
+                                                <code>resource</code><p><p>(Required) The readable resource to read from.</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$size</h4>
+                                                <code>integer</code><p><p>(Optional) The size of the stream to read.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>$this</code><p><p>A reference to the current instance.</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_set_read_stream_size"></a>
+                        <div class="element clickable method public  method_set_read_stream_size" data-toggle="collapse" data-target=".method_set_read_stream_size .collapse">
+                            <h2>Sets the length in bytes to read from the stream while streaming up.</h2>
+                            <pre>set_read_stream_size(integer $size) : $this</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$size</h4>
+                                                <code>integer</code><p><p>(Required) The length in bytes to read from the stream.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>$this</code><p><p>A reference to the current instance.</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_set_request_url"></a>
+                        <div class="element clickable method public  method_set_request_url" data-toggle="collapse" data-target=".method_set_request_url .collapse">
+                            <h2>Set the URL to make the request to.</h2>
+                            <pre>set_request_url(string $url) : $this</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$url</h4>
+                                                <code>string</code><p><p>(Required) The URL to make the request to.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>$this</code><p><p>A reference to the current instance.</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_set_seek_position"></a>
+                        <div class="element clickable method public  method_set_seek_position" data-toggle="collapse" data-target=".method_set_seek_position .collapse">
+                            <h2>Set the intended starting seek position.</h2>
+                            <pre>set_seek_position(integer $position) : $this</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$position</h4>
+                                                <code>integer</code><p><p>(Required) The byte-position of the stream to begin reading from.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>$this</code><p><p>A reference to the current instance.</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_set_useragent"></a>
+                        <div class="element clickable method public  method_set_useragent" data-toggle="collapse" data-target=".method_set_useragent .collapse">
+                            <h2>Sets a custom useragent string for the class.</h2>
+                            <pre>set_useragent(string $ua) : $this</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$ua</h4>
+                                                <code>string</code><p><p>(Required) The useragent string to use.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>$this</code><p><p>A reference to the current instance.</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_set_write_file"></a>
+                        <div class="element clickable method public  method_set_write_file" data-toggle="collapse" data-target=".method_set_write_file .collapse">
+                            <h2>Sets the file to write to while streaming down.</h2>
+                            <pre>set_write_file(string $location) : $this</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$location</h4>
+                                                <code>string</code><p><p>(Required) The writeable location to write to.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>$this</code><p><p>A reference to the current instance.</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_set_write_stream"></a>
+                        <div class="element clickable method public  method_set_write_stream" data-toggle="collapse" data-target=".method_set_write_stream .collapse">
+                            <h2>Sets the resource to write to while streaming down.</h2>
+                            <pre>set_write_stream(resource $resource) : $this</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$resource</h4>
+                                                <code>resource</code><p><p>(Required) The writeable resource to write to.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>$this</code><p><p>A reference to the current instance.</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_streaming_read_callback"></a>
+                        <div class="element clickable method public  method_streaming_read_callback" data-toggle="collapse" data-target=".method_streaming_read_callback .collapse">
+                            <h2>A callback function that is invoked by cURL for streaming up.</h2>
+                            <pre>streaming_read_callback(resource $curl_handle, resource $file_handle, integer $length) : \binary</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$curl_handle</h4>
+                                                <code>resource</code><p><p>(Required) The cURL handle for the request.</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$file_handle</h4>
+                                                <code>resource</code><p><p>(Required) The open file handle resource.</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$length</h4>
+                                                <code>integer</code><p><p>(Required) The maximum number of bytes to read.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>\binary</code><p><p>Binary data from a stream.</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_streaming_write_callback"></a>
+                        <div class="element clickable method public  method_streaming_write_callback" data-toggle="collapse" data-target=".method_streaming_write_callback .collapse">
+                            <h2>A callback function that is invoked by cURL for streaming down.</h2>
+                            <pre>streaming_write_callback(resource $curl_handle, \binary $data) : integer</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$curl_handle</h4>
+                                                <code>resource</code><p><p>(Required) The cURL handle for the request.</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$data</h4>
+                                                <code>\binary</code><p><p>(Required) The data to write.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>integer</code><p><p>The number of bytes written.</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                    
+                                            <h3><i class="icon-custom icon-constant"></i> Constants</h3>
+                                                    <a id="constant_HTTP_GET"> </a>
+                            <div class="element clickable constant  constant_HTTP_GET" data-toggle="collapse" data-target=".constant_HTTP_GET .collapse">
+                                <h2>GET HTTP Method</h2>
+                                <pre>HTTP_GET</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_HTTP_POST"> </a>
+                            <div class="element clickable constant  constant_HTTP_POST" data-toggle="collapse" data-target=".constant_HTTP_POST .collapse">
+                                <h2>POST HTTP Method</h2>
+                                <pre>HTTP_POST</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_HTTP_PUT"> </a>
+                            <div class="element clickable constant  constant_HTTP_PUT" data-toggle="collapse" data-target=".constant_HTTP_PUT .collapse">
+                                <h2>PUT HTTP Method</h2>
+                                <pre>HTTP_PUT</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_HTTP_DELETE"> </a>
+                            <div class="element clickable constant  constant_HTTP_DELETE" data-toggle="collapse" data-target=".constant_HTTP_DELETE .collapse">
+                                <h2>DELETE HTTP Method</h2>
+                                <pre>HTTP_DELETE</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_HTTP_HEAD"> </a>
+                            <div class="element clickable constant  constant_HTTP_HEAD" data-toggle="collapse" data-target=".constant_HTTP_HEAD .collapse">
+                                <h2>HEAD HTTP Method</h2>
+                                <pre>HTTP_HEAD</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                            
+                                                                <h3><i class="icon-custom icon-property"></i> Properties</h3>
+                                                    <a id="property_request_url"> </a>
+                            <div class="element clickable property  public property_request_url" data-toggle="collapse" data-target=".property_request_url .collapse">
+                                <h2>The URL being requested.</h2>
+                                <pre>request_url : </pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_request_headers"> </a>
+                            <div class="element clickable property  public property_request_headers" data-toggle="collapse" data-target=".property_request_headers .collapse">
+                                <h2>The headers being sent in the request.</h2>
+                                <pre>request_headers : </pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_request_body"> </a>
+                            <div class="element clickable property  public property_request_body" data-toggle="collapse" data-target=".property_request_body .collapse">
+                                <h2>The body being sent in the request.</h2>
+                                <pre>request_body : </pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_response"> </a>
+                            <div class="element clickable property  public property_response" data-toggle="collapse" data-target=".property_response .collapse">
+                                <h2>The response returned by the request.</h2>
+                                <pre>response : </pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_response_headers"> </a>
+                            <div class="element clickable property  public property_response_headers" data-toggle="collapse" data-target=".property_response_headers .collapse">
+                                <h2>The headers returned by the request.</h2>
+                                <pre>response_headers : </pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_response_body"> </a>
+                            <div class="element clickable property  public property_response_body" data-toggle="collapse" data-target=".property_response_body .collapse">
+                                <h2>The body returned by the request.</h2>
+                                <pre>response_body : </pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_response_code"> </a>
+                            <div class="element clickable property  public property_response_code" data-toggle="collapse" data-target=".property_response_code .collapse">
+                                <h2>The HTTP status code returned by the request.</h2>
+                                <pre>response_code : </pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_response_info"> </a>
+                            <div class="element clickable property  public property_response_info" data-toggle="collapse" data-target=".property_response_info .collapse">
+                                <h2>Additional response data.</h2>
+                                <pre>response_info : </pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_curl_handle"> </a>
+                            <div class="element clickable property  public property_curl_handle" data-toggle="collapse" data-target=".property_curl_handle .collapse">
+                                <h2>The handle for the cURL object.</h2>
+                                <pre>curl_handle : </pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_method"> </a>
+                            <div class="element clickable property  public property_method" data-toggle="collapse" data-target=".property_method .collapse">
+                                <h2>The method by which the request is being made.</h2>
+                                <pre>method : </pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_proxy"> </a>
+                            <div class="element clickable property  public property_proxy" data-toggle="collapse" data-target=".property_proxy .collapse">
+                                <h2>Stores the proxy settings to use for the request.</h2>
+                                <pre>proxy : </pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_username"> </a>
+                            <div class="element clickable property  public property_username" data-toggle="collapse" data-target=".property_username .collapse">
+                                <h2>The username to use for the request.</h2>
+                                <pre>username : </pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_password"> </a>
+                            <div class="element clickable property  public property_password" data-toggle="collapse" data-target=".property_password .collapse">
+                                <h2>The password to use for the request.</h2>
+                                <pre>password : </pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_curlopts"> </a>
+                            <div class="element clickable property  public property_curlopts" data-toggle="collapse" data-target=".property_curlopts .collapse">
+                                <h2>Custom CURLOPT settings.</h2>
+                                <pre>curlopts : </pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_debug_mode"> </a>
+                            <div class="element clickable property  public property_debug_mode" data-toggle="collapse" data-target=".property_debug_mode .collapse">
+                                <h2>The state of debug mode.</h2>
+                                <pre>debug_mode : </pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_request_class"> </a>
+                            <div class="element clickable property  public property_request_class" data-toggle="collapse" data-target=".property_request_class .collapse">
+                                <h2>The default class to use for HTTP Requests (defaults to &lt;RequestCore&gt;).</h2>
+                                <pre>request_class : </pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_response_class"> </a>
+                            <div class="element clickable property  public property_response_class" data-toggle="collapse" data-target=".property_response_class .collapse">
+                                <h2>The default class to use for HTTP Responses (defaults to &lt;ResponseCore&gt;).</h2>
+                                <pre>response_class : </pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_useragent"> </a>
+                            <div class="element clickable property  public property_useragent" data-toggle="collapse" data-target=".property_useragent .collapse">
+                                <h2>Default useragent string to use.</h2>
+                                <pre>useragent : </pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_read_file"> </a>
+                            <div class="element clickable property  public property_read_file" data-toggle="collapse" data-target=".property_read_file .collapse">
+                                <h2>File to read from while streaming up.</h2>
+                                <pre>read_file : </pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_read_stream"> </a>
+                            <div class="element clickable property  public property_read_stream" data-toggle="collapse" data-target=".property_read_stream .collapse">
+                                <h2>The resource to read from while streaming up.</h2>
+                                <pre>read_stream : </pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_read_stream_size"> </a>
+                            <div class="element clickable property  public property_read_stream_size" data-toggle="collapse" data-target=".property_read_stream_size .collapse">
+                                <h2>The size of the stream to read from.</h2>
+                                <pre>read_stream_size : </pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_read_stream_read"> </a>
+                            <div class="element clickable property  public property_read_stream_read" data-toggle="collapse" data-target=".property_read_stream_read .collapse">
+                                <h2>The length already read from the stream.</h2>
+                                <pre>read_stream_read : </pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_write_file"> </a>
+                            <div class="element clickable property  public property_write_file" data-toggle="collapse" data-target=".property_write_file .collapse">
+                                <h2>File to write to while streaming down.</h2>
+                                <pre>write_file : </pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_write_stream"> </a>
+                            <div class="element clickable property  public property_write_stream" data-toggle="collapse" data-target=".property_write_stream .collapse">
+                                <h2>The resource to write to while streaming down.</h2>
+                                <pre>write_stream : </pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_seek_position"> </a>
+                            <div class="element clickable property  public property_seek_position" data-toggle="collapse" data-target=".property_seek_position .collapse">
+                                <h2>Stores the intended starting seek position.</h2>
+                                <pre>seek_position : </pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_cacert_location"> </a>
+                            <div class="element clickable property  public property_cacert_location" data-toggle="collapse" data-target=".property_cacert_location .collapse">
+                                <h2>The location of the cacert.pem file to use.</h2>
+                                <pre>cacert_location : </pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_ssl_verification"> </a>
+                            <div class="element clickable property  public property_ssl_verification" data-toggle="collapse" data-target=".property_ssl_verification .collapse">
+                                <h2>The state of SSL certificate verification.</h2>
+                                <pre>ssl_verification : </pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_registered_streaming_read_callback"> </a>
+                            <div class="element clickable property  public property_registered_streaming_read_callback" data-toggle="collapse" data-target=".property_registered_streaming_read_callback .collapse">
+                                <h2>The user-defined callback function to call when a stream is read from.</h2>
+                                <pre>registered_streaming_read_callback : </pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_registered_streaming_write_callback"> </a>
+                            <div class="element clickable property  public property_registered_streaming_write_callback" data-toggle="collapse" data-target=".property_registered_streaming_write_callback .collapse">
+                                <h2>The user-defined callback function to call when a stream is written to.</h2>
+                                <pre>registered_streaming_write_callback : </pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                            </div>
+            </div>
+            <a id="\RequestCore"></a>
+            <ul class="breadcrumb">
+                <li><a href="../index.html"><i class="icon-custom icon-class"></i></a></li>
+                    
+    
+    <li><span class="divider">\</span><a href="../namespaces/default.html">\</a></li>
+
+                <li class="active"><span class="divider">\</span><a href="../classes/RequestCore.html">RequestCore</a></li>
+            </ul>
+        </div>
+    </div>
+
+    </div>
+
+        <footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
+            <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
+            generated on Mon, 18 Jan 2016 11:31:13 +0800.<br/>
+    </footer>
+    </body>
+</html>

@@ -1,0 +1,341 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>SLS_PHP_SDK » SLS_PHP_SDK</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">SLS_PHP_SDK</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/SLS_PHP_SDK.html"><i class="icon-folder-open"></i> SLS_PHP_SDK</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">290</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-map-marker"></i> Packages</li>
+<li>
+<a href="../packages/SLS_PHP_SDK.html" title="SLS_PHP_SDK"><i class="icon-folder-open"></i>SLS_PHP_SDK</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li class="nav-header">
+<i title="Classes" class="icon-custom icon-class"></i> Classes</li>
+<li><a href="#RequestCore" title="Handles all HTTP requests using cURL and manages the responses.">RequestCore</a></li>
+<li><a href="#ResponseCore" title="Container for all response-related methods.">ResponseCore</a></li>
+<li><a href="#RequestCore_Exception" title="Default RequestCore Exception.">RequestCore_Exception</a></li>
+<li><a href="#Aliyun_Log_Exception" title="The Exception of the sls request &amp; response.">Aliyun_Log_Exception</a></li>
+<li><a href="#ProtobufEnum" title="">ProtobufEnum</a></li>
+<li><a href="#ProtobufMessage" title="">ProtobufMessage</a></li>
+<li><a href="#Protobuf" title="Class to aid in the parsing and creating of Protocol Buffer Messages
+This class should be included by the developer before they use a
+generated protobuf class.">Protobuf</a></li>
+<li><a href="#Aliyun_Log_Util" title="Copyright (C) Alibaba Cloud Computing
+All rights reserved">Aliyun_Log_Util</a></li>
+<li><a href="#Log_Content" title="">Log_Content</a></li>
+<li><a href="#Log" title="">Log</a></li>
+<li><a href="#LogGroup" title="">LogGroup</a></li>
+<li><a href="#Aliyun_Log_Client" title="Aliyun_Log_Client class is the main class in the SDK. It can be used to
+communicate with SLS server to put/get data.">Aliyun_Log_Client</a></li>
+<li><a href="#Aliyun_Log_Models_GetLogsRequest" title="The request used to get logs by a query from sls.">Aliyun_Log_Models_GetLogsRequest</a></li>
+<li><a href="#Aliyun_Log_Models_PutLogsRequest" title="The request used to send data to sls server.">Aliyun_Log_Models_PutLogsRequest</a></li>
+<li><a href="#Aliyun_Log_Models_GetHistogramsRequest" title="The request used to get histograms of a query from sls.">Aliyun_Log_Models_GetHistogramsRequest</a></li>
+<li><a href="#Aliyun_Log_Models_Histogram" title="The class used to present the result of log histogram status. For every log
+histogram, it contains : from/to time range, hit log count and query
+completed status.">Aliyun_Log_Models_Histogram</a></li>
+<li><a href="#Aliyun_Log_Models_QueriedLog" title="The QueriedLog is a log of the Aliyun_Log_Models_GetLogsResponse which obtained from the sls.">Aliyun_Log_Models_QueriedLog</a></li>
+<li><a href="#Aliyun_Log_Models_ListTopicsRequest" title="The Request used to list topics from sls.">Aliyun_Log_Models_ListTopicsRequest</a></li>
+<li><a href="#Aliyun_Log_Models_GetHistogramsResponse" title="The response of the GetHistograms API from sls.">Aliyun_Log_Models_GetHistogramsResponse</a></li>
+<li><a href="#Aliyun_Log_Models_ListLogstoresResponse" title="The response of the ListLogstores API from sls.">Aliyun_Log_Models_ListLogstoresResponse</a></li>
+<li><a href="#Aliyun_Log_Models_LogItem" title="Aliyun_Log_Models_LogItem used to present a log, it contains log time and multiple
+key/value pairs to present the log contents.">Aliyun_Log_Models_LogItem</a></li>
+<li><a href="#Aliyun_Log_Models_ListTopicsResponse" title="The response of the ListTopics API from sls.">Aliyun_Log_Models_ListTopicsResponse</a></li>
+<li><a href="#Aliyun_Log_Models_ListLogstoresRequest" title="The request used to list logstore from sls.">Aliyun_Log_Models_ListLogstoresRequest</a></li>
+<li><a href="#Aliyun_Log_Models_PutLogsResponse" title="The response of the PutLogs API from sls.">Aliyun_Log_Models_PutLogsResponse</a></li>
+<li><a href="#Aliyun_Log_Models_Request" title="The base request of all sls request.">Aliyun_Log_Models_Request</a></li>
+<li><a href="#Aliyun_Log_Models_Response" title="The base response class of all sls response.">Aliyun_Log_Models_Response</a></li>
+<li><a href="#Aliyun_Log_Models_GetLogsResponse" title="The response of the GetLog API from sls.">Aliyun_Log_Models_GetLogsResponse</a></li>
+<li class="nav-header">
+<i title="Constants" class="icon-custom icon-constant"></i> Constants</li>
+<li class="constant  "><a href="#constant_API_VERSION" title="API_VERSION() :: "><span class="description">API_VERSION</span><pre>API_VERSION</pre></a></li>
+<li class="constant  "><a href="#constant_USER_AGENT" title="USER_AGENT() :: "><span class="description">USER_AGENT</span><pre>USER_AGENT</pre></a></li>
+</ul>
+</div>
+<div class="span8 package-contents">
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li class="active"><a href="../packages/SLS_PHP_SDK.html">SLS_PHP_SDK</a></li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i title="Classes" class="icon-custom icon-class"></i> Classes, interfaces, and traits</h3>
+<div xmlns:php="http://php.net/xsl" id="Aliyun_Log_Client" class="element ajax clickable class">
+<h1>Aliyun_Log_Client<a href="../classes/Aliyun_Log_Client.html">¶</a>
+</h1>
+<p class="short_description">Aliyun_Log_Client class is the main class in the SDK. It can be used to
+communicate with SLS server to put/get data.</p>
+<div class="details collapse"></div>
+<a href="../classes/Aliyun_Log_Client.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Aliyun_Log_Exception" class="element ajax clickable class">
+<h1>Aliyun_Log_Exception<a href="../classes/Aliyun_Log_Exception.html">¶</a>
+</h1>
+<p class="short_description">The Exception of the sls request & response.</p>
+<div class="details collapse"></div>
+<a href="../classes/Aliyun_Log_Exception.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Aliyun_Log_Models_GetHistogramsRequest" class="element ajax clickable class">
+<h1>Aliyun_Log_Models_GetHistogramsRequest<a href="../classes/Aliyun_Log_Models_GetHistogramsRequest.html">¶</a>
+</h1>
+<p class="short_description">The request used to get histograms of a query from sls.</p>
+<div class="details collapse"></div>
+<a href="../classes/Aliyun_Log_Models_GetHistogramsRequest.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Aliyun_Log_Models_GetHistogramsResponse" class="element ajax clickable class">
+<h1>Aliyun_Log_Models_GetHistogramsResponse<a href="../classes/Aliyun_Log_Models_GetHistogramsResponse.html">¶</a>
+</h1>
+<p class="short_description">The response of the GetHistograms API from sls.</p>
+<div class="details collapse"></div>
+<a href="../classes/Aliyun_Log_Models_GetHistogramsResponse.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Aliyun_Log_Models_GetLogsRequest" class="element ajax clickable class">
+<h1>Aliyun_Log_Models_GetLogsRequest<a href="../classes/Aliyun_Log_Models_GetLogsRequest.html">¶</a>
+</h1>
+<p class="short_description">The request used to get logs by a query from sls.</p>
+<div class="details collapse"></div>
+<a href="../classes/Aliyun_Log_Models_GetLogsRequest.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Aliyun_Log_Models_GetLogsResponse" class="element ajax clickable class">
+<h1>Aliyun_Log_Models_GetLogsResponse<a href="../classes/Aliyun_Log_Models_GetLogsResponse.html">¶</a>
+</h1>
+<p class="short_description">The response of the GetLog API from sls.</p>
+<div class="details collapse"></div>
+<a href="../classes/Aliyun_Log_Models_GetLogsResponse.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Aliyun_Log_Models_Histogram" class="element ajax clickable class">
+<h1>Aliyun_Log_Models_Histogram<a href="../classes/Aliyun_Log_Models_Histogram.html">¶</a>
+</h1>
+<p class="short_description">The class used to present the result of log histogram status. For every log
+histogram, it contains : from/to time range, hit log count and query
+completed status.</p>
+<div class="details collapse"></div>
+<a href="../classes/Aliyun_Log_Models_Histogram.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Aliyun_Log_Models_ListLogstoresRequest" class="element ajax clickable class">
+<h1>Aliyun_Log_Models_ListLogstoresRequest<a href="../classes/Aliyun_Log_Models_ListLogstoresRequest.html">¶</a>
+</h1>
+<p class="short_description">The request used to list logstore from sls.</p>
+<div class="details collapse"></div>
+<a href="../classes/Aliyun_Log_Models_ListLogstoresRequest.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Aliyun_Log_Models_ListLogstoresResponse" class="element ajax clickable class">
+<h1>Aliyun_Log_Models_ListLogstoresResponse<a href="../classes/Aliyun_Log_Models_ListLogstoresResponse.html">¶</a>
+</h1>
+<p class="short_description">The response of the ListLogstores API from sls.</p>
+<div class="details collapse"></div>
+<a href="../classes/Aliyun_Log_Models_ListLogstoresResponse.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Aliyun_Log_Models_ListTopicsRequest" class="element ajax clickable class">
+<h1>Aliyun_Log_Models_ListTopicsRequest<a href="../classes/Aliyun_Log_Models_ListTopicsRequest.html">¶</a>
+</h1>
+<p class="short_description">The Request used to list topics from sls.</p>
+<div class="details collapse"></div>
+<a href="../classes/Aliyun_Log_Models_ListTopicsRequest.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Aliyun_Log_Models_ListTopicsResponse" class="element ajax clickable class">
+<h1>Aliyun_Log_Models_ListTopicsResponse<a href="../classes/Aliyun_Log_Models_ListTopicsResponse.html">¶</a>
+</h1>
+<p class="short_description">The response of the ListTopics API from sls.</p>
+<div class="details collapse"></div>
+<a href="../classes/Aliyun_Log_Models_ListTopicsResponse.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Aliyun_Log_Models_LogItem" class="element ajax clickable class">
+<h1>Aliyun_Log_Models_LogItem<a href="../classes/Aliyun_Log_Models_LogItem.html">¶</a>
+</h1>
+<p class="short_description">Aliyun_Log_Models_LogItem used to present a log, it contains log time and multiple
+key/value pairs to present the log contents.</p>
+<div class="details collapse"></div>
+<a href="../classes/Aliyun_Log_Models_LogItem.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Aliyun_Log_Models_PutLogsRequest" class="element ajax clickable class">
+<h1>Aliyun_Log_Models_PutLogsRequest<a href="../classes/Aliyun_Log_Models_PutLogsRequest.html">¶</a>
+</h1>
+<p class="short_description">The request used to send data to sls server.</p>
+<div class="details collapse"></div>
+<a href="../classes/Aliyun_Log_Models_PutLogsRequest.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Aliyun_Log_Models_PutLogsResponse" class="element ajax clickable class">
+<h1>Aliyun_Log_Models_PutLogsResponse<a href="../classes/Aliyun_Log_Models_PutLogsResponse.html">¶</a>
+</h1>
+<p class="short_description">The response of the PutLogs API from sls.</p>
+<div class="details collapse"></div>
+<a href="../classes/Aliyun_Log_Models_PutLogsResponse.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Aliyun_Log_Models_QueriedLog" class="element ajax clickable class">
+<h1>Aliyun_Log_Models_QueriedLog<a href="../classes/Aliyun_Log_Models_QueriedLog.html">¶</a>
+</h1>
+<p class="short_description">The QueriedLog is a log of the Aliyun_Log_Models_GetLogsResponse which obtained from the sls.</p>
+<div class="details collapse"></div>
+<a href="../classes/Aliyun_Log_Models_QueriedLog.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Aliyun_Log_Models_Request" class="element ajax clickable class">
+<h1>Aliyun_Log_Models_Request<a href="../classes/Aliyun_Log_Models_Request.html">¶</a>
+</h1>
+<p class="short_description">The base request of all sls request.</p>
+<div class="details collapse"></div>
+<a href="../classes/Aliyun_Log_Models_Request.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Aliyun_Log_Models_Response" class="element ajax clickable class">
+<h1>Aliyun_Log_Models_Response<a href="../classes/Aliyun_Log_Models_Response.html">¶</a>
+</h1>
+<p class="short_description">The base response class of all sls response.</p>
+<div class="details collapse"></div>
+<a href="../classes/Aliyun_Log_Models_Response.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Aliyun_Log_Util" class="element ajax clickable class">
+<h1>Aliyun_Log_Util<a href="../classes/Aliyun_Log_Util.html">¶</a>
+</h1>
+<p class="short_description">Copyright (C) Alibaba Cloud Computing
+All rights reserved</p>
+<div class="details collapse"></div>
+<a href="../classes/Aliyun_Log_Util.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Log" class="element ajax clickable class">
+<h1>Log<a href="../classes/Log.html">¶</a>
+</h1>
+<p class="short_description"></p>
+<div class="details collapse"></div>
+<a href="../classes/Log.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="LogGroup" class="element ajax clickable class">
+<h1>LogGroup<a href="../classes/LogGroup.html">¶</a>
+</h1>
+<p class="short_description"></p>
+<div class="details collapse"></div>
+<a href="../classes/LogGroup.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Log_Content" class="element ajax clickable class">
+<h1>Log_Content<a href="../classes/Log_Content.html">¶</a>
+</h1>
+<p class="short_description"></p>
+<div class="details collapse"></div>
+<a href="../classes/Log_Content.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Protobuf" class="element ajax clickable class">
+<h1>Protobuf<a href="../classes/Protobuf.html">¶</a>
+</h1>
+<p class="short_description">Class to aid in the parsing and creating of Protocol Buffer Messages
+This class should be included by the developer before they use a
+generated protobuf class.</p>
+<div class="details collapse"></div>
+<a href="../classes/Protobuf.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="ProtobufEnum" class="element ajax clickable class">
+<h1>ProtobufEnum<a href="../classes/ProtobufEnum.html">¶</a>
+</h1>
+<p class="short_description"></p>
+<div class="details collapse"></div>
+<a href="../classes/ProtobufEnum.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="ProtobufMessage" class="element ajax clickable class">
+<h1>ProtobufMessage<a href="../classes/ProtobufMessage.html">¶</a>
+</h1>
+<p class="short_description"></p>
+<div class="details collapse"></div>
+<a href="../classes/ProtobufMessage.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="RequestCore" class="element ajax clickable class">
+<h1>RequestCore<a href="../classes/RequestCore.html">¶</a>
+</h1>
+<p class="short_description">Handles all HTTP requests using cURL and manages the responses.</p>
+<div class="details collapse"></div>
+<a href="../classes/RequestCore.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="RequestCore_Exception" class="element ajax clickable class">
+<h1>RequestCore_Exception<a href="../classes/RequestCore_Exception.html">¶</a>
+</h1>
+<p class="short_description">Default RequestCore Exception.</p>
+<div class="details collapse"></div>
+<a href="../classes/RequestCore_Exception.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="ResponseCore" class="element ajax clickable class">
+<h1>ResponseCore<a href="../classes/ResponseCore.html">¶</a>
+</h1>
+<p class="short_description">Container for all response-related methods.</p>
+<div class="details collapse"></div>
+<a href="../classes/ResponseCore.html" class="more">« More »</a>
+</div>
+<h3>
+<i title="Constants" class="icon-custom icon-constant"></i> Constants</h3>
+<a xmlns:php="http://php.net/xsl" id="constant_API_VERSION"> </a><div xmlns:php="http://php.net/xsl" class="element clickable constant  constant_API_VERSION" data-toggle="collapse" data-target=".constant_API_VERSION .collapse" title="">
+<h2>API_VERSION</h2>
+<pre>API_VERSION = '0.4.0' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>package</th>
+<td><a href="../packages/SLS_PHP_SDK.html">SLS_PHP_SDK</a></td>
+</tr></table>
+</div></div>
+</div>
+<a xmlns:php="http://php.net/xsl" id="constant_USER_AGENT"> </a><div xmlns:php="http://php.net/xsl" class="element clickable constant  constant_USER_AGENT" data-toggle="collapse" data-target=".constant_USER_AGENT .collapse" title="">
+<h2>USER_AGENT</h2>
+<pre>USER_AGENT = 'sls-php-sdk-v-0.4.1' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>package</th>
+<td><a href="../packages/SLS_PHP_SDK.html">SLS_PHP_SDK</a></td>
+</tr></table>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor v2.8.0-3-gd2074ac</a> and<br>
+            generated on 2015-01-26T01:53:31-08:00.<br></footer></div>
+</div>
+</body>
+</html>

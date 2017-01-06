@@ -1,0 +1,1880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>    LOG_PHP_SDK &raquo; \Protobuf
+</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+            <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+            <!--[if lt IE 9]>
+        <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+        <![endif]-->
+        <script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script>
+        <script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script>
+        <script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script>
+        <script src="../js/bootstrap.js" type="text/javascript"></script>
+        <script src="../js/template.js" type="text/javascript"></script>
+        <script src="../js/prettify/prettify.min.js" type="text/javascript"></script>
+    
+            <link rel="shortcut icon" href="../img/favicon.ico"/>
+        <link rel="apple-touch-icon" href="../img/apple-touch-icon.png"/>
+        <link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png"/>
+        <link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png"/>
+    </head>
+<body>
+
+        <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    <span class="icon-bar"></span> </a>
+                <a class="brand" href="../index.html">LOG_PHP_SDK</a>
+
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li class="dropdown">
+                            <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                API Documentation <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                                                                            </ul>
+                        </li>
+                        <li class="dropdown" id="charts-menu">
+                            <a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                Charts <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../graph_class.html">
+                                        <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown" id="reports-menu">
+                            <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                Reports <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../errors.html">
+                                        <i class="icon-list-alt"></i>&#160;Errors
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../markers.html">
+                                        <i class="icon-list-alt"></i>&#160;Markers
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../deprecated.html">
+                                        <i class="icon-list-alt"></i>&#160;Deprecated
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="go_to_top">
+            <a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>
+        </div>
+    </div>
+    
+    <div id="___" class="container">
+        <noscript>
+            <div class="alert alert-warning">
+                Javascript is disabled; several features are only available if Javascript is enabled.
+            </div>
+        </noscript>
+
+        
+            <style>
+        .deprecated h2 {
+            text-decoration: line-through;
+        }
+    </style>
+    <div class="row">
+        <div class="span4">
+                    <div class="btn-group view pull-right" data-toggle="buttons-radio">
+        <button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button>
+        <button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+    </div>
+    <div class="btn-group visibility" data-toggle="buttons-checkbox">
+        <button class="btn public active" title="Show public elements">Public</button>
+        <button class="btn protected" title="Show protected elements">Protected</button>
+        <button class="btn private" title="Show private elements">Private</button>
+        <button class="btn inherited active" title="Show inherited elements">Inherited</button>
+    </div>
+
+        <ul class="side-nav nav nav-list">
+        <li class="nav-header">
+            <i class="icon-custom icon-method"></i> Methods
+            <ul>
+                                                                                                    <li class="method public">
+        <a href="#method_get_wiretype" title="get_wiretype :: Returns a string representing this wiretype">
+            <span class="description">Returns a string representing this wiretype</span><pre>get_wiretype</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_read_double" title="read_double :: ">
+            <span class="description"></span><pre>read_double</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_read_field" title="read_field :: Read a unknown field from the stream and return its raw bytes">
+            <span class="description">Read a unknown field from the stream and return its raw bytes</span><pre>read_field</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_read_float" title="read_float :: ">
+            <span class="description"></span><pre>read_float</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_read_int32" title="read_int32 :: ">
+            <span class="description"></span><pre>read_int32</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_read_int64" title="read_int64 :: ">
+            <span class="description"></span><pre>read_int64</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_read_uint32" title="read_uint32 :: ">
+            <span class="description"></span><pre>read_uint32</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_read_uint64" title="read_uint64 :: ">
+            <span class="description"></span><pre>read_uint64</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_read_varint" title="read_varint :: Tries to read a varint from $fp.">
+            <span class="description">Tries to read a varint from $fp.</span><pre>read_varint</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_read_zint32" title="read_zint32 :: ">
+            <span class="description"></span><pre>read_zint32</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_read_zint64" title="read_zint64 :: ">
+            <span class="description"></span><pre>read_zint64</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_size_varint" title="size_varint :: Returns how big (in bytes) this number would be as a varint">
+            <span class="description">Returns how big (in bytes) this number would be as a varint</span><pre>size_varint</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_skip_field" title="skip_field :: Seek past the current field">
+            <span class="description">Seek past the current field</span><pre>skip_field</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_skip_varint" title="skip_varint :: Seek past a varint">
+            <span class="description">Seek past a varint</span><pre>skip_varint</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_toString" title="toString :: ">
+            <span class="description"></span><pre>toString</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_write_double" title="write_double :: ">
+            <span class="description"></span><pre>write_double</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_write_float" title="write_float :: ">
+            <span class="description"></span><pre>write_float</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_write_int32" title="write_int32 :: ">
+            <span class="description"></span><pre>write_int32</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_write_int64" title="write_int64 :: ">
+            <span class="description"></span><pre>write_int64</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_write_uint32" title="write_uint32 :: ">
+            <span class="description"></span><pre>write_uint32</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_write_uint64" title="write_uint64 :: ">
+            <span class="description"></span><pre>write_uint64</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_write_varint" title="write_varint :: Writes a varint to $fp
+returns the number of bytes written">
+            <span class="description">Writes a varint to $fp
+returns the number of bytes written</span><pre>write_varint</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_write_zint32" title="write_zint32 :: ">
+            <span class="description"></span><pre>write_zint32</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_write_zint64" title="write_zint64 :: ">
+            <span class="description"></span><pre>write_zint64</pre>
+        </a>
+    </li>
+
+                                                </ul>
+        </li>
+        <li class="nav-header protected">» Protected
+            <ul>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </ul>
+        </li>
+        <li class="nav-header private">» Private
+            <ul>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </ul>
+        </li>
+        <li class="nav-header">
+            <i class="icon-custom icon-constant"></i> Constants
+            <ul>
+                                <li class="constant ">
+                    <a href="#constant_TYPE_BOOL" title="TYPE_BOOL :: ">
+                        <span class="description"></span><pre>TYPE_BOOL</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_TYPE_BYTES" title="TYPE_BYTES :: ">
+                        <span class="description"></span><pre>TYPE_BYTES</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_TYPE_DOUBLE" title="TYPE_DOUBLE :: ">
+                        <span class="description"></span><pre>TYPE_DOUBLE</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_TYPE_ENUM" title="TYPE_ENUM :: ">
+                        <span class="description"></span><pre>TYPE_ENUM</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_TYPE_FIXED32" title="TYPE_FIXED32 :: ">
+                        <span class="description"></span><pre>TYPE_FIXED32</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_TYPE_FIXED64" title="TYPE_FIXED64 :: ">
+                        <span class="description"></span><pre>TYPE_FIXED64</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_TYPE_FLOAT" title="TYPE_FLOAT :: ">
+                        <span class="description"></span><pre>TYPE_FLOAT</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_TYPE_GROUP" title="TYPE_GROUP :: ">
+                        <span class="description"></span><pre>TYPE_GROUP</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_TYPE_INT32" title="TYPE_INT32 :: ">
+                        <span class="description"></span><pre>TYPE_INT32</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_TYPE_INT64" title="TYPE_INT64 :: ">
+                        <span class="description"></span><pre>TYPE_INT64</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_TYPE_MESSAGE" title="TYPE_MESSAGE :: ">
+                        <span class="description"></span><pre>TYPE_MESSAGE</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_TYPE_SFIXED32" title="TYPE_SFIXED32 :: ">
+                        <span class="description"></span><pre>TYPE_SFIXED32</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_TYPE_SFIXED64" title="TYPE_SFIXED64 :: ">
+                        <span class="description"></span><pre>TYPE_SFIXED64</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_TYPE_SINT32" title="TYPE_SINT32 :: ">
+                        <span class="description"></span><pre>TYPE_SINT32</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_TYPE_SINT64" title="TYPE_SINT64 :: ">
+                        <span class="description"></span><pre>TYPE_SINT64</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_TYPE_STRING" title="TYPE_STRING :: ">
+                        <span class="description"></span><pre>TYPE_STRING</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_TYPE_UINT32" title="TYPE_UINT32 :: ">
+                        <span class="description"></span><pre>TYPE_UINT32</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_TYPE_UINT64" title="TYPE_UINT64 :: ">
+                        <span class="description"></span><pre>TYPE_UINT64</pre>
+                    </a>
+                </li>
+                            </ul>
+        </li>
+    </ul>
+
+
+        </div>
+
+        <div class="span8">
+            <div class="element class">
+                <h1>Protobuf</h1>
+                <small style="display: block; text-align: right">
+                                                        </small>
+                <p class="short_description">Class to aid in the parsing and creating of Protocol Buffer Messages
+This class should be included by the developer before they use a
+generated protobuf class.</p>
+                <div class="details">
+                    <div class="long_description">
+                        
+                    </div>
+                    <table class="table table-bordered">
+                                                                                    <tr>
+                                    <th>
+                                        author
+                                                                            </th>
+                                    <td>
+                                                                                    
+                                                                                <p>Andrew Brampton</p>
+                                    </td>
+                                </tr>
+                                                                                                                <tr>
+                                    <th>
+                                        package
+                                                                            </th>
+                                    <td>
+                                                                                    
+                                                                                <p>LOG_PHP_SDK</p>
+                                    </td>
+                                </tr>
+                                                                                                                                                                                </table>
+
+                    <h3><i class="icon-custom icon-method"></i> Methods</h3>
+                                                                <a id="method_get_wiretype"></a>
+                        <div class="element clickable method public  method_get_wiretype" data-toggle="collapse" data-target=".method_get_wiretype .collapse">
+                            <h2>Returns a string representing this wiretype</h2>
+                            <pre>get_wiretype( $wire_type) </pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$wire_type</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_read_double"></a>
+                        <div class="element clickable method public  method_read_double" data-toggle="collapse" data-target=".method_read_double .collapse">
+                            <h2>read_double</h2>
+                            <pre>read_double( $fp) </pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$fp</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_read_field"></a>
+                        <div class="element clickable method public  method_read_field" data-toggle="collapse" data-target=".method_read_field .collapse">
+                            <h2>Read a unknown field from the stream and return its raw bytes</h2>
+                            <pre>read_field( $fp,  $wire_type,  &$limit = null) </pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$fp</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$wire_type</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$limit</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_read_float"></a>
+                        <div class="element clickable method public  method_read_float" data-toggle="collapse" data-target=".method_read_float .collapse">
+                            <h2>read_float</h2>
+                            <pre>read_float( $fp) </pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$fp</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_read_int32"></a>
+                        <div class="element clickable method public  method_read_int32" data-toggle="collapse" data-target=".method_read_int32 .collapse">
+                            <h2>read_int32</h2>
+                            <pre>read_int32( $fp) </pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$fp</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_read_int64"></a>
+                        <div class="element clickable method public  method_read_int64" data-toggle="collapse" data-target=".method_read_int64 .collapse">
+                            <h2>read_int64</h2>
+                            <pre>read_int64( $fp) </pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$fp</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_read_uint32"></a>
+                        <div class="element clickable method public  method_read_uint32" data-toggle="collapse" data-target=".method_read_uint32 .collapse">
+                            <h2>read_uint32</h2>
+                            <pre>read_uint32( $fp) </pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$fp</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_read_uint64"></a>
+                        <div class="element clickable method public  method_read_uint64" data-toggle="collapse" data-target=".method_read_uint64 .collapse">
+                            <h2>read_uint64</h2>
+                            <pre>read_uint64( $fp) </pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$fp</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_read_varint"></a>
+                        <div class="element clickable method public  method_read_varint" data-toggle="collapse" data-target=".method_read_varint .collapse">
+                            <h2>Tries to read a varint from $fp.</h2>
+                            <pre>read_varint( $fp,  &$limit = null) </pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    returns
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>the Varint from the stream, or false if the stream has reached eof.</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$fp</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$limit</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_read_zint32"></a>
+                        <div class="element clickable method public  method_read_zint32" data-toggle="collapse" data-target=".method_read_zint32 .collapse">
+                            <h2>read_zint32</h2>
+                            <pre>read_zint32( $fp) </pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$fp</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_read_zint64"></a>
+                        <div class="element clickable method public  method_read_zint64" data-toggle="collapse" data-target=".method_read_zint64 .collapse">
+                            <h2>read_zint64</h2>
+                            <pre>read_zint64( $fp) </pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$fp</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_size_varint"></a>
+                        <div class="element clickable method public  method_size_varint" data-toggle="collapse" data-target=".method_size_varint .collapse">
+                            <h2>Returns how big (in bytes) this number would be as a varint</h2>
+                            <pre>size_varint( $i) </pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$i</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_skip_field"></a>
+                        <div class="element clickable method public  method_skip_field" data-toggle="collapse" data-target=".method_skip_field .collapse">
+                            <h2>Seek past the current field</h2>
+                            <pre>skip_field( $fp,  $wire_type) </pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$fp</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$wire_type</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_skip_varint"></a>
+                        <div class="element clickable method public  method_skip_varint" data-toggle="collapse" data-target=".method_skip_varint .collapse">
+                            <h2>Seek past a varint</h2>
+                            <pre>skip_varint( $fp) </pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$fp</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_toString"></a>
+                        <div class="element clickable method public  method_toString" data-toggle="collapse" data-target=".method_toString .collapse">
+                            <h2>toString</h2>
+                            <pre>toString( $key,  $value) </pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$key</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$value</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_write_double"></a>
+                        <div class="element clickable method public  method_write_double" data-toggle="collapse" data-target=".method_write_double .collapse">
+                            <h2>write_double</h2>
+                            <pre>write_double( $fp,  $d) </pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$fp</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$d</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_write_float"></a>
+                        <div class="element clickable method public  method_write_float" data-toggle="collapse" data-target=".method_write_float .collapse">
+                            <h2>write_float</h2>
+                            <pre>write_float( $fp,  $f) </pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$fp</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$f</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_write_int32"></a>
+                        <div class="element clickable method public  method_write_int32" data-toggle="collapse" data-target=".method_write_int32 .collapse">
+                            <h2>write_int32</h2>
+                            <pre>write_int32( $fp,  $i) </pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$fp</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$i</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_write_int64"></a>
+                        <div class="element clickable method public  method_write_int64" data-toggle="collapse" data-target=".method_write_int64 .collapse">
+                            <h2>write_int64</h2>
+                            <pre>write_int64( $fp,  $i) </pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$fp</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$i</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_write_uint32"></a>
+                        <div class="element clickable method public  method_write_uint32" data-toggle="collapse" data-target=".method_write_uint32 .collapse">
+                            <h2>write_uint32</h2>
+                            <pre>write_uint32( $fp,  $i) </pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$fp</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$i</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_write_uint64"></a>
+                        <div class="element clickable method public  method_write_uint64" data-toggle="collapse" data-target=".method_write_uint64 .collapse">
+                            <h2>write_uint64</h2>
+                            <pre>write_uint64( $fp,  $i) </pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$fp</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$i</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_write_varint"></a>
+                        <div class="element clickable method public  method_write_varint" data-toggle="collapse" data-target=".method_write_varint .collapse">
+                            <h2>Writes a varint to $fp
+returns the number of bytes written</h2>
+                            <pre>write_varint( $fp,  $i) : \The</pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$fp</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$i</h4>
+                                                <code></code><p><p>The int to encode</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>\The</code><p><p>number of bytes written</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_write_zint32"></a>
+                        <div class="element clickable method public  method_write_zint32" data-toggle="collapse" data-target=".method_write_zint32 .collapse">
+                            <h2>write_zint32</h2>
+                            <pre>write_zint32( $fp,  $i) </pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$fp</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$i</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_write_zint64"></a>
+                        <div class="element clickable method public  method_write_zint64" data-toggle="collapse" data-target=".method_write_zint64 .collapse">
+                            <h2>write_zint64</h2>
+                            <pre>write_zint64( $fp,  $i) </pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$fp</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$i</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                    
+                                            <h3><i class="icon-custom icon-constant"></i> Constants</h3>
+                                                    <a id="constant_TYPE_DOUBLE"> </a>
+                            <div class="element clickable constant  constant_TYPE_DOUBLE" data-toggle="collapse" data-target=".constant_TYPE_DOUBLE .collapse">
+                                <h2>TYPE_DOUBLE</h2>
+                                <pre>TYPE_DOUBLE</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_TYPE_FLOAT"> </a>
+                            <div class="element clickable constant  constant_TYPE_FLOAT" data-toggle="collapse" data-target=".constant_TYPE_FLOAT .collapse">
+                                <h2>TYPE_FLOAT</h2>
+                                <pre>TYPE_FLOAT</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_TYPE_INT64"> </a>
+                            <div class="element clickable constant  constant_TYPE_INT64" data-toggle="collapse" data-target=".constant_TYPE_INT64 .collapse">
+                                <h2>TYPE_INT64</h2>
+                                <pre>TYPE_INT64</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_TYPE_UINT64"> </a>
+                            <div class="element clickable constant  constant_TYPE_UINT64" data-toggle="collapse" data-target=".constant_TYPE_UINT64 .collapse">
+                                <h2>TYPE_UINT64</h2>
+                                <pre>TYPE_UINT64</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_TYPE_INT32"> </a>
+                            <div class="element clickable constant  constant_TYPE_INT32" data-toggle="collapse" data-target=".constant_TYPE_INT32 .collapse">
+                                <h2>TYPE_INT32</h2>
+                                <pre>TYPE_INT32</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_TYPE_FIXED64"> </a>
+                            <div class="element clickable constant  constant_TYPE_FIXED64" data-toggle="collapse" data-target=".constant_TYPE_FIXED64 .collapse">
+                                <h2>TYPE_FIXED64</h2>
+                                <pre>TYPE_FIXED64</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_TYPE_FIXED32"> </a>
+                            <div class="element clickable constant  constant_TYPE_FIXED32" data-toggle="collapse" data-target=".constant_TYPE_FIXED32 .collapse">
+                                <h2>TYPE_FIXED32</h2>
+                                <pre>TYPE_FIXED32</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_TYPE_BOOL"> </a>
+                            <div class="element clickable constant  constant_TYPE_BOOL" data-toggle="collapse" data-target=".constant_TYPE_BOOL .collapse">
+                                <h2>TYPE_BOOL</h2>
+                                <pre>TYPE_BOOL</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_TYPE_STRING"> </a>
+                            <div class="element clickable constant  constant_TYPE_STRING" data-toggle="collapse" data-target=".constant_TYPE_STRING .collapse">
+                                <h2>TYPE_STRING</h2>
+                                <pre>TYPE_STRING</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_TYPE_GROUP"> </a>
+                            <div class="element clickable constant  constant_TYPE_GROUP" data-toggle="collapse" data-target=".constant_TYPE_GROUP .collapse">
+                                <h2>TYPE_GROUP</h2>
+                                <pre>TYPE_GROUP</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_TYPE_MESSAGE"> </a>
+                            <div class="element clickable constant  constant_TYPE_MESSAGE" data-toggle="collapse" data-target=".constant_TYPE_MESSAGE .collapse">
+                                <h2>TYPE_MESSAGE</h2>
+                                <pre>TYPE_MESSAGE</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_TYPE_BYTES"> </a>
+                            <div class="element clickable constant  constant_TYPE_BYTES" data-toggle="collapse" data-target=".constant_TYPE_BYTES .collapse">
+                                <h2>TYPE_BYTES</h2>
+                                <pre>TYPE_BYTES</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_TYPE_UINT32"> </a>
+                            <div class="element clickable constant  constant_TYPE_UINT32" data-toggle="collapse" data-target=".constant_TYPE_UINT32 .collapse">
+                                <h2>TYPE_UINT32</h2>
+                                <pre>TYPE_UINT32</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_TYPE_ENUM"> </a>
+                            <div class="element clickable constant  constant_TYPE_ENUM" data-toggle="collapse" data-target=".constant_TYPE_ENUM .collapse">
+                                <h2>TYPE_ENUM</h2>
+                                <pre>TYPE_ENUM</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_TYPE_SFIXED32"> </a>
+                            <div class="element clickable constant  constant_TYPE_SFIXED32" data-toggle="collapse" data-target=".constant_TYPE_SFIXED32 .collapse">
+                                <h2>TYPE_SFIXED32</h2>
+                                <pre>TYPE_SFIXED32</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_TYPE_SFIXED64"> </a>
+                            <div class="element clickable constant  constant_TYPE_SFIXED64" data-toggle="collapse" data-target=".constant_TYPE_SFIXED64 .collapse">
+                                <h2>TYPE_SFIXED64</h2>
+                                <pre>TYPE_SFIXED64</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_TYPE_SINT32"> </a>
+                            <div class="element clickable constant  constant_TYPE_SINT32" data-toggle="collapse" data-target=".constant_TYPE_SINT32 .collapse">
+                                <h2>TYPE_SINT32</h2>
+                                <pre>TYPE_SINT32</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_TYPE_SINT64"> </a>
+                            <div class="element clickable constant  constant_TYPE_SINT64" data-toggle="collapse" data-target=".constant_TYPE_SINT64 .collapse">
+                                <h2>TYPE_SINT64</h2>
+                                <pre>TYPE_SINT64</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                            
+                                                                <h3><i class="icon-custom icon-property"></i> Properties</h3>
+                                                    <a id="property_print_depth"> </a>
+                            <div class="element clickable property  private property_print_depth" data-toggle="collapse" data-target=".property_print_depth .collapse">
+                                <h2>Used to aid in pretty printing of Protobuf objects</h2>
+                                <pre>print_depth : </pre>
+                                <div class="labels">
+                                                                        <span class="label">static</span>                                </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_indent_char"> </a>
+                            <div class="element clickable property  private property_indent_char" data-toggle="collapse" data-target=".property_indent_char .collapse">
+                                <h2>indent_char</h2>
+                                <pre>indent_char : </pre>
+                                <div class="labels">
+                                                                        <span class="label">static</span>                                </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_print_limit"> </a>
+                            <div class="element clickable property  private property_print_limit" data-toggle="collapse" data-target=".property_print_limit .collapse">
+                                <h2>print_limit</h2>
+                                <pre>print_limit : </pre>
+                                <div class="labels">
+                                                                        <span class="label">static</span>                                </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                            </div>
+            </div>
+            <a id="\Protobuf"></a>
+            <ul class="breadcrumb">
+                <li><a href="../index.html"><i class="icon-custom icon-class"></i></a></li>
+                    
+    
+    <li><span class="divider">\</span><a href="../namespaces/default.html">\</a></li>
+
+                <li class="active"><span class="divider">\</span><a href="../classes/Protobuf.html">Protobuf</a></li>
+            </ul>
+        </div>
+    </div>
+
+    </div>
+
+        <footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
+            <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
+            generated on Mon, 18 Jan 2016 11:31:12 +0800.<br/>
+    </footer>
+    </body>
+</html>
