@@ -760,13 +760,17 @@ class RequestCore
 	 */
 	public function process_response($curl_handle = null, $response = null)
 	{
+        if ($response)
+        {
+            $this->response = $response;
+        }
 		// As long as this came back as a valid resource...
 		if (is_resource($curl_handle))
 		{
 			// Determine what's what.
 			$header_size = curl_getinfo($curl_handle, CURLINFO_HEADER_SIZE);
-			$this->response_headers = substr(response, 0, $header_size);
-			$this->response_body = substr(response, $header_size);
+			$this->response_headers = substr($this->response, 0, $header_size);
+			$this->response_body = substr($this->response, $header_size);
 			$this->response_code = curl_getinfo($curl_handle, CURLINFO_HTTP_CODE);
 			$this->response_info = curl_getinfo($curl_handle);
 
@@ -789,7 +793,7 @@ class RequestCore
 			$this->response_headers['_info'] = $this->response_info;
 			$this->response_headers['_info']['method'] = $this->method;
 
-			if ($curl_handle && $response)
+			if ($curl_handle && $this->$response)
 			{
 				return new $this->response_class($this->response_headers, $this->response_body, $this->response_code, $curl_handle);
 			}
