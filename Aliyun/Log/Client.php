@@ -395,16 +395,16 @@ class Aliyun_Log_Client {
         $resp = $this->parseToJson ( $resp, $requestId );
         return new Aliyun_Log_Models_ListTopicsResponse ( $resp, $header );
     }
-    
+
     /**
      * Get histograms of requested query from log service.
      * Unsuccessful opertaion will cause an Aliyun_Log_Exception.
      *
      * @param Aliyun_Log_Models_GetHistogramsRequest $request the GetHistograms request parameters class.
      * @throws Aliyun_Log_Exception
-     * @return Aliyun_Log_Models_GetHistogramsResponse
+     * @return array(json body, http header)
      */
-    public function getHistograms(Aliyun_Log_Models_GetHistogramsRequest $request) {
+    public function getHistogramsJson(Aliyun_Log_Models_GetHistogramsRequest $request) {
         $headers = array ();
         $params = array ();
         if ($request->getTopic () !== null)
@@ -422,18 +422,33 @@ class Aliyun_Log_Client {
         list ( $resp, $header ) = $this->send ( "GET", $project, NULL, $resource, $params, $headers );
         $requestId = isset ( $header ['x-log-requestid'] ) ? $header ['x-log-requestid'] : '';
         $resp = $this->parseToJson ( $resp, $requestId );
-        return new Aliyun_Log_Models_GetHistogramsResponse ( $resp, $header );
+        return array($resp, $header);
     }
     
+    /**
+     * Get histograms of requested query from log service.
+     * Unsuccessful opertaion will cause an Aliyun_Log_Exception.
+     *
+     * @param Aliyun_Log_Models_GetHistogramsRequest $request the GetHistograms request parameters class.
+     * @throws Aliyun_Log_Exception
+     * @return Aliyun_Log_Models_GetHistogramsResponse
+     */
+    public function getHistograms(Aliyun_Log_Models_GetHistogramsRequest $request) {
+        $ret = $this->getHistogramsJson($request);
+        $resp = $ret[0];
+        $header = $ret[1];
+        return new Aliyun_Log_Models_GetHistogramsResponse ( $resp, $header );
+    }
+
     /**
      * Get logs from Log service.
      * Unsuccessful opertaion will cause an Aliyun_Log_Exception.
      *
      * @param Aliyun_Log_Models_GetLogsRequest $request the GetLogs request parameters class.
      * @throws Aliyun_Log_Exception
-     * @return Aliyun_Log_Models_GetLogsResponse
+     * @return array(json body, http header)
      */
-    public function getLogs(Aliyun_Log_Models_GetLogsRequest $request) {
+    public function getLogsJson(Aliyun_Log_Models_GetLogsRequest $request) {
         $headers = array ();
         $params = array ();
         if ($request->getTopic () !== null)
@@ -457,6 +472,22 @@ class Aliyun_Log_Client {
         list ( $resp, $header ) = $this->send ( "GET", $project, NULL, $resource, $params, $headers );
         $requestId = isset ( $header ['x-log-requestid'] ) ? $header ['x-log-requestid'] : '';
         $resp = $this->parseToJson ( $resp, $requestId );
+        return array($resp, $header);
+        //return new Aliyun_Log_Models_GetLogsResponse ( $resp, $header );
+    }
+    
+    /**
+     * Get logs from Log service.
+     * Unsuccessful opertaion will cause an Aliyun_Log_Exception.
+     *
+     * @param Aliyun_Log_Models_GetLogsRequest $request the GetLogs request parameters class.
+     * @throws Aliyun_Log_Exception
+     * @return Aliyun_Log_Models_GetLogsResponse
+     */
+    public function getLogs(Aliyun_Log_Models_GetLogsRequest $request) {
+        $ret = $this->getLogsJson($request);
+        $resp = $ret[0];
+        $header = $ret[1];
         return new Aliyun_Log_Models_GetLogsResponse ( $resp, $header );
     }
     
