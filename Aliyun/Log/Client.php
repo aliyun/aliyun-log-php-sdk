@@ -270,8 +270,8 @@ class Aliyun_Log_Client {
         
         $logstore = $request->getLogstore () !== null ? $request->getLogstore () : '';
         $project = $request->getProject () !== null ? $request->getProject () : '';
-        $resource = "/logstores/" . $logstore.($shardKey== null?"/shards/lb":"/shards/route");
         $shardKey = $request -> getShardKey();
+        $resource = "/logstores/" . $logstore.($shardKey== null?"/shards/lb":"/shards/route");
         if($shardKey)
             $params["key"]=$shardKey;
         list ( $resp, $header ) = $this->send ( "POST", $project, $body, $resource, $params, $headers );
