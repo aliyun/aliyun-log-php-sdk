@@ -29,7 +29,7 @@ class Aliyun_Log_Models_ListConfigsResponse extends Aliyun_Log_Models_Response {
     }
 
     public function getSize(){
-      return count($this->configs)
+      return count($this->configs);
     }
 
     public function getTotal(){
