@@ -147,14 +147,14 @@ class Protobuf {
 		return $i;
 	}
 
-	public static function read_double($fp){throw "I've not coded it yet Exception";}
-	public static function read_float ($fp){throw "I've not coded it yet Exception";}
-	public static function read_uint64($fp){throw "I've not coded it yet Exception";}
-	public static function read_int64 ($fp){throw "I've not coded it yet Exception";}
-	public static function read_uint32($fp){throw "I've not coded it yet Exception";}
-	public static function read_int32 ($fp){throw "I've not coded it yet Exception";}
-	public static function read_zint32($fp){throw "I've not coded it yet Exception";}
-	public static function read_zint64($fp){throw "I've not coded it yet Exception";}
+	public static function read_double($fp){throw new Exception("I've not coded it yet Exception");}
+	public static function read_float ($fp){throw new Exception("I've not coded it yet Exception");}
+	public static function read_uint64($fp){throw new Exception("I've not coded it yet Exception");}
+	public static function read_int64 ($fp){throw new Exception("I've not coded it yet Exception");}
+	public static function read_uint32($fp){throw new Exception("I've not coded it yet Exception");}
+	public static function read_int32 ($fp){throw new Exception("I've not coded it yet Exception");}
+	public static function read_zint32($fp){throw new Exception("I've not coded it yet Exception");}
+	public static function read_zint64($fp){throw new Exception("I've not coded it yet Exception");}
 
 	/**
 	 * Writes a varint to $fp
@@ -181,14 +181,14 @@ class Protobuf {
 		return $len;
 	}
 
-	public static function write_double($fp, $d){throw "I've not coded it yet Exception";}
-	public static function write_float ($fp, $f){throw "I've not coded it yet Exception";}
-	public static function write_uint64($fp, $i){throw "I've not coded it yet Exception";}
-	public static function write_int64 ($fp, $i){throw "I've not coded it yet Exception";}
-	public static function write_uint32($fp, $i){throw "I've not coded it yet Exception";}
-	public static function write_int32 ($fp, $i){throw "I've not coded it yet Exception";}
-	public static function write_zint32($fp, $i){throw "I've not coded it yet Exception";}
-	public static function write_zint64($fp, $i){throw "I've not coded it yet Exception";}
+	public static function write_double($fp, $d){throw new Exception("I've not coded it yet Exception");}
+	public static function write_float ($fp, $f){throw new Exception("I've not coded it yet Exception");}
+	public static function write_uint64($fp, $i){throw new Exception("I've not coded it yet Exception");}
+	public static function write_int64 ($fp, $i){throw new Exception("I've not coded it yet Exception");}
+	public static function write_uint32($fp, $i){throw new Exception("I've not coded it yet Exception");}
+	public static function write_int32 ($fp, $i){throw new Exception("I've not coded it yet Exception");}
+	public static function write_zint32($fp, $i){throw new Exception("I've not coded it yet Exception");}
+	public static function write_zint64($fp, $i){throw new Exception("I've not coded it yet Exception");}
 
 	/**
 	 * Seek past a varint
