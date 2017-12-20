@@ -19,16 +19,10 @@ class Aliyun_Log_Logger{
         $this->project=$project;
     }
 
-
-    private function getLocalIp(){
-        $local_ip = getHostByName(php_uname('n'));
-        if(strlen($local_ip) == 0){
-            $local_ip = getHostByName(getHostName());
-        }
-        return $local_ip;
-    }
-
     public function log($logLevel, $logMessage, $topic){
+        if(!Aliyun_Log_Models_logLevel_LogLevel::isValidValue($logLevel)){
+            throw new Exception('logLevel value is invalid!');
+        }
         $ip = $this->getLocalIp();
         $contents = array( // key-value pair
             'time'=>date('m/d/Y h:i:s a', time()),
@@ -51,4 +45,11 @@ class Aliyun_Log_Logger{
         }
     }
 
+    private function getLocalIp(){
+        $local_ip = getHostByName(php_uname('n'));
+        if(strlen($local_ip) == 0){
+            $local_ip = getHostByName(getHostName());
+        }
+        return $local_ip;
+    }
 }

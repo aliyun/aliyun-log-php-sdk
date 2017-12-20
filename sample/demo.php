@@ -81,6 +81,6 @@ listShard($client,$project,$logstore);
 
 $logger = new Aliyun_Log_Logger($client, $project, $logstore);
 
-$logger->log(Aliyun_Log_Models_logLevel_LogLevel::info, 'something wrong with the inner info', 'MainFlow');
+$logger->log('test', 'something wrong with the inner info', 'MainFlow');
 
 getLogs($client,$project,$logstore);
