@@ -39,9 +39,23 @@ class Aliyun_Log_Logger{
             $response = $this->client->putLogs($request);
             print($response ->getRequestId());
         } catch (Aliyun_Log_Exception $ex) {
-            logVarDump($ex);
+            var_dump($ex);
         } catch (Exception $ex) {
-            logVarDump($ex);
+            var_dump($ex);
+        }
+    }
+
+    public function logBatch($logItems, $topic){
+        $ip = $this->getLocalIp();
+        try{
+            $request = new Aliyun_Log_Models_PutLogsRequest($this->project, $this->logstore,
+                $topic, $ip, $logItems);
+            $response = $this->client->putLogs($request);
+            print($response ->getRequestId());
+        } catch (Aliyun_Log_Exception $ex) {
+            var_dump($ex);
+        } catch (Exception $ex) {
+            var_dump($ex);
         }
     }
 

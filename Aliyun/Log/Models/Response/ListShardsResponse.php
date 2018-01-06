@@ -26,7 +26,6 @@ class Aliyun_Log_Models_ListShardsResponse extends Aliyun_Log_Models_Response {
     public function __construct($resp, $header) {
         parent::__construct ( $header );
         foreach($resp as $key=>$value){
-            var_dump($value);
             $this->shardIds[] = $value['shardID'];
             $this->shards[] = new Aliyun_Log_Models_Shard($value['shardID'],$value["status"],$value["inclusiveBeginKey"],$value["exclusiveEndKey"],$value["createTime"]);
         }

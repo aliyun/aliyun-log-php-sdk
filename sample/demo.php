@@ -70,8 +70,8 @@ function getLogs(Aliyun_Log_Client $client, $project, $logstore) {
 }
 
 $endpoint = 'http://cn-shanghai-corp.sls.aliyuncs.com';
-$accessKeyId = 'LTAIUbY1Pk7Ryf1P';
-$accessKey = '0oXZLJrFoRnlzVpDpopNVstd87bUWn';
+$accessKeyId = '';
+$accessKey = '';
 $project = 'ali-sls-sdk-test';
 $logstore = 'sls-test';
 $token = "";
@@ -81,6 +81,12 @@ listShard($client,$project,$logstore);
 
 $logger = new Aliyun_Log_Logger($client, $project, $logstore);
 
-$logger->log('test', 'something wrong with the inner info', 'MainFlow');
+//$logger->log('test', 'something wrong with the inner info', 'MainFlow');
+$batchLogger = new Aliyun_Log_Models_LogBatch(25, $logger);
+
+for($i = 1; $i <= 133; $i++){
+    $batchLogger->log('something wrong with the inner info '.$i,'info');
+}
 
 getLogs($client,$project,$logstore);
+

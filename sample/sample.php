@@ -195,10 +195,10 @@ function logVarDump($expression){
  * http://help.aliyun-inc.com/internaldoc/detail/29074.html?spm=0.0.0.0.tqUNn5
  */
 $endpoint = 'http://cn-shanghai-corp.sls.aliyuncs.com';
-$accessKeyId = 'LTAIUbY1Pk7Ryf1P';
-$accessKey = '0oXZLJrFoRnlzVpDpopNVstd87bUWn';
-$project = 'ali-sls-sdk-test';
-$logstore = 'sls-test';
+$accessKeyId = '';
+$accessKey = '';
+$project = '';
+$logstore = '';
 $token = "";
 
 $client = new Aliyun_Log_Client($endpoint, $accessKeyId, $accessKey,$token);
