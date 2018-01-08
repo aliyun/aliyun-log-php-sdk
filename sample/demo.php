@@ -82,9 +82,9 @@ listShard($client,$project,$logstore);
 $logger = new Aliyun_Log_Logger($client, $project, $logstore);
 
 //$logger->log('test', 'something wrong with the inner info', 'MainFlow');
-$batchLogger = new Aliyun_Log_Models_LogBatch(25, $logger);
+$batchLogger = new Aliyun_Log_Models_LogBatch( $logger,'MainFlow');
 
-for($i = 1; $i <= 133; $i++){
+for($i = 1; $i <= 9; $i++){
     $batchLogger->log('something wrong with the inner info '.$i,'info');
 }
 

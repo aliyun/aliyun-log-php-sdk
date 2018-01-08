@@ -4,6 +4,11 @@
  * All rights reserved
  */
 
+/**
+ * Class Aliyun_Log_Models_LogBatch
+ * in some cases the http port is quite limited, so user could config a batch logger,
+ * which will cache some log and send to server in bulk
+ */
 class Aliyun_Log_Models_LogBatch{
 
     private $logItems = [];
@@ -16,29 +21,49 @@ class Aliyun_Log_Models_LogBatch{
 
     private $shm_id;
 
-    public function __construct($maxLogSize, Aliyun_Log_Logger $logger, $sem_id = null, $shm_id = null)
-    {
-        $this->arraySize = $maxLogSize;
-        if(!is_integer($maxLogSize)){
-            $this->arraySize = 5;
-        }
-        $this->logger = $logger;
-        if($sem_id == null || $shm_id == null){
-            $MEMSIZE    =   10240;
-            $SEMKEY     =   22;
-            $SHMKEY     =   33;
+    private $topic;
 
-            $this->sem_id = sem_get($SEMKEY, 1);
-            sem_acquire($this->sem_id);
-            $this->shm_id =   shm_attach($SHMKEY, $MEMSIZE);
-            if(shm_has_var($this->shm_id, 1)){
-                shm_remove_var($this->shm_id, 1);
-            }
-            shm_put_var($this->shm_id, 1, $this->logItems);
+    private $waitTime;
+
+    private $previousLogTime;
+
+    public function __construct(Aliyun_Log_Logger $logger, $topic, $cacheLogCount = null, $cacheLogWaitTime = null)
+    {
+        if(NULL === $cacheLogCount || !is_integer($cacheLogCount)){
+            $this->arraySize = 100;
+        }else{
+            $this->arraySize = $cacheLogCount;
         }
+
+        if(NULL === $cacheLogWaitTime || !is_integer($cacheLogWaitTime)){
+            $this->waitTime = 5;
+        }else{
+            $this->waitTime = $cacheLogWaitTime;
+        }
+
+        $this->logger = $logger;
+        $this->topic = $topic;
+
+        $MEMSIZE    =   10240;
+        $SEMKEY     =   22 + time();
+        $SHMKEY     =   33 + time();
+
+        $this->sem_id = sem_get($SEMKEY, 1);
+        //sem_acquire($this->sem_id);
+        $this->shm_id =   shm_attach($SHMKEY, $MEMSIZE);
+        if(shm_has_var($this->shm_id, 1)){
+            shm_remove_var($this->shm_id, 1);
+        }
+        shm_put_var($this->shm_id, 1, $this->logItems);
+
     }
 
     public function log($logMessage, $logLevel){
+        $prevoidCallTime = $this->previousLogTime;
+        if(NULL ===  $prevoidCallTime){
+            $prevoidCallTime = 0;
+        }
+        $this->previousLogTime = time();
         $contents = array( // key-value pair
             'time'=>date('m/d/Y h:i:s a', time()),
             'message'=> $logMessage,
@@ -52,8 +77,8 @@ class Aliyun_Log_Models_LogBatch{
             $logItems = shm_get_var($this->shm_id, 1);
             array_push($logItems, $logItem);
 
-            if(sizeof($logItems) == $this->arraySize){
-                $this->logger->logBatch($logItems, 'MainFlow');
+            if((sizeof($logItems) == $this->arraySize) || ($this->previousLogTime - $prevoidCallTime > 5)){
+                $this->logger->logBatch($logItems, $this->topic);
                 $logItems = [];
             }
 
@@ -63,22 +88,21 @@ class Aliyun_Log_Models_LogBatch{
         }
     }
 
-    public function shareSem($shm_id){
+    private function batchSentLog($logItems){
 
-        if(shm_has_var($shm_id, 1)){
-            $tmp = shm_get_var($shm_id, 1);
-            shm_put_var($shm_id, 1, "*,".$tmp);
-        }else{
-            shm_put_var($shm_id, 1, "Variable 1");
+    }
+
+    public function logFlush(){
+        if(sizeof($this->logItems) > 0){
+            $this->logger->logBatch($this->logItems, $this->topic);
+            $this->logItems = [];
         }
-
-        $result = shm_get_var($shm_id, 1);
-        echo $result."<br>";
+        shm_remove_var($this->shm_id, 1);
     }
 
     function __destruct() {
         if(sizeof($this->logItems) > 0){
-            $this->logger->logBatch($this->logItems, 'MainFlow');
+            $this->logger->logBatch($this->logItems, $this->topic);
         }
 
         sem_remove($this->sem_id);
