@@ -72,7 +72,7 @@ function getLogs(Aliyun_Log_Client $client, $project, $logstore) {
 $endpoint = 'http://cn-shanghai-corp.sls.aliyuncs.com';
 $accessKeyId = '';
 $accessKey = '';
-$project = 'ali-sls-sdk-test';
+$project = '';
 $logstore = 'sls-test';
 $token = "";
 
@@ -89,4 +89,111 @@ for($i = 1; $i <= 9; $i++){
 }
 
 getLogs($client,$project,$logstore);
+$logger = null;
+
+
+$deleteShipper = new Aliyun_Log_Models_DeleteShipperRequest($project);
+$deleteShipper->setShipperName('testjsonshipper');
+$deleteShipper->setLogStore($logstore);
+try{
+    $client->deleteShipper($deleteShipper);
+}catch (Exception $ex){}
+
+$shipper = new Aliyun_Log_Models_CreateShipperRequest($project);
+$shipper->setShipperName('testshipper');
+$shipper->setTargetType('oss');
+$shipper->setLogStore($logstore);
+
+$ossCsvStorage = new Aliyun_Log_Models_OssShipperCsvStorage();
+$ossCsvStorage->setColumns(array('__topic__',
+    'alarm_count',
+    'alarm_message',
+    'alarm_type',
+    'category',
+    'project_name'));
+$ossCsvStorage->setDelimiter(',');
+$ossCsvStorage->setQuote('"');
+$ossCsvStorage->setHeader(false);
+$ossCsvStorage->setNullIdentifier('');
+$ossCsvStorage->setFormat('csv');
+
+$ossJsonStorage = new Aliyun_Log_Models_OssShipperJsonStorage();
+$ossJsonStorage->setFormat('json');
+
+$ossConfig = new Aliyun_Log_Models_OssShipperConfig();
+$ossConfig->setOssBucket('sls-test-oss-shipper');
+$ossConfig->setOssPrefix('logtailalarm');
+$ossConfig->setBufferInterval(300);
+$ossConfig->setBufferSize(5);
+$ossConfig->setCompressType('none');
+$ossConfig->setRoleArn('acs:ram::1654218965343050:role/aliyunlogdefaultrole');
+$ossConfig->setStorage($ossCsvStorage);
+$ossConfig->setPathFormat('%Y/%m/%d/%H');
+
+$shipper->setTargetConfigration($ossConfig->to_json_object());
+try{
+    $client->createShipper($shipper);
+}catch (Exception $exception){
+    var_dump($exception);
+}
+
+$getShipperConfig = new Aliyun_Log_Models_GetShipperConfigRequest($project);
+$getShipperConfig->setShipperName($shipper->getShipperName());
+$getShipperConfig->setLogStore($shipper->getLogStore());
+$getconfigResp = $client->getShipperConfig($getShipperConfig);
+var_dump($getconfigResp);
+
+$listShipper = new Aliyun_Log_Models_ListShipperRequest($project);
+$listShipper->setLogStore($shipper->getLogStore());
+$listShpperResp = $client->listShipper($listShipper);
+var_dump($listShpperResp);
+
+$updateShipper = new Aliyun_Log_Models_UpdateShipperRequest($project);
+$updateShipper->setShipperName('testshipper');
+$updateShipper->setTargetType('oss');
+$updateShipper->setLogStore($logstore);
+$ossConfig->setBufferInterval(599);
+$updateShipper->setTargetConfigration($ossConfig->to_json_object());
+
+$updateShipperResp = $client->updateShipper($updateShipper);
+
+$deleteShipper = new Aliyun_Log_Models_DeleteShipperRequest($project);
+$deleteShipper->setShipperName($shipper->getShipperName());
+$deleteShipper->setLogStore($shipper->getLogStore());
+
+$client->deleteShipper($deleteShipper);
+
+$shipper->setShipperName('testjsonshipper');
+$ossConfig->setStorage($ossJsonStorage);
+$shipper->setTargetConfigration($ossConfig->to_json_object());
+try{
+    $client->createShipper($shipper);
+}catch (Exception $exception){
+    var_dump($exception);
+}
+
+$getShipperTasks = new Aliyun_Log_Models_GetShipperTasksRequest($project);
+$getShipperTasks->setShipperName('testjsonshipper');
+$getShipperTasks->setLogStore($logstore);
+$getShipperTasks->setStartTime(time()-10000);
+$getShipperTasks->setEndTime(time());
+$getShipperTasks->setStatusType('');//means all status
+$getShipperTasks->setOffset(0);
+$getShipperTasks->setSize(5);
+
+$tasks = $client->getShipperTasks($getShipperTasks);
+var_dump(json_encode($tasks->getStatistics()));
+var_dump(json_encode($tasks->getTasks()));
+
+$taskIdList = array();
+for($i=0, $size=count($tasks->getTasks());$i<$size;++$i){
+    $taskId = $tasks->getTasks()[$i]['id'];
+    array_push($taskIdList, $taskId);
+}
+
+$retryShipperTask = new Aliyun_Log_Models_RetryShipperTasksRequest($project);
+$retryShipperTask->setShipperName('testjsonshipper');
+$retryShipperTask->setLogStore($logstore);
+$retryShipperTask->setTaskLists($taskIdList);
+$client->retryShipperTasks($retryShipperTask);
 

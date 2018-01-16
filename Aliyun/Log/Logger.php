@@ -37,7 +37,6 @@ class Aliyun_Log_Logger{
             $request = new Aliyun_Log_Models_PutLogsRequest($this->project, $this->logstore,
                 $topic, $ip, $logitems);
             $response = $this->client->putLogs($request);
-            print($response ->getRequestId());
         } catch (Aliyun_Log_Exception $ex) {
             var_dump($ex);
         } catch (Exception $ex) {
@@ -51,7 +50,6 @@ class Aliyun_Log_Logger{
             $request = new Aliyun_Log_Models_PutLogsRequest($this->project, $this->logstore,
                 $topic, $ip, $logItems);
             $response = $this->client->putLogs($request);
-            print($response ->getRequestId());
         } catch (Aliyun_Log_Exception $ex) {
             var_dump($ex);
         } catch (Exception $ex) {

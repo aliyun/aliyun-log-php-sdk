@@ -30,7 +30,7 @@ class Aliyun_Log_Models_LogBatch{
     public function __construct(Aliyun_Log_Logger $logger, $topic, $cacheLogCount = null, $cacheLogWaitTime = null)
     {
         if(NULL === $cacheLogCount || !is_integer($cacheLogCount)){
-            $this->arraySize = 100;
+            $this->arraySize = 10;
         }else{
             $this->arraySize = $cacheLogCount;
         }
@@ -44,13 +44,13 @@ class Aliyun_Log_Models_LogBatch{
         $this->logger = $logger;
         $this->topic = $topic;
 
-        $MEMSIZE    =   10240;
-        $SEMKEY     =   22 + time();
-        $SHMKEY     =   33 + time();
+        $time_stampe = time();
+        $MEMSIZE    =   5120;
+        $SEMKEY     =   $time_stampe;
+        $SHMKEY     =   $time_stampe+2233;
 
-        $this->sem_id = sem_get($SEMKEY, 1);
-        //sem_acquire($this->sem_id);
-        $this->shm_id =   shm_attach($SHMKEY, $MEMSIZE);
+        $this->sem_id = sem_get($SEMKEY, 10);
+        $this->shm_id = shm_attach($SHMKEY, $MEMSIZE);
         if(shm_has_var($this->shm_id, 1)){
             shm_remove_var($this->shm_id, 1);
         }
@@ -59,9 +59,9 @@ class Aliyun_Log_Models_LogBatch{
     }
 
     public function log($logMessage, $logLevel){
-        $prevoidCallTime = $this->previousLogTime;
-        if(NULL ===  $prevoidCallTime){
-            $prevoidCallTime = 0;
+        $prevoisCallTime = $this->previousLogTime;
+        if(NULL ===  $prevoisCallTime){
+            $prevoisCallTime = 0;
         }
         $this->previousLogTime = time();
         $contents = array( // key-value pair
@@ -77,7 +77,8 @@ class Aliyun_Log_Models_LogBatch{
             $logItems = shm_get_var($this->shm_id, 1);
             array_push($logItems, $logItem);
 
-            if((sizeof($logItems) == $this->arraySize) || ($this->previousLogTime - $prevoidCallTime > 5)){
+            if((sizeof($logItems) == $this->arraySize || $this->previousLogTime - $prevoisCallTime > 5000)
+                && $prevoisCallTime > 0){
                 $this->logger->logBatch($logItems, $this->topic);
                 $logItems = [];
             }
@@ -86,10 +87,6 @@ class Aliyun_Log_Models_LogBatch{
             shm_put_var($this->shm_id, 1, $logItems);
             $this->logItems = $logItems;
         }
-    }
-
-    private function batchSentLog($logItems){
-
     }
 
     public function logFlush(){
@@ -106,6 +103,6 @@ class Aliyun_Log_Models_LogBatch{
         }
 
         sem_remove($this->sem_id);
-        shm_remove ($this->shm_id);
+        shm_remove($this->shm_id);
     }
 }
