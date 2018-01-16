@@ -70,9 +70,9 @@ function getLogs(Aliyun_Log_Client $client, $project, $logstore) {
 }
 
 $endpoint = 'http://cn-shanghai-corp.sls.aliyuncs.com';
-$accessKeyId = '';
-$accessKey = '';
-$project = '';
+$accessKeyId = 'LTAIUbY1Pk7Ryf1P';
+$accessKey = '0oXZLJrFoRnlzVpDpopNVstd87bUWn';
+$project = 'ali-sls-sdk-test';
 $logstore = 'sls-test';
 $token = "";
 
@@ -166,6 +166,44 @@ $client->deleteShipper($deleteShipper);
 $shipper->setShipperName('testjsonshipper');
 $ossConfig->setStorage($ossJsonStorage);
 $shipper->setTargetConfigration($ossConfig->to_json_object());
+try{
+    //$client->createShipper($shipper);
+}catch (Exception $exception){
+    var_dump($exception);
+}
+
+$shipper->setShipperName('testparquetshipper');
+$ossParquetStorage = new Aliyun_Log_Models_OssShipperParquetStorage();
+$ossParquetStorage->setFormat('parquet');
+$ossParquetStorage->setColumns(array(
+    array(
+        'name' => '__topic__',
+        'type' => 'string'
+    ),
+    array(
+        'name' => 'alarm_count',
+        'type' => 'int32'
+    ),
+    array(
+        'name' => 'alarm_message',
+        'type' => 'string'
+    ),
+    array(
+        'name' => 'alarm_type',
+        'type' => 'string'
+    ),
+    array(
+        'name' => 'is_active',
+        'type' => 'boolean'
+    ),
+    array(
+        'name' => 'project_name',
+        'type' => 'string'
+    ),
+));
+$ossConfig->setStorage($ossParquetStorage);
+$shipper->setTargetConfigration($ossConfig->to_json_object());
+
 try{
     $client->createShipper($shipper);
 }catch (Exception $exception){

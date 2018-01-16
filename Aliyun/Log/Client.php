@@ -307,8 +307,8 @@ class Aliyun_Log_Client {
 
     /**
      * create shipper service
-     * @param Aliyun_Log_Models_CreateShipperRequest $request
-     * return Aliyun_Log_Models_CreateShipperResponse
+     * @param Aliyun_Log_Models_UpdateShipperRequest $request
+     * return Aliyun_Log_Models_UpdateShipperResponse
      */
     public function updateShipper(Aliyun_Log_Models_UpdateShipperRequest $request){
         $headers = array();
@@ -332,8 +332,8 @@ class Aliyun_Log_Client {
 
     /**
      * get shipper tasks list, max 48 hours duration supported
-     * @param Aliyun_Log_Models_CreateShipperRequest $request
-     * return Aliyun_Log_Models_CreateShipperResponse
+     * @param Aliyun_Log_Models_GetShipperTasksRequest $request
+     * return Aliyun_Log_Models_GetShipperTasksResponse
      */
     public function getShipperTasks(Aliyun_Log_Models_GetShipperTasksRequest $request){
         $headers = array();
@@ -357,8 +357,8 @@ class Aliyun_Log_Client {
 
     /**
      * retry shipper tasks list by task ids
-     * @param Aliyun_Log_Models_CreateShipperRequest $request
-     * return Aliyun_Log_Models_CreateShipperResponse
+     * @param Aliyun_Log_Models_RetryShipperTasksRequest $request
+     * return Aliyun_Log_Models_RetryShipperTasksResponse
      */
     public function retryShipperTasks(Aliyun_Log_Models_RetryShipperTasksRequest $request){
         $headers = array();
@@ -397,8 +397,8 @@ class Aliyun_Log_Client {
 
     /**
      * get shipper config service
-     * @param Aliyun_Log_Models_DeleteShipperRequest $request
-     * return Aliyun_Log_Models_DeleteShipperResponse
+     * @param Aliyun_Log_Models_GetShipperConfigRequest $request
+     * return Aliyun_Log_Models_GetShipperConfigResponse
      */
     public function getShipperConfig(Aliyun_Log_Models_GetShipperConfigRequest $request){
         $headers = array();
@@ -416,8 +416,8 @@ class Aliyun_Log_Client {
 
     /**
      * list shipper service
-     * @param Aliyun_Log_Models_DeleteShipperRequest $request
-     * return Aliyun_Log_Models_DeleteShipperResponse
+     * @param Aliyun_Log_Models_ListShipperRequest $request
+     * return Aliyun_Log_Models_ListShipperResponse
      */
     public function listShipper(Aliyun_Log_Models_ListShipperRequest $request){
         $headers = array();

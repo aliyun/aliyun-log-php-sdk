@@ -5,7 +5,7 @@
  */
 
 class Aliyun_Log_Models_OssShipperParquetStorage extends Aliyun_Log_Models_OssShipperStorage{
-    private $columns;
+    private  $columns;
 
     /**
      * @return mixed
@@ -24,10 +24,12 @@ class Aliyun_Log_Models_OssShipperParquetStorage extends Aliyun_Log_Models_OssSh
     }
 
     public function to_json_object(){
-        $columns = array();
+        $detail = array(
+            'columns' => $this->columns
+        );
         return array(
-            'detail' => $columns,
-            'format' => 'parquet'
+            'detail' => $detail,
+            'format' => parent::getFormat()
         );
     }
 }
