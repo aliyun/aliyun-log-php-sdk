@@ -331,7 +331,7 @@ class Aliyun_Log_Client {
     }
 
     /**
-     * get shipper tasks list
+     * get shipper tasks list, max 48 hours duration supported
      * @param Aliyun_Log_Models_CreateShipperRequest $request
      * return Aliyun_Log_Models_CreateShipperResponse
      */
@@ -356,7 +356,7 @@ class Aliyun_Log_Client {
     }
 
     /**
-     * retry shipper tasks list
+     * retry shipper tasks list by task ids
      * @param Aliyun_Log_Models_CreateShipperRequest $request
      * return Aliyun_Log_Models_CreateShipperResponse
      */

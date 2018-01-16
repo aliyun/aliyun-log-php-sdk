@@ -27,10 +27,17 @@ class Aliyun_Log_Models_LogBatch{
 
     private $previousLogTime;
 
+    /**
+     * Aliyun_Log_Models_LogBatch constructor.
+     * @param Aliyun_Log_Logger $logger
+     * @param $topic
+     * @param null $cacheLogCount max log items limitation, by default it's 100
+     * @param null $cacheLogWaitTime max thread waiting time, bydefault it's 5 seconds
+     */
     public function __construct(Aliyun_Log_Logger $logger, $topic, $cacheLogCount = null, $cacheLogWaitTime = null)
     {
         if(NULL === $cacheLogCount || !is_integer($cacheLogCount)){
-            $this->arraySize = 10;
+            $this->arraySize = 100;
         }else{
             $this->arraySize = $cacheLogCount;
         }
@@ -49,7 +56,7 @@ class Aliyun_Log_Models_LogBatch{
         $SEMKEY     =   $time_stampe;
         $SHMKEY     =   $time_stampe+2233;
 
-        $this->sem_id = sem_get($SEMKEY, 10);
+        $this->sem_id = sem_get($SEMKEY, 10); // support 10 processes run simultaneously
         $this->shm_id = shm_attach($SHMKEY, $MEMSIZE);
         if(shm_has_var($this->shm_id, 1)){
             shm_remove_var($this->shm_id, 1);
@@ -58,6 +65,11 @@ class Aliyun_Log_Models_LogBatch{
 
     }
 
+    /**
+     * log expected message with proper level
+     * @param $logMessage
+     * @param $logLevel
+     */
     public function log($logMessage, $logLevel){
         $prevoisCallTime = $this->previousLogTime;
         if(NULL ===  $prevoisCallTime){
@@ -89,6 +101,9 @@ class Aliyun_Log_Models_LogBatch{
         }
     }
 
+    /**
+     * manually flush all cached log to log server
+     */
     public function logFlush(){
         if(sizeof($this->logItems) > 0){
             $this->logger->logBatch($this->logItems, $this->topic);
