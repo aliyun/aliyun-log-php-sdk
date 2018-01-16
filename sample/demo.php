@@ -70,10 +70,10 @@ function getLogs(Aliyun_Log_Client $client, $project, $logstore) {
 }
 
 $endpoint = 'http://cn-shanghai-corp.sls.aliyuncs.com';
-$accessKeyId = 'LTAIUbY1Pk7Ryf1P';
-$accessKey = '0oXZLJrFoRnlzVpDpopNVstd87bUWn';
-$project = 'ali-sls-sdk-test';
-$logstore = 'sls-test';
+$accessKeyId = '';
+$accessKey = '';
+$project = '';
+$logstore = '';
 $token = "";
 
 $client = new Aliyun_Log_Client($endpoint, $accessKeyId, $accessKey,$token);
@@ -91,7 +91,7 @@ for($i = 1; $i <= 9; $i++){
 getLogs($client,$project,$logstore);
 $logger = null;
 
-
+//try delete the created shipper
 $deleteShipper = new Aliyun_Log_Models_DeleteShipperRequest($project);
 $deleteShipper->setShipperName('testjsonshipper');
 $deleteShipper->setLogStore($logstore);
@@ -99,6 +99,7 @@ try{
     $client->deleteShipper($deleteShipper);
 }catch (Exception $ex){}
 
+//create shipper with csv storage
 $shipper = new Aliyun_Log_Models_CreateShipperRequest($project);
 $shipper->setShipperName('testshipper');
 $shipper->setTargetType('oss');
@@ -163,6 +164,7 @@ $deleteShipper->setLogStore($shipper->getLogStore());
 
 $client->deleteShipper($deleteShipper);
 
+//create shipper with json storage
 $shipper->setShipperName('testjsonshipper');
 $ossConfig->setStorage($ossJsonStorage);
 $shipper->setTargetConfigration($ossConfig->to_json_object());
@@ -172,6 +174,7 @@ try{
     var_dump($exception);
 }
 
+//create shipper with parquet storage
 $shipper->setShipperName('testparquetshipper');
 $ossParquetStorage = new Aliyun_Log_Models_OssShipperParquetStorage();
 $ossParquetStorage->setFormat('parquet');
@@ -205,6 +208,7 @@ $ossConfig->setStorage($ossParquetStorage);
 $shipper->setTargetConfigration($ossConfig->to_json_object());
 
 try{
+
     $client->createShipper($shipper);
 }catch (Exception $exception){
     var_dump($exception);
