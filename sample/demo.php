@@ -87,7 +87,7 @@ $batchLogger = new Aliyun_Log_Models_LogBatch( $logger,'MainFlow');
 for($i = 1; $i <= 9; $i++){
     $batchLogger->log('something wrong with the inner info '.$i,'info');
 }
-
+$batchLogger->logFlush();
 getLogs($client,$project,$logstore);
 $logger = null;
 
