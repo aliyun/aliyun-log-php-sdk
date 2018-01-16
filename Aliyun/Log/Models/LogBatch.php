@@ -71,33 +71,50 @@ class Aliyun_Log_Models_LogBatch{
      * @param $logLevel
      */
     public function log($logMessage, $logLevel){
-        $prevoisCallTime = $this->previousLogTime;
-        if(NULL ===  $prevoisCallTime){
-            $prevoisCallTime = 0;
+        $previousCallTime = $this->previousLogTime;
+        if(NULL ===  $previousCallTime){
+            $previousCallTime = 0;
         }
         $this->previousLogTime = time();
-        $contents = array( // key-value pair
-            'time'=>date('m/d/Y h:i:s a', time()),
-            'message'=> $logMessage,
-            'loglevel'=> $logLevel
-        );
-        $logItem = new Aliyun_Log_Models_LogItem();
-        $logItem->setTime(time());
-        $logItem->setContents($contents);
-        printf($logMessage.'<br>');
-        if(shm_has_var($this->shm_id, 1)){
-            $logItems = shm_get_var($this->shm_id, 1);
-            array_push($logItems, $logItem);
+        if(is_array($logMessage)){
+            $logItemTemps = array();
+            foreach ($logMessage as &$logElement){
+                $contents = array( // key-value pair
+                    'time'=>date('m/d/Y h:i:s a', time()),
+                    'message'=> $logElement,
+                    'loglevel'=> $logLevel
+                );
+                $logItem = new Aliyun_Log_Models_LogItem();
+                $logItem->setTime(time());
+                $logItem->setContents($contents);
+                array_push($logItemTemps, $logItem);
 
-            if((sizeof($logItems) == $this->arraySize || $this->previousLogTime - $prevoisCallTime > 5000)
-                && $prevoisCallTime > 0){
-                $this->logger->logBatch($logItems, $this->topic);
-                $logItems = [];
+
             }
+            $this->logger->logBatch($logItemTemps, $this->topic);
+        }else{
+            $contents = array( // key-value pair
+                'time'=>date('m/d/Y h:i:s a', time()),
+                'message'=> $logMessage,
+                'loglevel'=> $logLevel
+            );
+            $logItem = new Aliyun_Log_Models_LogItem();
+            $logItem->setTime(time());
+            $logItem->setContents($contents);
+            if(shm_has_var($this->shm_id, 1)){
+                $logItems = shm_get_var($this->shm_id, 1);
+                array_push($logItems, $logItem);
 
-            shm_remove_var($this->shm_id, 1);
-            shm_put_var($this->shm_id, 1, $logItems);
-            $this->logItems = $logItems;
+                if((sizeof($logItems) == $this->arraySize || $this->previousLogTime - $previousCallTime > 5000)
+                    && $previousCallTime > 0){
+                    $this->logger->logBatch($logItems, $this->topic);
+                    $logItems = [];
+                }
+
+                shm_remove_var($this->shm_id, 1);
+                shm_put_var($this->shm_id, 1, $logItems);
+                $this->logItems = $logItems;
+            }
         }
     }
 
