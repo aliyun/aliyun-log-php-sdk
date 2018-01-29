@@ -255,7 +255,7 @@ class Aliyun_Log_Client {
             $logGroup->addLogs ( $log );
         }
 
-        $body = Aliyun_Log_Util::toBytes ( $logGroup );
+        $body = Aliyun_Log_Util::toBytes( $logGroup );
         unset ( $logGroup );
         
         $bodySize = strlen ( $body );

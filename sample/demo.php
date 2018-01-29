@@ -69,7 +69,8 @@ function getLogs(Aliyun_Log_Client $client, $project, $logstore) {
     }
 }
 
-$endpoint = 'http://cn-shanghai-corp.sls.aliyuncs.com';
+// please update the configuration according your profile
+$endpoint = '';
 $accessKeyId = '';
 $accessKey = '';
 $project = '';
@@ -79,12 +80,20 @@ $token = "";
 $client = new Aliyun_Log_Client($endpoint, $accessKeyId, $accessKey,$token);
 listShard($client,$project,$logstore);
 
-$logger = new Aliyun_Log_Logger($client, $project, $logstore);
+$logger = Aliyun_Log_LoggerFactory::getLogger($client, $project, $logstore);
+$logMap = array(
+    'message' => 'tet',
+    'haha' => 'hehe'
+);
+
+$logger->log(Aliyun_Log_Models_LogLevel_LogLevel::getLevelInfo(),'test INFO LOG', 'MainFlow');
+
+$logger->logArray(Aliyun_Log_Models_LogLevel_LogLevel::getLevelInfo(),$logMap, 'MainFlow');
 
 //$logger->log('test', 'something wrong with the inner info', 'MainFlow');
-$batchLogger = new Aliyun_Log_Models_LogBatch( $logger,'MainFlow');
+$batchLogger = Aliyun_Log_LoggerFactory::getSimpleLogger($client, $project, $logstore);
 
-for($i = 1; $i <= 9; $i++){
+for($i = 1; $i <= 29; $i++){
     $batchLogger->log('something wrong with the inner info '.$i,'info');
 }
 $batchLogger->logFlush();
@@ -92,6 +101,7 @@ getLogs($client,$project,$logstore);
 $logger = null;
 
 //try delete the created shipper
+/*
 $deleteShipper = new Aliyun_Log_Models_DeleteShipperRequest($project);
 $deleteShipper->setShipperName('testjsonshipper');
 $deleteShipper->setLogStore($logstore);
@@ -238,4 +248,4 @@ $retryShipperTask->setShipperName('testjsonshipper');
 $retryShipperTask->setLogStore($logstore);
 $retryShipperTask->setTaskLists($taskIdList);
 $client->retryShipperTasks($retryShipperTask);
-
+*/
