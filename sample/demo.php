@@ -70,11 +70,11 @@ function getLogs(Aliyun_Log_Client $client, $project, $logstore) {
 }
 
 // please update the configuration according your profile
-$endpoint = '';
-$accessKeyId = '';
-$accessKey = '';
-$project = '';
-$logstore = '';
+$endpoint = 'http://cn-shanghai-corp.sls.aliyuncs.com';
+$accessKeyId = 'LTAIUbY1Pk7Ryf1P';
+$accessKey = '0oXZLJrFoRnlzVpDpopNVstd87bUWn';
+$project = 'ali-sls-sdk-test';
+$logstore = 'test';
 $token = "";
 
 $client = new Aliyun_Log_Client($endpoint, $accessKeyId, $accessKey,$token);
@@ -88,13 +88,16 @@ $logMap = array(
 
 $logger->log(Aliyun_Log_Models_LogLevel_LogLevel::getLevelInfo(),'test INFO LOG', 'MainFlow');
 
+$logger2 = Aliyun_Log_LoggerFactory::getLogger($client, $project, $logstore);
+$logger2->log(Aliyun_Log_Models_LogLevel_LogLevel::getLevelInfo(),'test INFO LOG2222222', 'MainFlow');
+
 $logger->logArray(Aliyun_Log_Models_LogLevel_LogLevel::getLevelInfo(),$logMap, 'MainFlow');
 
 //$logger->log('test', 'something wrong with the inner info', 'MainFlow');
 $batchLogger = Aliyun_Log_LoggerFactory::getSimpleLogger($client, $project, $logstore);
 
 for($i = 1; $i <= 29; $i++){
-    $batchLogger->log('something wrong with the inner info '.$i,'info');
+    $batchLogger->log(Aliyun_Log_Models_LogLevel_LogLevel::getLevelInfo(),'something wrong with the inner info '.$i);
 }
 $batchLogger->logFlush();
 getLogs($client,$project,$logstore);

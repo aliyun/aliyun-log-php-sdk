@@ -52,10 +52,11 @@ class Aliyun_Log_SimpleLogger extends Aliyun_Log_Logger {
      * log expected message with proper level
      * @param $logMessage
      * @param $logLevel
+     * @param $topic should be null
      */
-    public function log($logMessage, $logLevel){
+    public function log(Aliyun_Log_Models_LogLevel_LogLevel $logLevel,$logMessage, $topic = null){
         $previousCallTime = $this->previousLogTime;
-        if(NULL ===  $previousCallTime){
+        if(null ===  $previousCallTime){
             $previousCallTime = 0;
         }
         $this->previousLogTime = time();
@@ -65,7 +66,7 @@ class Aliyun_Log_SimpleLogger extends Aliyun_Log_Logger {
                 $contents = array( // key-value pair
                     'time'=>date('m/d/Y h:i:s a', time()),
                     'message'=> $logElement,
-                    'loglevel'=> $logLevel
+                    'loglevel'=> Aliyun_Log_Models_LogLevel_LogLevel::getLevelStr($logLevel)
                 );
                 $logItem = new Aliyun_Log_Models_LogItem();
                 $logItem->setTime(time());
@@ -78,7 +79,7 @@ class Aliyun_Log_SimpleLogger extends Aliyun_Log_Logger {
             $contents = array( // key-value pair
                 'time'=>date('m/d/Y h:i:s a', time()),
                 'message'=> $logMessage,
-                'loglevel'=> $logLevel
+                'loglevel'=> Aliyun_Log_Models_LogLevel_LogLevel::getLevelStr($logLevel)
             );
             $logItem = new Aliyun_Log_Models_LogItem();
             $logItem->setTime(time());

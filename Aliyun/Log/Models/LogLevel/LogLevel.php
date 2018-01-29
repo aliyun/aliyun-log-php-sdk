@@ -66,4 +66,27 @@ class Aliyun_Log_Models_LogLevel_LogLevel{
         }
         return self::$constCacheArray[Aliyun_Log_Models_LogLevel_LogLevel::error];
     }
+
+    public static function getLevelStr(Aliyun_Log_Models_LogLevel_LogLevel $logLevel){
+
+        $logLevelStr = '';
+        if(null === $logLevel){
+            $logLevelStr = 'info';
+        }
+        switch ($logLevel->level){
+            case "error":
+                $logLevelStr= 'error';
+                break;
+            case "warn":
+                $logLevelStr= 'warn';
+                break;
+            case "info":
+                $logLevelStr= 'info';
+                break;
+            case "debug":
+                $logLevelStr= 'debug';
+                break;
+        }
+        return $logLevelStr;
+    }
 }

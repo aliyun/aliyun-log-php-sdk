@@ -30,7 +30,7 @@ class Aliyun_Log_Logger{
         $contents = array( // key-value pair
             'time'=>date('m/d/Y h:i:s a', time()),
             'message'=> $logMessage,
-            'loglevel'=> $logLevel
+            'loglevel'=> Aliyun_Log_Models_LogLevel_LogLevel::getLevelStr($logLevel)
         );
         try {
             $logItem = new Aliyun_Log_Models_LogItem();
@@ -62,7 +62,7 @@ class Aliyun_Log_Logger{
             foreach ($logMessage as $key => $value)
             $contents[$key] = $value;
         }
-
+        $contents['logLevel'] = Aliyun_Log_Models_LogLevel_LogLevel::getLevelStr($logLevel);
         try {
             $logItem = new Aliyun_Log_Models_LogItem();
             $logItem->setTime(time());
