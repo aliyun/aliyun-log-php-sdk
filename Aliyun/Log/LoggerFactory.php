@@ -4,26 +4,29 @@
  * All rights reserved
  */
 
-class Aliyun_Log_LoggerFactory extends Aliyun_Log_SimpleLogger{
-    protected static $instanceLogger = null;
-    protected static $instanceSimpleLogger = null;
+/**
+ * Class Aliyun_Log_LoggerFactory
+ */
+class Aliyun_Log_LoggerFactory{
 
-    public static function getLogger($client, $project, $logstore){
-        if (!isset(static::$instanceLogger)) {
-            static::$instanceLogger = new Aliyun_Log_Logger($client, $project, $logstore);
+    private static $loggerMap = array();
+
+    public static function getLogger($client, $project, $logstore, $topic = null){
+        if($project === null || $project == ''){
+            throw new Exception('project name is blank!');
         }
-        return static::$instanceLogger;
-    }
-
-    public static function getSimpleLogger($client, $project, $logstore, $topic=null){
+        if($logstore === null || $logstore == ''){
+            throw new Exception('logstore name is blank!');
+        }
         if($topic === null){
             $topic = 'MainFlow';
         }
-        if (!isset(static::$instanceSimpleLogger)) {
-            $logger = new Aliyun_Log_Logger($client, $project, $logstore);
-            static::$instanceSimpleLogger = new Aliyun_Log_SimpleLogger($logger,$topic);
+        $loggerKey = $project.'#'.$logstore.'#'.$topic;
+        if (!array_key_exists($loggerKey, static::$loggerMap) || static::$loggerMap[$loggerKey] === null) {
+            $instanceSimpleLogger = new Aliyun_Log_SimpleLogger($client,$project,$logstore,$topic);
+            static::$loggerMap[$loggerKey] = $instanceSimpleLogger;
         }
-        return static::$instanceSimpleLogger;
+        return static::$loggerMap[$loggerKey];
     }
 
     protected function __construct()
