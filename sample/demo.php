@@ -70,10 +70,10 @@ function getLogs(Aliyun_Log_Client $client, $project, $logstore) {
 }
 
 // please update the configuration according your profile
-$endpoint = '';
-$accessKeyId = '';
-$accessKey = '';
-$project = '';
+$endpoint = 'http://cn-shanghai-corp.sls.aliyuncs.com';
+$accessKeyId = 'LTAIUbY1Pk7Ryf1P';
+$accessKey = '0oXZLJrFoRnlzVpDpopNVstd87bUWn';
+$project = 'ali-sls-sdk-test';
 $logstore = 'test';
 $token = "";
 
@@ -86,7 +86,7 @@ $logMap = array(
     'haha' => 'hehe'
 );
 
-$logger->log(Aliyun_Log_Models_LogLevel_LogLevel::getLevelInfo(),'test INFO LOG', 'MainFlow');
+$logger->logSingleMessage(Aliyun_Log_Models_LogLevel_LogLevel::getLevelInfo(),'test INFO LOG');
 
 $logger2 = Aliyun_Log_LoggerFactory::getLogger($client, $project, $logstore);
 $logger2->logSingleMessage(Aliyun_Log_Models_LogLevel_LogLevel::getLevelInfo(),'test INFO LOG2222222', 'MainFlow');
@@ -97,11 +97,26 @@ $logger->logArrayMessage(Aliyun_Log_Models_LogLevel_LogLevel::getLevelInfo(),$lo
 $batchLogger = Aliyun_Log_LoggerFactory::getLogger($client, $project, $logstore,'helloworld');
 
 for($i = 1; $i <= 29; $i++){
-    $batchLogger->log(Aliyun_Log_Models_LogLevel_LogLevel::getLevelInfo(),'something wrong with the inner info '.$i);
+    $batchLogger->logSingleMessage(Aliyun_Log_Models_LogLevel_LogLevel::getLevelInfo(),'something wrong with the inner info '.$i);
 }
 $batchLogger->logFlush();
 getLogs($client,$project,$logstore);
-$logger = null;
+
+$logger2->info('test log message 000 info');
+$logger2->warn('test log message 000 warn');
+$logger2->error('test log message 000 error');
+$logger2->debug('test log message 000 debug');
+
+$logMap['level'] = 'info';
+$logger2->infoArray($logMap);
+$logMap['level'] = 'debug';
+$logger2->debugArray($logMap);
+$logMap['level'] = 'warn';
+$logger2->warnArray($logMap);
+$logMap['level'] = 'error';
+$logger2->errorArray($logMap);
+
+$logger2->logFlush();
 
 //try delete the created shipper
 /*

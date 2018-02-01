@@ -18,7 +18,7 @@ class Aliyun_Log_LoggerFactory{
         if($logstore === null || $logstore == ''){
             throw new Exception('logstore name is blank!');
         }
-        if($topic === null){
+        if($topic === null || $topic === ''){
             $topic = 'MainFlow';
         }
         $loggerKey = $project.'#'.$logstore.'#'.$topic;
@@ -36,4 +36,12 @@ class Aliyun_Log_LoggerFactory{
 
     private function __clone()
     {}
+
+    function __destruct() {
+        if(static::$loggerMap != null){
+            foreach (static::$loggerMap as $innerLogger){
+                $innerLogger->logFlush();
+            }
+        }
+    }
 }
