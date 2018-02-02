@@ -70,10 +70,10 @@ function getLogs(Aliyun_Log_Client $client, $project, $logstore) {
 }
 
 // please update the configuration according your profile
-$endpoint = 'http://cn-shanghai-corp.sls.aliyuncs.com';
-$accessKeyId = 'LTAIUbY1Pk7Ryf1P';
-$accessKey = '0oXZLJrFoRnlzVpDpopNVstd87bUWn';
-$project = 'ali-sls-sdk-test';
+$endpoint = '';
+$accessKeyId = '';
+$accessKey = '';
+$project = '';
 $logstore = 'test';
 $token = "";
 
