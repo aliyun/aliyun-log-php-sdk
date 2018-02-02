@@ -12,13 +12,17 @@ class Aliyun_Log_SimpleLogger{
 
     private $logItems = [];
 
-    private $arraySize;
+    private $maxCacheLog;
 
     private $topic;
 
-    private $waitTime;
+    private $maxWaitTime;
 
     private $previousLogTime;
+
+    private $maxCacheBytes;
+
+    private $cacheBytes;
 
     private $client;
 
@@ -32,21 +36,27 @@ class Aliyun_Log_SimpleLogger{
      * @param $project the corresponding project
      * @param $logstore the logstore
      * @param $topic
-     * @param null $cacheLogCount max log items limitation, by default it's 100
-     * @param null $cacheLogWaitTime max thread waiting time, bydefault it's 5 seconds
+     * @param null $maxCacheLog max log items limitation, by default it's 100
+     * @param null $maxWaitTime max thread waiting time, bydefault it's 5 seconds
      */
-    public function __construct($client, $project, $logstore, $topic, $cacheLogCount = null, $cacheLogWaitTime = null)
+    public function __construct($client, $project, $logstore, $topic, $maxCacheLog = null, $maxWaitTime = null, $maxCacheBytes = null)
     {
-        if(NULL === $cacheLogCount || !is_integer($cacheLogCount)){
-            $this->arraySize = 10;
+        if(NULL === $maxCacheLog || !is_integer($maxCacheLog)){
+            $this->maxCacheLog = 100;
         }else{
-            $this->arraySize = $cacheLogCount;
+            $this->maxCacheLog = $maxCacheLog;
         }
 
-        if(NULL === $cacheLogWaitTime || !is_integer($cacheLogWaitTime)){
-            $this->waitTime = 5;
+        if(NULL === $maxCacheBytes || !is_integer($maxCacheBytes)){
+            $this->maxCacheBytes = 256 * 1024;
         }else{
-            $this->waitTime = $cacheLogWaitTime;
+            $this->maxCacheBytes = $maxCacheBytes;
+        }
+
+        if(NULL === $maxWaitTime || !is_integer($maxWaitTime)){
+            $this->maxWaitTime = 5;
+        }else{
+            $this->maxWaitTime = $maxWaitTime;
         }
         if($client == null || $project == null || $logstore == null){
             throw new Exception('the input parameter is invalid! create SimpleLogger failed!');
@@ -55,95 +65,58 @@ class Aliyun_Log_SimpleLogger{
         $this->project = $project;
         $this->logstore = $logstore;
         $this->topic = $topic;
-    }
-
-    /**
-     * log expected message with proper level
-     * @param $logMessage
-     * @param $logLevel
-     * @param $topic should be null
-     */
-    private function log(Aliyun_Log_Models_LogLevel_LogLevel $logLevel,$logMessage){
-        $previousCallTime = $this->previousLogTime;
-        if(null ===  $previousCallTime){
-            $previousCallTime = 0;
-        }
         $this->previousLogTime = time();
-        if(is_array($logMessage)){
-            throw new Exception('array is not supported in this function, please use logArrayMessage!');
-        }else{
-            $logItems = $this->logItems;
-            $contents = array( // key-value pair
-                'time'=>date('m/d/Y h:i:s a', time()),
-                'message'=> $logMessage,
-                'loglevel'=> Aliyun_Log_Models_LogLevel_LogLevel::getLevelStr($logLevel)
-            );
-            $logItem = new Aliyun_Log_Models_LogItem();
-            $logItem->setTime(time());
-            $logItem->setContents($contents);
+        $this->cacheBytes = 0;
+    }
 
-            array_push($logItems, $logItem);
-
-            if((sizeof($logItems) == $this->arraySize
-                    || $this->previousLogTime - $previousCallTime > 5000)
-                    && $previousCallTime > 0){
-                $this->logBatch($logItems, $this->topic);
-                $logItems = [];
-            }
-            $this->logItems = $logItems;
+    private function logItem($cur_time, $logItem){
+        array_push($this->logItems, $logItem);
+        if ($cur_time - $this->previousLogTime >= $this->maxWaitTime || sizeof($this->logItems) >= $this->maxCacheLog
+            || $this->cacheBytes >= $this->maxCacheBytes)
+        {
+            $this->logBatch($this->logItems, $this->topic);
+            $this->logItems = [];
+            $this->previousLogTime = time();
+            $this->cacheBytes = 0;
         }
     }
 
-    private function logItem($logItem){
-        $previousCallTime = $this->previousLogTime;
-        if(null ===  $previousCallTime){
-            $previousCallTime = 0;
-        }
-        $this->previousLogTime = time();
-        $logItems = $this->logItems;
-
-        array_push($logItems, $logItem);
-
-        if((sizeof($logItems) == $this->arraySize
-                || $this->previousLogTime - $previousCallTime > 5000)
-            && $previousCallTime > 0){
-            $this->logBatch($logItems, $this->topic);
-            $logItems = [];
-        }
-        $this->logItems = $logItems;
-    }
-
-    public function logSingleMessage(Aliyun_Log_Models_LogLevel_LogLevel $logLevel, $logMessage){
-        if(!$logLevel instanceof Aliyun_Log_Models_LogLevel_LogLevel){
-            throw new Exception('LogLevel value is invalid!');
-        }
+    private function logSingleMessage(Aliyun_Log_Models_LogLevel_LogLevel $logLevel, $logMessage){
         if(is_array($logMessage)){
             throw new Exception('array is not supported in this function, please use logArrayMessage!');
         }
-        $this->log($logLevel, $logMessage);
+        $cur_time = time();
+        $contents = array( // key-value pair
+            'time'=>date('m/d/Y h:i:s a', $cur_time),
+            'loglevel'=> Aliyun_Log_Models_LogLevel_LogLevel::getLevelStr($logLevel),
+            'msg'=>$logMessage
+        );
+        $this->cacheBytes += strlen($logMessage) + 32;
+        $logItem = new Aliyun_Log_Models_LogItem();
+        $logItem->setTime($cur_time);
+        $logItem->setContents($contents);
+        $this->logItem($cur_time, $logItem);
     }
 
-    public function logArrayMessage(Aliyun_Log_Models_LogLevel_LogLevel $logLevel, $logMessage){
-        if(!$logLevel instanceof Aliyun_Log_Models_LogLevel_LogLevel){
-            throw new Exception('LogLevel value is invalid!');
-        }
+    private function logArrayMessage(Aliyun_Log_Models_LogLevel_LogLevel $logLevel, $logMessage){
         if(!is_array($logMessage)){
             throw new Exception('input message is not array, please use logSingleMessage!');
         }
+        $cur_time = time();
         $contents = array( // key-value pair
-            'time'=>date('m/d/Y h:i:s a', time())
+            'time'=>date('m/d/Y h:i:s a', $cur_time)
         );
-        $ip = $this->getLocalIp();
-        if(is_array($logMessage)){
-            foreach ($logMessage as $key => $value)
-                $contents[$key] = $value;
-        }
         $contents['logLevel'] = Aliyun_Log_Models_LogLevel_LogLevel::getLevelStr($logLevel);
+        foreach ($logMessage as $key => $value)
+        {
+            $contents[$key] = $value;
+            $this->cacheBytes += strlen($key) + strlen($value);
+        }
+        $this->cacheBytes += 32;
         $logItem = new Aliyun_Log_Models_LogItem();
-        $logItem->setTime(time());
+        $logItem->setTime($cur_time);
         $logItem->setContents($contents);
-
-        $this->logItem($logItem);
+        $this->logItem($cur_time, $logItem);
     }
 
     public function info( $logMessage){
@@ -190,14 +163,24 @@ class Aliyun_Log_SimpleLogger{
 
     private function logBatch($logItems, $topic){
         $ip = $this->getLocalIp();
-        try{
-            $request = new Aliyun_Log_Models_PutLogsRequest($this->project, $this->logstore,
-                $topic, $ip, $logItems);
-            $response = $this->client->putLogs($request);
-        } catch (Aliyun_Log_Exception $ex) {
-            var_dump($ex);
-        } catch (Exception $ex) {
-            var_dump($ex);
+        $request = new Aliyun_Log_Models_PutLogsRequest($this->project, $this->logstore,
+            $topic, $ip, $logItems);
+        $error_exception = NULL;
+        for($i = 0 ;  $i < 3 ; $i++)
+        {
+            try{
+                $response = $this->client->putLogs($request);
+                return;
+            } catch (Aliyun_Log_Exception $ex) {
+                $error_exception = $ex;
+            } catch (Exception $ex) {
+                var_dump($ex);
+                $error_exception = $ex;
+            }
+        }
+        if ($error_exception != NULL)
+        {
+            var_dump($error_exception);
         }
     }
 
@@ -208,6 +191,8 @@ class Aliyun_Log_SimpleLogger{
         if(sizeof($this->logItems) > 0){
             $this->logBatch($this->logItems, $this->topic);
             $this->logItems = [];
+            $this->previousLogTime= time();
+            $this->cacheBytes = 0;
         }
     }
 

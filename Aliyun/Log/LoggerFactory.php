@@ -18,11 +18,12 @@ class Aliyun_Log_LoggerFactory{
         if($logstore === null || $logstore == ''){
             throw new Exception('logstore name is blank!');
         }
-        if($topic === null || $topic === ''){
-            $topic = 'MainFlow';
+        if($topic === null){
+            $topic = '';
         }
         $loggerKey = $project.'#'.$logstore.'#'.$topic;
-        if (!array_key_exists($loggerKey, static::$loggerMap) || static::$loggerMap[$loggerKey] === null) {
+        if (!array_key_exists($loggerKey, static::$loggerMap))
+        {
             $instanceSimpleLogger = new Aliyun_Log_SimpleLogger($client,$project,$logstore,$topic);
             static::$loggerMap[$loggerKey] = $instanceSimpleLogger;
         }
