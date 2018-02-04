@@ -6,6 +6,12 @@
 
 require_once realpath(dirname(__FILE__) . '/../Log_Autoload.php');
 
+/**
+ * List all shards in current log configuration
+ * @param Aliyun_Log_Client $client
+ * @param $project
+ * @param $logstore
+ */
 function listShard(Aliyun_Log_Client $client,$project,$logstore){
     $request = new Aliyun_Log_Models_ListShardsRequest($project,$logstore);
     try
@@ -21,6 +27,12 @@ function listShard(Aliyun_Log_Client $client,$project,$logstore){
     }
 }
 
+/**
+ * sumit log by client directly
+ * @param Aliyun_Log_Client $client
+ * @param $project
+ * @param $logstore
+ */
 function putLogs(Aliyun_Log_Client $client, $project, $logstore) {
     $topic = 'TestTopic';
 
@@ -45,6 +57,12 @@ function putLogs(Aliyun_Log_Client $client, $project, $logstore) {
     }
 }
 
+/**
+ * query log by client directly
+ * @param Aliyun_Log_Client $client
+ * @param $project
+ * @param $logstore
+ */
 function getLogs(Aliyun_Log_Client $client, $project, $logstore) {
     $topic = 'MainFlow';
     $from = time()-3600;
@@ -77,29 +95,44 @@ $project = '';
 $logstore = 'test';
 $token = "";
 
+
+ // create a log client
 $client = new Aliyun_Log_Client($endpoint, $accessKeyId, $accessKey,$token);
 listShard($client,$project,$logstore);
 
+// create a logger instance by calling factory method
 $logger = Aliyun_Log_LoggerFactory::getLogger($client, $project, $logstore);
 $logMap = array(
     'message' => 'tet',
     'haha' => 'hehe'
 );
 
+// submit single string message by logger
 $logger->logSingleMessage(Aliyun_Log_Models_LogLevel_LogLevel::getLevelInfo(),'test INFO LOG');
 
+//create same logger instance by calling factory method with same parameters
 $logger2 = Aliyun_Log_LoggerFactory::getLogger($client, $project, $logstore);
+
+
 $logger2->logSingleMessage(Aliyun_Log_Models_LogLevel_LogLevel::getLevelInfo(),'test INFO LOG2222222', 'MainFlow');
 
+// submit single array message by logger
 $logger->logArrayMessage(Aliyun_Log_Models_LogLevel_LogLevel::getLevelInfo(),$logMap, 'MainFlow');
 
 //$logger->log('test', 'something wrong with the inner info', 'MainFlow');
+
+//create different logger instance by calling factory method with topic parameter defined
 $batchLogger = Aliyun_Log_LoggerFactory::getLogger($client, $project, $logstore,'helloworld');
 
-for($i = 1; $i <= 29; $i++){
+// batch submit single string message, with default cache size 100
+for($i = 1; $i <= 129; $i++){
     $batchLogger->logSingleMessage(Aliyun_Log_Models_LogLevel_LogLevel::getLevelInfo(),'something wrong with the inner info '.$i);
 }
+
+// manually flush log message
 $batchLogger->logFlush();
+
+
 getLogs($client,$project,$logstore);
 
 $logger2->info('test log message 000 info');

@@ -6,28 +6,69 @@
 
 /**
  * Class Aliyun_Log_SimpleLogger
- * simple logger for submit log message
+ * a wrapper for submit log message to server, to avoid post log frequently, using a internal cache for messages
+ * When the count of messages reach the cache size, SimpleLogger will post the messages in bulk, and reset the cache accordingly.
  */
 class Aliyun_Log_SimpleLogger{
 
+    /**
+     * internal cache for log messages
+     * @var array
+     */
     private $logItems = [];
 
+    /**
+     * max size of cached messages
+     * @var int
+     */
     private $maxCacheLog;
 
+    /**
+     * log topic field
+     * @var
+     */
     private $topic;
 
+    /**
+     * max time before logger post the cached messages
+     * @var int
+     */
     private $maxWaitTime;
 
+    /**
+     * previous time for posting log messages
+     * @var int
+     */
     private $previousLogTime;
 
+    /**
+     * max storage size for cached messages
+     * @var int
+     */
     private $maxCacheBytes;
 
+    /**
+     * messages storage size for cached messages
+     * @var int
+     */
     private $cacheBytes;
 
+    /**
+     * log client which was wrappered by this logger
+     * @var log
+     */
     private $client;
 
+    /**
+     * log project name
+     * @var the
+     */
     private $project;
 
+    /**
+     * logstore name
+     * @var the
+     */
     private $logstore;
 
     /**
@@ -69,6 +110,11 @@ class Aliyun_Log_SimpleLogger{
         $this->cacheBytes = 0;
     }
 
+    /**
+     * add logItem to cached array, and post the cached messages when cache reach the limitation
+     * @param $cur_time
+     * @param $logItem
+     */
     private function logItem($cur_time, $logItem){
         array_push($this->logItems, $logItem);
         if ($cur_time - $this->previousLogTime >= $this->maxWaitTime || sizeof($this->logItems) >= $this->maxCacheLog
@@ -81,6 +127,12 @@ class Aliyun_Log_SimpleLogger{
         }
     }
 
+    /**
+     * log single string message
+     * @param Aliyun_Log_Models_LogLevel_LogLevel $logLevel
+     * @param $logMessage
+     * @throws Exception
+     */
     private function logSingleMessage(Aliyun_Log_Models_LogLevel_LogLevel $logLevel, $logMessage){
         if(is_array($logMessage)){
             throw new Exception('array is not supported in this function, please use logArrayMessage!');
@@ -98,6 +150,12 @@ class Aliyun_Log_SimpleLogger{
         $this->logItem($cur_time, $logItem);
     }
 
+    /**
+     * log array message
+     * @param Aliyun_Log_Models_LogLevel_LogLevel $logLevel
+     * @param $logMessage
+     * @throws Exception
+     */
     private function logArrayMessage(Aliyun_Log_Models_LogLevel_LogLevel $logLevel, $logMessage){
         if(!is_array($logMessage)){
             throw new Exception('input message is not array, please use logSingleMessage!');
@@ -119,40 +177,82 @@ class Aliyun_Log_SimpleLogger{
         $this->logItem($cur_time, $logItem);
     }
 
+    /**
+     * submit string log message with info level
+     * @param $logMessage
+     */
     public function info( $logMessage){
         $logLevel = Aliyun_Log_Models_LogLevel_LogLevel::getLevelInfo();
         $this->logSingleMessage($logLevel, $logMessage);
     }
+
+    /**
+     * submit string log message with debug level
+     * @param $logMessage
+     */
     public function debug($logMessage){
         $logLevel = Aliyun_Log_Models_LogLevel_LogLevel::getLevelDebug();
         $this->logSingleMessage($logLevel, $logMessage);
     }
+
+    /**
+     * submit string log message with warn level
+     * @param $logMessage
+     */
     public function warn($logMessage){
         $logLevel = Aliyun_Log_Models_LogLevel_LogLevel::getLevelWarn();
         $this->logSingleMessage($logLevel, $logMessage);
     }
+
+    /**
+     * submit string log message with error level
+     * @param $logMessage
+     */
     public function error($logMessage){
         $logLevel = Aliyun_Log_Models_LogLevel_LogLevel::getLevelError();
         $this->logSingleMessage($logLevel, $logMessage);
     }
 
+    /**
+     * submit array log message with info level
+     * @param $logMessage
+     */
     public function infoArray($logMessage){
         $logLevel = Aliyun_Log_Models_LogLevel_LogLevel::getLevelInfo();
         $this->logArrayMessage($logLevel, $logMessage);
     }
+
+    /**
+     * submit array log message with debug level
+     * @param $logMessage
+     */
     public function debugArray($logMessage){
         $logLevel = Aliyun_Log_Models_LogLevel_LogLevel::getLevelDebug();
         $this->logArrayMessage($logLevel, $logMessage);
     }
+
+    /**
+     * submit array log message with warn level
+     * @param $logMessage
+     */
     public function warnArray($logMessage){
         $logLevel = Aliyun_Log_Models_LogLevel_LogLevel::getLevelWarn();
         $this->logArrayMessage($logLevel, $logMessage);
     }
+
+    /**
+     * submit array log message with error level
+     * @param $logMessage
+     */
     public function errorArray( $logMessage){
         $logLevel = Aliyun_Log_Models_LogLevel_LogLevel::getLevelError();
         $this->logArrayMessage($logLevel, $logMessage);
     }
 
+    /**
+     * get current machine IP
+     * @return string
+     */
     private function getLocalIp(){
         $local_ip = getHostByName(php_uname('n'));
         if(strlen($local_ip) == 0){
@@ -161,6 +261,11 @@ class Aliyun_Log_SimpleLogger{
         return $local_ip;
     }
 
+    /**
+     * submit log messages in bulk
+     * @param $logItems
+     * @param $topic
+     */
     private function logBatch($logItems, $topic){
         $ip = $this->getLocalIp();
         $request = new Aliyun_Log_Models_PutLogsRequest($this->project, $this->logstore,
