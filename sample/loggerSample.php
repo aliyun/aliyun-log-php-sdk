@@ -178,16 +178,17 @@ $ossCsvStorage->setHeader(false);
 $ossCsvStorage->setNullIdentifier('');
 $ossCsvStorage->setFormat('csv');
 
+// create a json shipper
 $ossJsonStorage = new Aliyun_Log_Models_OssShipperJsonStorage();
 $ossJsonStorage->setFormat('json');
 
 $ossConfig = new Aliyun_Log_Models_OssShipperConfig();
-$ossConfig->setOssBucket('sls-test-oss-shipper');
-$ossConfig->setOssPrefix('logtailalarm');
+$ossConfig->setOssBucket('');// please change it according your own profile
+$ossConfig->setOssPrefix('');// please change it according your own profile
 $ossConfig->setBufferInterval(300);
 $ossConfig->setBufferSize(5);
 $ossConfig->setCompressType('none');
-$ossConfig->setRoleArn('acs:ram::1654218965343050:role/aliyunlogdefaultrole');
+$ossConfig->setRoleArn('');// please change it according your own profile
 $ossConfig->setStorage($ossCsvStorage);
 $ossConfig->setPathFormat('%Y/%m/%d/%H');
 
@@ -229,7 +230,7 @@ $shipper->setShipperName('testjsonshipper');
 $ossConfig->setStorage($ossJsonStorage);
 $shipper->setTargetConfigration($ossConfig->to_json_object());
 try{
-    //$client->createShipper($shipper);
+    $client->createShipper($shipper);
 }catch (Exception $exception){
     var_dump($exception);
 }
