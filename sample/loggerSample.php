@@ -151,8 +151,7 @@ $logger2->errorArray($logMap);
 
 $logger2->logFlush();
 
-//try delete the created shipper
-/*
+//try delete the existing shipper
 $deleteShipper = new Aliyun_Log_Models_DeleteShipperRequest($project);
 $deleteShipper->setShipperName('testjsonshipper');
 $deleteShipper->setLogStore($logstore);
@@ -299,4 +298,4 @@ $retryShipperTask->setShipperName('testjsonshipper');
 $retryShipperTask->setLogStore($logstore);
 $retryShipperTask->setTaskLists($taskIdList);
 $client->retryShipperTasks($retryShipperTask);
-*/
+
