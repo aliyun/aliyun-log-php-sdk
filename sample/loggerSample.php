@@ -9,9 +9,9 @@ require_once realpath(dirname(__FILE__) . '/../Log_Autoload.php');
 
 
 // please update the configuration according your profile
-$endpoint = 'http://cn-shanghai-corp.sls.aliyuncs.com';
-$accessKeyId = 'LTAIUbY1Pk7Ryf1P';
-$accessKey = '0oXZLJrFoRnlzVpDpopNVstd87bUWn';
+$endpoint = ''
+$accessKeyId = '';
+$accessKey = '';
 $project = 'ali-sls-sdk-test';
 $logstore = 'test';
 $token = "";
