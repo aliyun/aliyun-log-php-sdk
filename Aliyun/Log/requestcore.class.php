@@ -610,8 +610,8 @@ class RequestCore
 		curl_setopt($curl_handle, CURLOPT_MAXREDIRS, 5);
 		curl_setopt($curl_handle, CURLOPT_HEADER, true);
 		curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($curl_handle, CURLOPT_TIMEOUT, 20);
-		curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 5);
+		curl_setopt($curl_handle, CURLOPT_TIMEOUT, 50);
+		curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 50);
 		curl_setopt($curl_handle, CURLOPT_NOSIGNAL, true);
 		curl_setopt($curl_handle, CURLOPT_REFERER, $this->request_url);
 		curl_setopt($curl_handle, CURLOPT_USERAGENT, $this->useragent);

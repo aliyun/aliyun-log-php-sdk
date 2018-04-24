@@ -644,7 +644,42 @@ class Aliyun_Log_Client {
         $header = $ret[1];
         return new Aliyun_Log_Models_GetLogsResponse ( $resp, $header );
     }
-    
+
+    /**
+     * Get logs from Log service.
+     * Unsuccessful opertaion will cause an Aliyun_Log_Exception.
+     *
+     * @param Aliyun_Log_Models_GetProjectLogsRequest $request the GetLogs request parameters class.
+     * @throws Aliyun_Log_Exception
+     * @return array(json body, http header)
+     */
+    public function getProjectLogsJson(Aliyun_Log_Models_GetProjectLogsRequest $request) {
+        $headers = array ();
+        $params = array ();
+        if ($request->getQuery () !== null)
+            $params ['query'] = $request->getQuery ();
+        $project = $request->getProject () !== null ? $request->getProject () : '';
+        $resource = "/logs";
+        list ( $resp, $header ) = $this->send ( "GET", $project, NULL, $resource, $params, $headers );
+        $requestId = isset ( $header ['x-log-requestid'] ) ? $header ['x-log-requestid'] : '';
+        $resp = $this->parseToJson ( $resp, $requestId );
+        return array($resp, $header);
+        //return new Aliyun_Log_Models_GetLogsResponse ( $resp, $header );
+    }
+     /**
+     * Get logs from Log service.
+     * Unsuccessful opertaion will cause an Aliyun_Log_Exception.
+     *
+     * @param Aliyun_Log_Models_GetProjectLogsRequest $request the GetLogs request parameters class.
+     * @throws Aliyun_Log_Exception
+     * @return Aliyun_Log_Models_GetLogsResponse
+     */
+    public function getProjectLogs(Aliyun_Log_Models_GetProjectLogsRequest $request) {
+        $ret = $this->getProjectLogsJson($request);
+        $resp = $ret[0];
+        $header = $ret[1];
+        return new Aliyun_Log_Models_GetLogsResponse ( $resp, $header );
+    }
     
     /**
      * Get logs from Log service with shardid conditions.
