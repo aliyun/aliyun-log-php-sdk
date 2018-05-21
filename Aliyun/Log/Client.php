@@ -749,7 +749,7 @@ class Aliyun_Log_Client {
         $headers = array();
         $project = $request->getProject()!==null?$request->getProject():'';
         $logstore = $request->getLogstore()!==null?$request->getLogstore():'';
-        $shardId = $request -> getShardId()!= null ? $request -> getShardId():-1;
+        $shardId = $request -> getShardId()!== null ? $request -> getShardId():-1;
         $midHash = $request -> getMidHash()!= null?$request -> getMidHash():"";
 
         $resource='/logstores/'.$logstore.'/shards/'.$shardId;
