@@ -144,19 +144,6 @@ function batchGetLogs(Aliyun_Log_Client $client,$project,$logstore)
         }
     }
 }
-function deleteShard(Aliyun_Log_Client $client,$project,$logstore,$shardId)
-{
-    $request = new Aliyun_Log_Models_DeleteShardRequest($project,$logstore,$shardId);
-    try
-    {
-        $response = $client -> deleteShard($request);
-        logVarDump($response);
-    }catch (Aliyun_Log_Exception $ex) {
-        logVarDump($ex);
-    } catch (Exception $ex) {
-        logVarDump($ex);
-    }
-}
 function mergeShard(Aliyun_Log_Client $client,$project,$logstore,$shardId)
 {
     $request = new Aliyun_Log_Models_MergeShardsRequest($project,$logstore,$shardId);
