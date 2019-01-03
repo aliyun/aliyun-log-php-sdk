@@ -32,6 +32,11 @@ class Aliyun_Log_Models_BatchGetLogsRequest extends Aliyun_Log_Models_Request {
      * @var string start cursor
      */
     private $cursor;
+
+    /**
+     * @var string end cursor
+     */
+    private $endCursor;
     
     /**
      * Aliyun_Log_Models_BatchGetLogsRequest Constructor
@@ -46,13 +51,16 @@ class Aliyun_Log_Models_BatchGetLogsRequest extends Aliyun_Log_Models_Request {
      *            return max loggroup numbers
      * @param string $cursor
      *            start cursor
+     * @param string $end_cursor
+     *            end cursor
      */
-    public function __construct($project = null, $logstore = null, $shardId = null, $count = null, $cursor = null) {
+    public function __construct($project = null, $logstore = null, $shardId = null, $count = null, $cursor = null, $end_cursor = null) {
         parent::__construct ( $project );    
         $this->logstore = $logstore;
         $this->shardId = $shardId;
         $this->count = $count;
         $this->cursor = $cursor;
+        $this->endCursor = $end_cursor;
     }
     
     /**
@@ -120,6 +128,15 @@ class Aliyun_Log_Models_BatchGetLogsRequest extends Aliyun_Log_Models_Request {
     public function getCursor() {
         return $this->cursor;
     }
+
+    /**
+     * Get end cursor
+     *
+     * @return string cursor
+     */
+    public function getEndCursor() {
+        return $this->endCursor;
+    }
     
     /**
      * Set start cursor
@@ -130,5 +147,14 @@ class Aliyun_Log_Models_BatchGetLogsRequest extends Aliyun_Log_Models_Request {
     public function setCursor($cursor) {
         $this->cursor = $cursor;
     }
-    
+
+    /**
+     * Set end cursor
+     *
+     * @param string $cursor
+     *            end cursor
+     */
+    public function setEndCursor($cursor) {
+        $this->endCursor = $cursor;
+    }
 }

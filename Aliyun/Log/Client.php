@@ -699,6 +699,8 @@ class Aliyun_Log_Client {
           $params['count']=$request->getCount();
       if($request->getCursor()!==null)
           $params['cursor']=$request->getCursor();
+	  if($request->getEndCursor()!==null)
+          $params['end_cursor']=$request->getEndCursor();
       $params['type']='log';
       $headers['Accept-Encoding']='gzip';
       $headers['accept']='application/x-protobuf';
