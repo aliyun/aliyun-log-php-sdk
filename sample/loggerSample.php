@@ -9,7 +9,7 @@ require_once realpath(dirname(__FILE__) . '/../Log_Autoload.php');
 
 
 // please update the configuration according your profile
-$endpoint = ''
+$endpoint = '';
 $accessKeyId = '';
 $accessKey = '';
 $project = 'ali-sls-sdk-test';

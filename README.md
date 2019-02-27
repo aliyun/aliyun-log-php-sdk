@@ -12,6 +12,8 @@
 
 Log Service SDK for PHP，used to set/get log data to Aliyun Log Service(www.aliyun.com/product/sls).
 
+API Reference: [中文](https://help.aliyun.com/document_detail/29007.html) [ENGLISH](https://www.alibabacloud.com/help/doc-detail/29007.htm)
+
 
 ### Summary
 
