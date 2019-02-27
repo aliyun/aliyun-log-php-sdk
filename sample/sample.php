@@ -144,6 +144,54 @@ function batchGetLogs(Aliyun_Log_Client $client,$project,$logstore)
         }
     }
 }
+
+function batchGetLogsWithRange(Aliyun_Log_Client $client,$project,$logstore)
+{
+    $listShardRequest = new Aliyun_Log_Models_ListShardsRequest($project,$logstore);
+    $listShardResponse = $client -> listShards($listShardRequest);
+    foreach($listShardResponse-> getShardIds()  as $shardId)
+    {
+        //pull data which reached server at time range [now - 60s, now) for every shard
+        $curTime = time();
+        $beginCursorResponse = $client->getCursor(new Aliyun_Log_Models_GetCursorRequest($project,$logstore,$shardId,null,$curTime - 60));
+        $beginCursor = $beginCursorResponse-> getCursor();
+        $endCursorResponse = $client -> getCursor(new Aliyun_Log_Models_GetCursorRequest($project,$logstore,$shardId,null,$curTime));
+        $endCursor = $endCursorResponse-> getCursor();
+        $cursor = $beginCursor;
+        print("-----------------------------------------\nbatchGetLogs for shard: ".$shardId.", cursor range: [".$beginCursor.", ".$endCursor.")\n");
+        $count = 100;
+        while(true)
+        {
+            $batchGetDataRequest = new Aliyun_Log_Models_BatchGetLogsRequest($project,$logstore,$shardId,$count,$cursor,$endCursor);
+            $response = $client -> batchGetLogs($batchGetDataRequest);
+            $logGroupList = $response -> getLogGroupList();
+            $logGroupCount = 0;
+            $logCount = 0;
+            foreach($logGroupList as $logGroup)
+            {
+                $logGroupCount += 1;
+                foreach($logGroup -> getLogsArray() as $log)
+                {
+                    $logCount += 1;
+                    foreach($log -> getContentsArray() as $content)
+                    {
+                        print($content-> getKey().":".$content->getValue()."\t");
+                    }
+                    print("\n");
+                }
+            }
+            $nextCursor = $response -> getNextCursor();
+            print("batchGetLogs once, cursor: ".$cursor.", nextCursor: ".nextCursor.", logGroups: ".$logGroupCount.", logs: ".$logCount."\n");
+            $cursor = $nextCursor;
+            if($cursor == $endCursor)
+            {
+                //read data finished when reach endCursor
+                break;
+            }
+        }
+    }
+}
+
 function mergeShard(Aliyun_Log_Client $client,$project,$logstore,$shardId)
 {
     $request = new Aliyun_Log_Models_MergeShardsRequest($project,$logstore,$shardId);
@@ -196,6 +244,7 @@ splitShard($client,$project,$logstore,2,"80000000000000000000000000000001");
 putLogs($client, $project, $logstore);
 listShard($client,$project,$logstore);
 batchGetLogs($client,$project,$logstore);
+batchGetLogsWithRange($client,$project,$logstore);
 listLogstores($client, $project);
 listTopics($client, $project, $logstore);
 getHistograms($client, $project, $logstore);
