@@ -182,12 +182,12 @@ function batchGetLogsWithRange(Aliyun_Log_Client $client,$project,$logstore)
             }
             $nextCursor = $response -> getNextCursor();
             print("batchGetLogs once, cursor: ".$cursor.", nextCursor: ".nextCursor.", logGroups: ".$logGroupCount.", logs: ".$logCount."\n");
-            $cursor = $nextCursor;
-            if($cursor == $endCursor)
+            if($cursor == $nextCursor)
             {
-                //read data finished when reach endCursor
+                //read data finished
                 break;
             }
+            $cursor = $nextCursor;
         }
     }
 }
