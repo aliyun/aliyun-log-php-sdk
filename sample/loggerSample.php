@@ -19,7 +19,7 @@ $token = "";
 /**
  * client and logger usage
  */
- // create a log client
+// create a log client
 $client = new Aliyun_Log_Client($endpoint, $accessKeyId, $accessKey,$token);
 listShard($client,$project,$logstore);
 

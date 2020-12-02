@@ -8,6 +8,7 @@ class Aliyun_Log_Models_OssShipperCsvStorage extends Aliyun_Log_Models_OssShippe
     private $columns;
     private $delimiter = ',';
     private $quote = '';
+    private $lineFeed = '\n';
     private $nullIdentifier = '';
     private $header = false;
 
@@ -91,11 +92,28 @@ class Aliyun_Log_Models_OssShipperCsvStorage extends Aliyun_Log_Models_OssShippe
         $this->header = $header;
     }
 
+    /**
+     * @return string
+     */
+    public function getLineFeed(): string
+    {
+        return $this->lineFeed;
+    }
+
+    /**
+     * @param string $lineFeed
+     */
+    public function setLineFeed(string $lineFeed)
+    {
+        $this->lineFeed = $lineFeed;
+    }
+
     public function to_json_object(){
         $detail =  array(
             'columns' => $this->columns,
             'delimiter' => $this->delimiter,
             'quote' => $this->quote,
+            'lineFeed' => $this->lineFeed,
             'nullIdentifier' => $this->nullIdentifier,
             'header' => $this->header
         );
