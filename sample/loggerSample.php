@@ -12,14 +12,14 @@ require_once realpath(dirname(__FILE__) . '/../Log_Autoload.php');
 $endpoint = '';
 $accessKeyId = '';
 $accessKey = '';
-$project = 'ali-sls-sdk-test';
-$logstore = 'test';
+$project = '';
+$logstore = '';
 $token = "";
 
 /**
  * client and logger usage
  */
-// create a log client
+ // create a log client
 $client = new Aliyun_Log_Client($endpoint, $accessKeyId, $accessKey,$token);
 listShard($client,$project,$logstore);
 
@@ -143,12 +143,13 @@ function deleteShipper(Aliyun_Log_Client $client, $project, $logstore, $shipperN
 
 function getShipperCommonConfig(Aliyun_Log_Models_OssShipperStorage $ossShipperStorage){
     $ossConfig = new Aliyun_Log_Models_OssShipperConfig();
-    $ossConfig->setOssBucket('sls-test-oss-shipper');
+    $ossConfig->setOssBucket('audit-zyf-hangzhou');
     $ossConfig->setOssPrefix('logtailalarm');
     $ossConfig->setBufferInterval(300);
     $ossConfig->setBufferSize(5);
     $ossConfig->setCompressType('none');
-    $ossConfig->setRoleArn('acs:ram::1654218965343050:role/aliyunlogdefaultrole');
+    $ossConfig->setRoleArn('acs:ram::1049446484210612:role/aliyunlogdefaultrole');
+    $ossConfig->setTimeZone("+0800");
     $ossConfig->setStorage($ossShipperStorage);
     $ossConfig->setPathFormat('%Y/%m/%d/%H');
     return $ossConfig;
@@ -175,12 +176,12 @@ function createCsvShipper(Aliyun_Log_Client $client, $project, $logstore){
         'project_name'));
     $ossCsvStorage->setDelimiter(',');
     $ossCsvStorage->setQuote('"');
+    $ossCsvStorage->setLineFeed('\r');
     $ossCsvStorage->setHeader(false);
     $ossCsvStorage->setNullIdentifier('');
     $ossCsvStorage->setFormat('csv');
 
     $ossConfig = getShipperCommonConfig($ossCsvStorage);
-
     $shipper->setTargetConfigration($ossConfig->to_json_object());
     try{
         $client->createShipper($shipper);
@@ -361,12 +362,12 @@ function createJsonShipper(Aliyun_Log_Client $client, $project, $logstore){
     // create a json shipper
     $ossJsonStorage = new Aliyun_Log_Models_OssShipperJsonStorage();
     $ossJsonStorage->setFormat('json');
+    $ossJsonStorage->setEnableTag(true);
 
     //create shipper with json storage
     $shipper = createCommonShipper($project, $logstore, 'testjsonshipper');
 
     $ossConfig = getShipperCommonConfig($ossJsonStorage);
-
     $shipper->setTargetConfigration($ossConfig->to_json_object());
     try{
         $client->createShipper($shipper);

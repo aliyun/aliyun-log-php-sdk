@@ -5,7 +5,7 @@
  */
 
 class Aliyun_Log_Models_OssShipperJsonStorage extends Aliyun_Log_Models_OssShipperStorage{
-    private $enableTag = true;
+    private $enableTag = false;
 
     /**
      * @return bool
