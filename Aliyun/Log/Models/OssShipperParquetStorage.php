@@ -29,7 +29,7 @@ class Aliyun_Log_Models_OssShipperParquetStorage extends Aliyun_Log_Models_OssSh
         );
         return array(
             'detail' => $detail,
-            'format' => parent::getFormat()
+            'format' => 'parquet'
         );
     }
 }

@@ -119,7 +119,7 @@ class Aliyun_Log_Models_OssShipperCsvStorage extends Aliyun_Log_Models_OssShippe
         );
         return array(
             'detail' => $detail,
-            'format' => parent::getFormat()
+            'format' => 'csv'
         );
     }
 }

@@ -29,7 +29,7 @@ class Aliyun_Log_Models_OssShipperJsonStorage extends Aliyun_Log_Models_OssShipp
         );
         return array(
             'detail' => $detail,
-            'format' => parent::getFormat()
+            'format' => 'json'
         );
     }
 }
