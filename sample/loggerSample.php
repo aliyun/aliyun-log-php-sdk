@@ -176,7 +176,7 @@ function createCsvShipper(Aliyun_Log_Client $client, $project, $logstore){
         'project_name'));
     $ossCsvStorage->setDelimiter(',');
     $ossCsvStorage->setQuote('"');
-    $ossCsvStorage->setLineFeed('\r');
+    $ossCsvStorage->setLineFeed('\n');
     $ossCsvStorage->setHeader(false);
     $ossCsvStorage->setNullIdentifier('');
 
