@@ -13,6 +13,7 @@ class Aliyun_Log_Models_OssShipperConfig{
     private $compressType;
     private $roleArn;
     private $pathFormat;
+    private $timeZone;
     private $storage;
 
     /**
@@ -146,6 +147,21 @@ class Aliyun_Log_Models_OssShipperConfig{
         $this->compressType = $compressType;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getTimeZone()
+    {
+        return $this->timeZone;
+    }
+
+    /**
+     * @param mixed $timeZone
+     */
+    public function setTimeZone($timeZone)
+    {
+        $this->timeZone = $timeZone;
+    }
 
     public function to_json_object() {
         $json =  array(
@@ -156,11 +172,9 @@ class Aliyun_Log_Models_OssShipperConfig{
             'compressType' => $this->compressType,
             'roleArn' => $this->roleArn,
             'pathFormat' => $this->pathFormat,
+            'timeZone' => $this->timeZone,
             'storage' => $this->storage->to_json_object()
         );
-        if($this->storage->getFormat() == 'json'){
-            unset($json['storage']);
-        }
         return $json;
     }
 }
