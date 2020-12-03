@@ -12,8 +12,8 @@ require_once realpath(dirname(__FILE__) . '/../Log_Autoload.php');
 $endpoint = '';
 $accessKeyId = '';
 $accessKey = '';
-$project = '';
-$logstore = '';
+$project = 'ali-sls-sdk-test';
+$logstore = 'test';
 $token = "";
 
 /**
@@ -143,12 +143,12 @@ function deleteShipper(Aliyun_Log_Client $client, $project, $logstore, $shipperN
 
 function getShipperCommonConfig(Aliyun_Log_Models_OssShipperStorage $ossShipperStorage){
     $ossConfig = new Aliyun_Log_Models_OssShipperConfig();
-    $ossConfig->setOssBucket('audit-zyf-hangzhou');
+    $ossConfig->setOssBucket('sls-test-oss-shipper');
     $ossConfig->setOssPrefix('logtailalarm');
     $ossConfig->setBufferInterval(300);
     $ossConfig->setBufferSize(5);
     $ossConfig->setCompressType('none');
-    $ossConfig->setRoleArn('acs:ram::1049446484210612:role/aliyunlogdefaultrole');
+    $ossConfig->setRoleArn('acs:ram::1654218965343050:role/aliyunlogdefaultrole');
     $ossConfig->setTimeZone("+0800");
     $ossConfig->setStorage($ossShipperStorage);
     $ossConfig->setPathFormat('%Y/%m/%d/%H');
@@ -176,7 +176,7 @@ function createCsvShipper(Aliyun_Log_Client $client, $project, $logstore){
         'project_name'));
     $ossCsvStorage->setDelimiter(',');
     $ossCsvStorage->setQuote('"');
-    $ossCsvStorage->setLineFeed('\r');
+    $ossCsvStorage->setLineFeed('\n');
     $ossCsvStorage->setHeader(false);
     $ossCsvStorage->setNullIdentifier('');
     $ossCsvStorage->setFormat('csv');
