@@ -242,7 +242,7 @@ class Aliyun_Log_Client {
         $logGroup->setSource ( $source );
         $logitems = $request->getLogitems ();
         foreach ( $logitems as $logItem ) {
-            $log = new Log ();
+            $log = new Aliyun_Log ();
             $log->setTime ( $logItem->getTime () );
             $content = $logItem->getContents ();
             foreach ( $content as $key => $value ) {
