@@ -1,0 +1,12 @@
+{
+    "name": "zing/alibabacloud-log",
+    "description": "Alibaba Cloud Log Service SDK for PHP",
+    "require": {
+        "php": "^7.1.7"
+    },
+    "autoload": {
+        "files": [
+            "Log_Autoload.php"
+        ]
+    }
+}
