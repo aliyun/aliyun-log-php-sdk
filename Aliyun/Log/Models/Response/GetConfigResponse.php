@@ -5,7 +5,6 @@
  */
 
 require_once realpath(dirname(__FILE__) . '/Response.php');
-require_once realpath(dirname(__FILE__) . '/Config.php');
 /**
  * The response of the GetLog API from log service.
  *
@@ -33,5 +32,5 @@ class Aliyun_Log_Models_GetConfigResponse extends Aliyun_Log_Models_Response {
     public function getConfig(){
         return $this->config;
     }
-   
+
 }
