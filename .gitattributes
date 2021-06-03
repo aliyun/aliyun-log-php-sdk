@@ -1,3 +1,4 @@
+/build export-ignore
 /docs export-ignore
 /sample export-ignore
 .gitattributes export-ignore
@@ -6,5 +7,4 @@ composer.lock export-ignore
 build.bat export-ignore
 build.md export-ignore
 build.sh export-ignore
-composer.lock export-ignore
 composer.lock export-ignore

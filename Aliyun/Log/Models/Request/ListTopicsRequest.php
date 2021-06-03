@@ -1,17 +1,12 @@
 <?php
-/**
- * Copyright (C) Alibaba Cloud Computing
- * All rights reserved
- */
-
-require_once realpath(dirname(__FILE__) . '/Request.php');
+namespace Aliyun\Log\Models\Request;
 
 /**
  * The Request used to list topics from log service.
  *
  * @author log service dev
  */
-class Aliyun_Log_Models_ListTopicsRequest extends Aliyun_Log_Models_Request {
+class ListTopicsRequest extends \Aliyun\Log\Models\Request\Request {
     
     /**
      * @var string $logstore logstore name

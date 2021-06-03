@@ -1,20 +1,13 @@
 <?php
 
-/**
- * Copyright (C) Alibaba Cloud Computing
- * All rights reserved
- */
-
-
-require_once realpath(dirname(__FILE__) . '/Response.php');
-require_once realpath(dirname(__FILE__) . '/../Histogram.php');
+namespace Aliyun\Log\Models\Response;
 
 /**
  * The response of the GetHistograms API from log service.
  *
  * @author log service dev
  */
-class Aliyun_Log_Models_GetHistogramsResponse extends Aliyun_Log_Models_Response {
+class GetHistogramsResponse extends \Aliyun\Log\Models\Response\Response {
     
     /**
      * @var string histogram query status(Complete or InComplete)
@@ -45,7 +38,7 @@ class Aliyun_Log_Models_GetHistogramsResponse extends Aliyun_Log_Models_Response
         $this->count = $header ['x-log-count'];
         $this->histograms = array ();
         foreach ( $resp  as $data )
-            $this->histograms [] = new Aliyun_Log_Models_Histogram ( $data ['from'], $data ['to'], $data ['count'], $data ['progress'] );
+            $this->histograms [] = new \Aliyun\Log\Models\Histogram ( $data ['from'], $data ['to'], $data ['count'], $data ['progress'] );
     }
     
     /**

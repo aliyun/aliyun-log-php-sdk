@@ -1,12 +1,7 @@
 <?php
-/**
- * Copyright (C) Alibaba Cloud Computing
- * All rights reserved
- */
+namespace Aliyun\Log\Models\Response;
 
-require_once realpath(dirname(__FILE__) . '/Response.php');
-
-class Aliyun_Log_Models_DeleteShipperResponse extends Aliyun_Log_Models_Response {
+class DeleteShipperResponse extends \Aliyun\Log\Models\Response\Response {
 
     /**
      * Aliyun_Log_Models_DeleteShipperResponse constructor

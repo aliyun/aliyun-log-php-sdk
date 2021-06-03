@@ -1,18 +1,12 @@
 <?php
-/**
- * Copyright (C) Alibaba Cloud Computing
- * All rights reserved
- */
-
-require_once realpath(dirname(__FILE__) . '/Response.php');
-require_once realpath(dirname(__FILE__) . '/QueriedLog.php');
+namespace Aliyun\Log\Models\Response;
 
 /**
  * The response of the GetLog API from log service.
  *
  * @author log service dev
  */
-class Aliyun_Log_Models_GetLogsResponse extends Aliyun_Log_Models_Response {
+class GetLogsResponse extends \Aliyun\Log\Models\Response\Response {
     
     /**
      * @var integer log number
@@ -48,7 +42,7 @@ class Aliyun_Log_Models_GetLogsResponse extends Aliyun_Log_Models_Response {
             $source = $data ['__source__'];
             unset ( $contents ['__time__'] );
             unset ( $contents ['__source__'] );
-            $this->logs [] = new Aliyun_Log_Models_QueriedLog ( $time, $source, $contents );
+            $this->logs [] = new \Aliyun\Log\Models\Response\QueriedLog ( $time, $source, $contents );
         }
     }
     

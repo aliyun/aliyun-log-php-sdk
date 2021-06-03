@@ -1,16 +1,17 @@
 <?php
+namespace Aliyun\Log\Models;
+
 /**
  * Copyright (C) Alibaba Cloud Computing
  * All rights reserved
  */
-
 /**
  * Aliyun_Log_Models_LogItem used to present a log, it contains log time and multiple
  * key/value pairs to present the log contents.
  *
  * @author log service dev
  */
-class Aliyun_Log_Models_LogItem {
+class LogItem {
     
     /**
      * @var integer time of the log item, the default time if the now time.

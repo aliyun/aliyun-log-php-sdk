@@ -1,15 +1,16 @@
 <?php
+namespace Aliyun\Log\Models\Response;
+
 /**
  * Copyright (C) Alibaba Cloud Computing
  * All rights reserved
  */
-
 /**
  * The QueriedLog is a log of the Aliyun_Log_Models_GetLogsResponse which obtained from the log.
  *
  * @author log service dev
  */
-class Aliyun_Log_Models_QueriedLog {
+class QueriedLog {
 
     /**
      * @var integer log timestamp

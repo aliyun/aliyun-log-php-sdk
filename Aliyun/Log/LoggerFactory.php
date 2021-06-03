@@ -1,15 +1,16 @@
 <?php
+namespace Aliyun\Log;
+
 /**
  * Copyright (C) Alibaba Cloud Computing
  * All rights reserved
  */
-
 /**
  * Class Aliyun_Log_LoggerFactory
  * Factory for creating logger instance, with $client, $project, $logstore, $topic configurable.
  * Will flush current logger when the factory instance was recycled.
  */
-class Aliyun_Log_LoggerFactory{
+class LoggerFactory{
 
     private static $loggerMap = array();
 
@@ -20,14 +21,14 @@ class Aliyun_Log_LoggerFactory{
      * @param $logstore which could be created in AliYun Logger Server configuration page
      * @param null $topic used to specified the log by TOPIC field
      * @return mixed return logger instance
-     * @throws Exception if the input parameter is invalid, throw exception
+     * @throws \Exception if the input parameter is invalid, throw exception
      */
     public static function getLogger($client, $project, $logstore, $topic = null){
         if($project === null || $project == ''){
-            throw new Exception('project name is blank!');
+            throw new \Exception('project name is blank!');
         }
         if($logstore === null || $logstore == ''){
-            throw new Exception('logstore name is blank!');
+            throw new \Exception('logstore name is blank!');
         }
         if($topic === null){
             $topic = '';
@@ -35,7 +36,7 @@ class Aliyun_Log_LoggerFactory{
         $loggerKey = $project.'#'.$logstore.'#'.$topic;
         if (!array_key_exists($loggerKey, static::$loggerMap))
         {
-            $instanceSimpleLogger = new Aliyun_Log_SimpleLogger($client,$project,$logstore,$topic);
+            $instanceSimpleLogger = new \Aliyun\Log\SimpleLogger($client,$project,$logstore,$topic);
             static::$loggerMap[$loggerKey] = $instanceSimpleLogger;
         }
         return static::$loggerMap[$loggerKey];

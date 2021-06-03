@@ -2,11 +2,26 @@
     "name": "zing/alibabacloud-log",
     "description": "Alibaba Cloud Log Service SDK for PHP",
     "require": {
-        "php": "^7.1.7"
+        "php": ">=7.1.7",
+        "ext-json": "*",
+        "ext-zlib": "*",
+        "ext-curl": "*"
     },
     "autoload": {
-        "files": [
-            "Log_Autoload.php"
-        ]
+        "psr-4": {
+            "Aliyun\\Log\\": "Aliyun/Log/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Aliyun\\Log\\Tests\\": "tests",
+            "Aliyun\\Log\\Rectors\\": "rectors"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "rector/rector": "^0.11.2",
+        "haydenpierce/class-finder": "^0.4.3",
+        "composer/composer": "^2.0"
     }
 }

@@ -1,18 +1,12 @@
 <?php
-/**
- * Copyright (C) Alibaba Cloud Computing
- * All rights reserved
- */
-
-require_once realpath(dirname(__FILE__) . '/Response.php');
-require_once realpath(dirname(__FILE__) . '/Shard.php');
+namespace Aliyun\Log\Models\Response;
 
 /**
  * The response of the GetLog API from log service.
  *
  * @author log service dev
  */
-class Aliyun_Log_Models_ListShardsResponse extends Aliyun_Log_Models_Response {
+class ListShardsResponse extends \Aliyun\Log\Models\Response\Response {
 
     private $shardIds; 
     /**
@@ -27,7 +21,7 @@ class Aliyun_Log_Models_ListShardsResponse extends Aliyun_Log_Models_Response {
         parent::__construct ( $header );
         foreach($resp as $key=>$value){
             $this->shardIds[] = $value['shardID'];
-            $this->shards[] = new Aliyun_Log_Models_Shard($value['shardID'],$value["status"],$value["inclusiveBeginKey"],$value["exclusiveEndKey"],$value["createTime"]);
+            $this->shards[] = new \Aliyun\Log\Models\Response\Shard($value['shardID'],$value["status"],$value["inclusiveBeginKey"],$value["exclusiveEndKey"],$value["createTime"]);
         }
     }
 

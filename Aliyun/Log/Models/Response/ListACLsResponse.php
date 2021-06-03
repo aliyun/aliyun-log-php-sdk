@@ -1,17 +1,12 @@
 <?php
-/**
- * Copyright (C) Alibaba Cloud Computing
- * All rights reserved
- */
-
-require_once realpath(dirname(__FILE__) . '/Response.php');
+namespace Aliyun\Log\Models\Response;
 
 /**
  * The response of the GetLog API from log service.
  *
  * @author log service dev
  */
-class Aliyun_Log_Models_ListACLsResponse extends Aliyun_Log_Models_Response {
+class ListACLsResponse extends \Aliyun\Log\Models\Response\Response {
 
 
     private $acls; 
@@ -28,7 +23,7 @@ class Aliyun_Log_Models_ListACLsResponse extends Aliyun_Log_Models_Response {
         $aclArr = array();
         if(isset($resp['acls'])){
             foreach($resp['acls'] as $value){
-                $aclObj = new Aliyun_Log_Models_ACL();
+                $aclObj = new \Aliyun\Log\Models\ACL();
                 $aclObj->setFromArray($value);
                 $aclArr[]=$aclObj;
             }

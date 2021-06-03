@@ -1,16 +1,17 @@
 <?php
+namespace Aliyun\Log\Models;
+
 /**
  * Copyright (C) Alibaba Cloud Computing
  * All rights reserved
  */
-
 /**
  * Aliyun_Log_Models_CompressedLogGroup is compressed LogGroup, 
  * LogGroup infomation please refer to Aliyun_Log_Models_LogGroup
  *
  * @author log service dev
  */
-class Aliyun_Log_Models_CompressedLogGroup {
+class CompressedLogGroup {
 
     /**
      * @var integer uncompressed LogGroup size

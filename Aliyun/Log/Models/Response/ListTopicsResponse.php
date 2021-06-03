@@ -1,18 +1,13 @@
 <?php
 
-/**
- * Copyright (C) Alibaba Cloud Computing
- * All rights reserved
- */
-
-require_once realpath(dirname(__FILE__) . '/Response.php');
+namespace Aliyun\Log\Models\Response;
 
 /**
  * The response of the ListTopics API from log service.
  *
  * @author log service dev
  */
-class Aliyun_Log_Models_ListTopicsResponse extends Aliyun_Log_Models_Response {
+class ListTopicsResponse extends \Aliyun\Log\Models\Response\Response {
 
     /**
      * @var integer the number of all the topics from the response

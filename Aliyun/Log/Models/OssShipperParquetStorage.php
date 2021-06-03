@@ -1,10 +1,11 @@
 <?php
+namespace Aliyun\Log\Models;
+
 /**
  * Copyright (C) Alibaba Cloud Computing
  * All rights reserved
  */
-
-class Aliyun_Log_Models_OssShipperParquetStorage extends Aliyun_Log_Models_OssShipperStorage{
+class OssShipperParquetStorage extends \Aliyun\Log\Models\OssShipperStorage{
     private  $columns;
 
     /**

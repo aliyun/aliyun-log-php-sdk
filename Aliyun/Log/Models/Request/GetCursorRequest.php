@@ -1,17 +1,12 @@
 <?php
-/**
- * Copyright (C) Alibaba Cloud Computing
- * All rights reserved
- */
-
-require_once realpath(dirname(__FILE__) . '/Request.php');
+namespace Aliyun\Log\Models\Request;
 
 /**
  * The request used to get cursor by fromTime or begin/end mode 
  *
  * @author log service dev
  */
-class Aliyun_Log_Models_GetCursorRequest extends Aliyun_Log_Models_Request {
+class GetCursorRequest extends \Aliyun\Log\Models\Request\Request {
     
     /**
      * @var string logstore name

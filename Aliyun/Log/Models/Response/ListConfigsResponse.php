@@ -1,16 +1,11 @@
 <?php
-/**
- * Copyright (C) Alibaba Cloud Computing
- * All rights reserved
- */
-
-require_once realpath(dirname(__FILE__) . '/Response.php');
+namespace Aliyun\Log\Models\Response;
 
 /**
  *
  * @author log service dev
  */
-class Aliyun_Log_Models_ListConfigsResponse extends Aliyun_Log_Models_Response {
+class ListConfigsResponse extends \Aliyun\Log\Models\Response\Response {
     
     private $total;
     private $configs;

@@ -1,17 +1,12 @@
 <?php
-/**
- * Copyright (C) Alibaba Cloud Computing
- * All rights reserved
- */
-
-require_once realpath(dirname(__FILE__) . '/Response.php');
+namespace Aliyun\Log\Models\Response;
 
 /**
  * The response of the UpdateLogstore API from log service.
  *
  * @author log service dev
  */
-class Aliyun_Log_Models_UpdateLogstoreResponse extends Aliyun_Log_Models_Response {
+class UpdateLogstoreResponse extends \Aliyun\Log\Models\Response\Response {
     
     /**
      * Aliyun_Log_Models_UpdateLogstoreResponse constructor

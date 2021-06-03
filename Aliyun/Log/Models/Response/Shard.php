@@ -1,10 +1,12 @@
 <?php
+namespace Aliyun\Log\Models\Response;
+
 /**
  * The class used to present the shard detail, for every shard ,it  contains id , status , begin Range, end range, createtime
  *
  * @author log service dev
  */
-class Aliyun_Log_Models_Shard{
+class Shard{
     /**
      * @var interger  the shard id
      */

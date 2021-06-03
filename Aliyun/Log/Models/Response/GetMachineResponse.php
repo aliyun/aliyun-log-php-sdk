@@ -1,17 +1,12 @@
 <?php
-/**
- * Copyright (C) Alibaba Cloud Computing
- * All rights reserved
- */
-
-require_once realpath(dirname(__FILE__) . '/Response.php');
+namespace Aliyun\Log\Models\Response;
 
 /**
  * The response of the GetLog API from log service.
  *
  * @author log service dev
  */
-class Aliyun_Log_Models_GetMachineResponse extends Aliyun_Log_Models_Response {
+class GetMachineResponse extends \Aliyun\Log\Models\Response\Response {
 
     private $machine;
 
@@ -26,7 +21,7 @@ class Aliyun_Log_Models_GetMachineResponse extends Aliyun_Log_Models_Response {
     public function __construct($resp, $header) {
         parent::__construct ( $header );
         //echo json_encode($resp);
-        $this->machine = new Aliyun_Log_Models_Machine();
+        $this->machine = new \Aliyun\Log\Models\Machine();
         $this->machine->setFromArray($resp);
         
     }

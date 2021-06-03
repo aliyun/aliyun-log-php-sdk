@@ -1,17 +1,12 @@
 <?php
-/**
- * Copyright (C) Alibaba Cloud Computing
- * All rights reserved
- */
-
-require_once realpath(dirname(__FILE__) . '/Request.php');
+namespace Aliyun\Log\Models\Request;
 
 /**
  * The request used to delete logstore from log service.
  *
  * @author log service dev
  */
-class Aliyun_Log_Models_DeleteLogstoreRequest extends Aliyun_Log_Models_Request{
+class DeleteLogstoreRequest extends \Aliyun\Log\Models\Request\Request{
 
     private  $logstore;
     /**

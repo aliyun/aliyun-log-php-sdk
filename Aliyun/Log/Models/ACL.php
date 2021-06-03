@@ -1,10 +1,11 @@
 <?php
+namespace Aliyun\Log\Models;
+
 /**
  * Copyright (C) Alibaba Cloud Computing
  * All rights reserved
  */
-
-class Aliyun_Log_Models_ACL {
+class ACL {
     private $principleType;
     private $principleId;
     private $object;

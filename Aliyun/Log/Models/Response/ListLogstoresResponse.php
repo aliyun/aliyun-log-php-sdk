@@ -1,17 +1,12 @@
 <?php
-/**
- * Copyright (C) Alibaba Cloud Computing
- * All rights reserved
- */
-
-require_once realpath(dirname(__FILE__) . '/Response.php');
+namespace Aliyun\Log\Models\Response;
 
 /**
  * The response of the ListLogstores API from log service.
  *
  * @author log service dev
  */
-class Aliyun_Log_Models_ListLogstoresResponse extends Aliyun_Log_Models_Response {
+class ListLogstoresResponse extends \Aliyun\Log\Models\Response\Response {
     
     /**
      * @var integer the number of total logstores from the response

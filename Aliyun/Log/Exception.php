@@ -1,15 +1,16 @@
 <?php
+namespace Aliyun\Log;
+
 /**
  * Copyright (C) Alibaba Cloud Computing
  * All rights reserved
  */
-
 /**
  * The Exception of the log serivce request & response.
  *
  * @author log service dev
  */
-class Aliyun_Log_Exception extends Exception{
+class Exception extends \Exception{
     /**
      * @var string
      */
