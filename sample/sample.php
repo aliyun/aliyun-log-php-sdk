@@ -79,6 +79,34 @@ function getLogs(Aliyun_Log_Client $client, $project, $logstore) {
     }
 }
 
+function getLogsWithPowerSql(Aliyun_Log_Client $client, $project, $logstore) {
+    $topic = '';
+    $from = time()-3600;
+    $to = time();
+    $query = "* | select count(method)";
+    $request = new Aliyun_Log_Models_GetLogsRequest($project, $logstore, $from, $to, $topic, $query, 100, 0, False,True);
+   
+    try {
+        $response = $client->getLogs($request);
+        foreach($response -> getLogs() as $log)
+        {
+            print $log -> getTime()."\t";
+            foreach($log -> getContents() as $key => $value){
+                print $key.":".$value."\t";
+            }
+            print "\n";
+        }
+        print "proccesedRows:".$response -> getProcessedRows()."\n";
+        print "elapsedMilli:".$response -> getElapsedMilli()."\n";
+        print "cpuSec:".$response -> getCpuSec()."\n";
+        print "cpuCores:".$response -> getCpuCores()."\n";
+
+    } catch (Aliyun_Log_Exception $ex) {
+        logVarDump($ex);
+    } catch (Exception $ex) {
+        logVarDump($ex);
+    }
+}
 function getHistograms(Aliyun_Log_Client $client, $project, $logstore) {
     $topic = 'TestTopic';
     $from = time()-3600;
@@ -229,23 +257,24 @@ function logVarDump($expression){
  * please refer to aliyun sdk document for detail:
  * http://help.aliyun-inc.com/internaldoc/detail/29074.html?spm=0.0.0.0.tqUNn5
  */
-$endpoint = 'http://cn-shanghai-corp.sls.aliyuncs.com';
+$endpoint = 'http://cn-hangzhou-yunlei-intranet.log.aliyuncs.com';
 $accessKeyId = '';
 $accessKey = '';
-$project = '';
-$logstore = '';
+$project = 'ali-cn-yunlei-sls-admin';
+$logstore = 'logstore_name';
 $token = "";
 
 $client = new Aliyun_Log_Client($endpoint, $accessKeyId, $accessKey,$token);
-listShard($client,$project,$logstore);
-mergeShard($client,$project,$logstore,2);
-deleteShard($client,$project,$logstore,2);
-splitShard($client,$project,$logstore,2,"80000000000000000000000000000001");
-putLogs($client, $project, $logstore);
-listShard($client,$project,$logstore);
-batchGetLogs($client,$project,$logstore);
-batchGetLogsWithRange($client,$project,$logstore);
-listLogstores($client, $project);
-listTopics($client, $project, $logstore);
-getHistograms($client, $project, $logstore);
-getLogs($client, $project, $logstore);
+#listShard($client,$project,$logstore);
+#mergeShard($client,$project,$logstore,2);
+#deleteShard($client,$project,$logstore,2);
+#splitShard($client,$project,$logstore,2,"80000000000000000000000000000001");
+#putLogs($client, $project, $logstore);
+#listShard($client,$project,$logstore);
+#batchGetLogs($client,$project,$logstore);
+#batchGetLogsWithRange($client,$project,$logstore);
+#listLogstores($client, $project);
+#listTopics($client, $project, $logstore);
+#getHistograms($client, $project, $logstore);
+#getLogs($client, $project, $logstore);
+getLogsWithPowerSql($client, $project, $logstore);
