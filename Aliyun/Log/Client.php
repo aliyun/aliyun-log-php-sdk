@@ -620,6 +620,8 @@ class Aliyun_Log_Client {
             $params ['offset'] = $request->getOffset ();
         if ($request->getOffset () !== null)
             $params ['reverse'] = $request->getReverse () ? 'true' : 'false';
+        if ($request -> getPowerSql() != null)
+            $params ["powerSql"] = $request -> getPowerSql()? 'true' : 'false';
         $logstore = $request->getLogstore () !== null ? $request->getLogstore () : '';
         $project = $request->getProject () !== null ? $request->getProject () : '';
         $resource = "/logstores/$logstore";

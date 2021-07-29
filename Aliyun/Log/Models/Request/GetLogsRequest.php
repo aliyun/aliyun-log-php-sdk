@@ -52,6 +52,13 @@ class Aliyun_Log_Models_GetLogsRequest extends Aliyun_Log_Models_Request {
      * @var bool if reverse is set to true, the query will return the latest logs first
      */
     private $reverse;
+
+    /**
+     *
+     * @var bool if power sql is true, then the query will be run with powered instance, which can handle large amountof data
+     */
+    private $powerSql;
+
     
     /**
      * Aliyun_Log_Models_GetLogsRequest Constructor
@@ -75,7 +82,7 @@ class Aliyun_Log_Models_GetLogsRequest extends Aliyun_Log_Models_Request {
      * @param bool $reverse
      *            if reverse is set to true, the query will return the latest logs first
      */
-    public function __construct($project = null, $logstore = null, $from = null, $to = null, $topic = null, $query = null, $line = null, $offset = null, $reverse = null) {
+    public function __construct($project = null, $logstore = null, $from = null, $to = null, $topic = null, $query = null, $line = null, $offset = null, $reverse = null,$powerSql = null) {
         parent::__construct ( $project );
         
         $this->logstore = $logstore;
@@ -86,6 +93,7 @@ class Aliyun_Log_Models_GetLogsRequest extends Aliyun_Log_Models_Request {
         $this->line = $line;
         $this->offset = $offset;
         $this->reverse = $reverse;
+        $this->powerSql = $powerSql;
     }
     
     /**
@@ -238,5 +246,26 @@ class Aliyun_Log_Models_GetLogsRequest extends Aliyun_Log_Models_Request {
      */
     public function setReverse($reverse) {
         $this->reverse = $reverse;
+    }
+
+    /**
+     * Get request powerSql flag
+     *
+     * @reutnr bool powerSql flag
+     */
+    public function getPowerSql() {
+        return $this -> powerSql;
+    }
+
+    /**
+     *  Set request powerSql flag
+     *
+     *  @param bool $powerSql
+     *               powerSql flag
+     *
+     */
+    public function setPowerSql($powerSql)
+    {
+        $this -> powerSql = $powerSql;
     }
 }
