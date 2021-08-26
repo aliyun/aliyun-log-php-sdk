@@ -107,6 +107,60 @@ function getLogsWithPowerSql(Aliyun_Log_Client $client, $project, $logstore) {
         logVarDump($ex);
     }
 }
+function getProjectLogsWithPowerSql(Aliyun_Log_Client $client, $project) {
+    $query = " select count(method) from sls_operation_log where __time__ > to_unixtime(now()) - 300 and __time__ < to_unixtime(now())";
+    $request = new Aliyun_Log_Models_GetProjectLogsRequest($project,  $query, True);
+   
+    try {
+        $response = $client->getProjectLogs($request);
+        #$response = $client->getProjectLogs($request);
+        foreach($response -> getLogs() as $log)
+        {
+            print $log -> getTime()."\t";
+            foreach($log -> getContents() as $key => $value){
+                print $key.":".$value."\t";
+            }
+            print "\n";
+        }
+        print "proccesedRows:".$response -> getProcessedRows()."\n";
+        print "elapsedMilli:".$response -> getElapsedMilli()."\n";
+        print "cpuSec:".$response -> getCpuSec()."\n";
+        print "cpuCores:".$response -> getCpuCores()."\n";
+        print "requestId:".$response ->getRequestId()."\n";
+
+    } catch (Aliyun_Log_Exception $ex) {
+        logVarDump($ex);
+    } catch (Exception $ex) {
+        logVarDump($ex);
+    }
+}
+function executeProjectSqlWithPowerSql(Aliyun_Log_Client $client, $project) {
+    $query = " select count(method) from sls_operation_log where __time__ > to_unixtime(now()) - 300 and __time__ < to_unixtime(now())";
+    $request = new Aliyun_Log_Models_ProjectSqlRequest($project,  $query, True);
+   
+    try {
+        $response = $client->executeProjectSql($request);
+        #$response = $client->getProjectLogs($request);
+        foreach($response -> getLogs() as $log)
+        {
+            print $log -> getTime()."\t";
+            foreach($log -> getContents() as $key => $value){
+                print $key.":".$value."\t";
+            }
+            print "\n";
+        }
+        print "proccesedRows:".$response -> getProcessedRows()."\n";
+        print "elapsedMilli:".$response -> getElapsedMilli()."\n";
+        print "cpuSec:".$response -> getCpuSec()."\n";
+        print "cpuCores:".$response -> getCpuCores()."\n";
+        print "requestId:".$response ->getRequestId()."\n";
+
+    } catch (Aliyun_Log_Exception $ex) {
+        logVarDump($ex);
+    } catch (Exception $ex) {
+        logVarDump($ex);
+    }
+}
 function crudSqlInstance(Aliyun_Log_Client $client,$project){
     $res = $client -> createSqlInstance($project,1000);
     logVarDump($res);
@@ -285,5 +339,7 @@ $client = new Aliyun_Log_Client($endpoint, $accessKeyId, $accessKey,$token);
 #listTopics($client, $project, $logstore);
 #getHistograms($client, $project, $logstore);
 #getLogs($client, $project, $logstore);
+executeProjectSqlWithPowerSql($client,$project);
+getProjectLogsWithPowerSql($client,$project);
 getLogsWithPowerSql($client, $project, $logstore);
 crudSqlInstance($client,$project);
