@@ -682,7 +682,107 @@ class Aliyun_Log_Client {
         $header = $ret[1];
         return new Aliyun_Log_Models_GetLogsResponse ( $resp, $header );
     }
+    /**
+     * execute sql on logstore
+     * Unsuccessful opertaion will cause an Aliyun_Log_Exception.
+     * @param Aliyun_Log_Models_LogStoreSqlRequest $request the executeLogStoreSql request parameters class
+     * @throws Aliyun_Log_Exception
+     * @return Aliyun_Log_Models_LogStoreSqlResponse
+     */
+    public function executeLogStoreSql(Aliyun_Log_Models_LogStoreSqlRequest $request) {
+        $headers = array ();
+        $params = array ();
+        if ($request->getFrom () !== null)
+            $params ['from'] = $request->getFrom ();
+        if ($request->getTo () !== null)
+            $params ['to'] = $request->getTo ();
+        if ($request->getQuery () !== null)
+            $params ['query'] = $request->getQuery ();
+        $params ['type'] = 'log';
+        if ($request -> getPowerSql() != null)
+            $params ["powerSql"] = $request -> getPowerSql()? 'true' : 'false';
+        $logstore = $request->getLogstore () !== null ? $request->getLogstore () : '';
+        $project = $request->getProject () !== null ? $request->getProject () : '';
+        $resource = "/logstores/$logstore";
+        list ( $resp, $header ) = $this->send ( "GET", $project, NULL, $resource, $params, $headers );
+        $requestId = isset ( $header ['x-log-requestid'] ) ? $header ['x-log-requestid'] : '';
+        $resp = $this->parseToJson ( $resp, $requestId );
+        return new Aliyun_Log_Models_LogStoreSqlResponse($resp, $header);
+    }
+
+    /**
+     * create sql instance api
+     * Unsuccessful opertaion will cause an Aliyun_Log_Exception.
+     * @param  $project is project name 
+     * @param  $cu is max cores used concurrently in a project
+     * @throws Aliyun_Log_Exception
+     * @return Aliyun_Log_Models_CreateSqlInstanceResponse
+     */
+    public function createSqlInstance($project, $cu)
+    {
+        $headers = array();
+        $params = array();
+        $resource = '/sqlinstance';
+        $headers['x-log-bodyrawsize'] = 0;
+        $headers ['Content-Type'] = 'application/json';
+        $body = array(
+            "cu"=>$cu
+        );
+        $body_str = json_encode($body);
+        list($resp,$header)  = $this -> send("POST",$project,$body_str,$resource,$params,$headers);    
+        $requestId = isset ( $header ['x-log-requestid'] ) ?
+            $header ['x-log-requestid'] : '';
+        $resp = $this->parseToJson ( $resp, $requestId );
+        return new Aliyun_Log_Models_CreateSqlInstanceResponse($resp,$header);   
+    }
     
+    /**
+     * update sql instance api
+     * Unsuccessful opertaion will cause an Aliyun_Log_Exception.
+     * @param  $project is project name 
+     * @param  $cu is max cores used concurrently in a project
+     * @throws Aliyun_Log_Exception
+     * @return Aliyun_Log_Models_UpdateSqlInstanceResponse
+     */
+    public function updateSqlInstance($project, $cu)
+    {
+        $headers = array();
+        $params = array();
+        $resource = '/sqlinstance';
+        $headers['x-log-bodyrawsize'] = 0;
+        $headers ['Content-Type'] = 'application/json';
+        $body = array(
+            "cu"=>$cu
+        );
+        $body_str = json_encode($body);
+        list($resp,$header)  = $this -> send("PUT",$project,$body_str,$resource,$params,$headers);    
+        $requestId = isset ( $header ['x-log-requestid'] ) ?
+            $header ['x-log-requestid'] : '';
+        $resp = $this->parseToJson ( $resp, $requestId );
+        return new Aliyun_Log_Models_UpdateSqlInstanceResponse($resp,$header);   
+    }
+    /**
+     * get sql instance api
+     * Unsuccessful opertaion will cause an Aliyun_Log_Exception.
+     * @param  $project is project name 
+     * @throws Aliyun_Log_Exception
+     * @return Aliyun_Log_Models_UpdateSqlInstanceResponse
+     */
+    public function listSqlInstance($project)
+    {
+        $headers = array();
+        $headers['Content-Type'] = 'application/x-protobuf';
+        $hangzhou['Content-Length'] = '0';
+        $params = array();
+        $resource = '/sqlinstance';
+        $body_str = "";
+        list($resp,$header)  = $this -> send("GET",$project,$body_str,$resource,$params,$headers);    
+        $requestId = isset ( $header ['x-log-requestid'] ) ?
+            $header ['x-log-requestid'] : '';
+        $resp = $this->parseToJson ( $resp, $requestId );
+        return new Aliyun_Log_Models_ListSqlInstanceResponse($resp,$header);   
+    }
+
     /**
      * Get logs from Log service with shardid conditions.
      * Unsuccessful opertaion will cause an Aliyun_Log_Exception.
