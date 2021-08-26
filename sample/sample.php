@@ -84,10 +84,10 @@ function getLogsWithPowerSql(Aliyun_Log_Client $client, $project, $logstore) {
     $from = time()-3600;
     $to = time();
     $query = "* | select count(method)";
-    $request = new Aliyun_Log_Models_GetLogsRequest($project, $logstore, $from, $to, $topic, $query, 100, 0, False,True);
+    $request = new Aliyun_Log_Models_LogStoreSqlRequest($project, $logstore, $from, $to, $query, True);
    
     try {
-        $response = $client->getLogs($request);
+        $response = $client->executeLogStoreSql($request);
         foreach($response -> getLogs() as $log)
         {
             print $log -> getTime()."\t";
@@ -106,6 +106,14 @@ function getLogsWithPowerSql(Aliyun_Log_Client $client, $project, $logstore) {
     } catch (Exception $ex) {
         logVarDump($ex);
     }
+}
+function crudSqlInstance(Aliyun_Log_Client $client,$project){
+    $res = $client -> createSqlInstance($project,1000);
+    logVarDump($res);
+    $res = $client -> updateSqlInstance($project,999);
+    logVarDump($res);
+    $res = $client -> listSqlInstance($project);
+    logVarDump($res);
 }
 function getHistograms(Aliyun_Log_Client $client, $project, $logstore) {
     $topic = 'TestTopic';
@@ -261,7 +269,7 @@ $endpoint = 'http://cn-hangzhou-yunlei-intranet.log.aliyuncs.com';
 $accessKeyId = '';
 $accessKey = '';
 $project = 'ali-cn-yunlei-sls-admin';
-$logstore = 'logstore_name';
+$logstore = 'sls_operation_log';
 $token = "";
 
 $client = new Aliyun_Log_Client($endpoint, $accessKeyId, $accessKey,$token);
@@ -278,3 +286,4 @@ $client = new Aliyun_Log_Client($endpoint, $accessKeyId, $accessKey,$token);
 #getHistograms($client, $project, $logstore);
 #getLogs($client, $project, $logstore);
 getLogsWithPowerSql($client, $project, $logstore);
+crudSqlInstance($client,$project);
