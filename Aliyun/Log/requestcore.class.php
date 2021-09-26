@@ -765,7 +765,8 @@ class RequestCore
             $this->response = $response;
         }
 		// As long as this came back as a valid resource...
-		if (is_resource($curl_handle))
+
+		if ($this->isCurlResource($curl_handle))
 		{
 			// Determine what's what.
 			$header_size = curl_getinfo($curl_handle, CURLINFO_HEADER_SIZE);
@@ -802,6 +803,19 @@ class RequestCore
 		// Return false
 		return false;
 	}
+
+    public static function isCurlResource($curlHandle): bool
+    {
+        if (\PHP_VERSION_ID < 80000) {
+            return is_resource($curlHandle);
+        } else {
+            if(is_object($curlHandle) && get_class($curlHandle) == \CurlHandle::class) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
 
 	/**
 	 * Sends the request, calling necessary utility functions to update built-in properties.

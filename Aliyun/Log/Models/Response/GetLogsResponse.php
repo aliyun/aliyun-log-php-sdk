@@ -63,9 +63,9 @@ class Aliyun_Log_Models_GetLogsResponse extends Aliyun_Log_Models_Response {
         $this->count = $header['x-log-count'];
         $this->progress = $header ['x-log-progress'];
         $this->processedRows = $header['x-log-processed-rows'];
-        $this->elapsedMilli = $header['x-log-elapsed-millisecond'];
-        $this->cpuSec = $header['x-log-cpu-sec'];
-        $this->cpuCores = $header['x-log-cpu-cores'];
+        $this->elapsedMilli = $header['x-log-elapsed-millisecond']??0;
+        $this->cpuSec = $header['x-log-cpu-sec']??0;
+        $this->cpuCores = $header['x-log-cpu-cores']??0;
         $this->logs = array ();
         foreach ( $resp  as $data ) {
             $contents = $data;
