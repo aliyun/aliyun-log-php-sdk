@@ -1,0 +1,36 @@
+{
+  "readme": "README.md",
+  "type": "library",
+  "description": "The Php SDK of Alibaba log service",
+  "keywords": [
+    "sdk",
+    "sls",
+    "alibaba"
+  ],
+  "require": {
+    "php": ">=7.1.7"
+  },
+  "require-dev": {
+  },
+  "authors": [
+    {
+      "name": "Qi Zhou"
+    },
+    {
+      "name": "TingTao Sun"
+    },
+    {
+      "name": "Leiyun Ma"
+    },
+    {
+      "name": "Xin Zhang"
+    }
+  ],
+  "autoload": {
+    "files": [
+      "Log_Autoload.php"
+    ]
+  },
+  "name": "aliyun/aliyun-log-php-sdk",
+  "version": "0.6.2"
+}
