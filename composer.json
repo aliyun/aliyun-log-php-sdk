@@ -31,6 +31,6 @@
       "Log_Autoload.php"
     ]
   },
-  "name": "aliyun/aliyun-log-php-sdk",
+  "name": "alibabacloud/aliyun-log-php-sdk",
   "version": "0.6.2"
 }
