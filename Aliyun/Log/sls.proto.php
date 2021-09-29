@@ -126,7 +126,7 @@ class Log_Content {
 }
 
 // message Log
-class Log {
+class Aliyun_Log {
   private $_unknown;
 
   function __construct($in = NULL, &$limit = PHP_INT_MAX) {
