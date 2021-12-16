@@ -87,6 +87,10 @@ class Log_Content {
       $size += 1 + Protobuf::size_varint($l) + $l;
     }
     if (!is_null($this->value_)) {
+      if (is_array($this->value_))
+      {
+        $this->value_ = json_encode($this->value_,JSON_UNESCAPED_UNICODE);
+      }
       $l = strlen($this->value_);
       $size += 1 + Protobuf::size_varint($l) + $l;
     }

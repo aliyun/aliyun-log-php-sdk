@@ -1,4 +1,4 @@
-﻿阿里云计算日志服务软件开发工具包Python语言版
+﻿阿里云计算日志服务软件开发工具包PHP语言版
 Aliyun Log Service SDK for PHP
 
 版权所有 （C）阿里云计算有限公司
