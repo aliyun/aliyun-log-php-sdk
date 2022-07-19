@@ -5,7 +5,7 @@
 // message Log.Content
 class Log_Content {
   private $_unknown;
-  
+
   function __construct($in = NULL, &$limit = PHP_INT_MAX) {
     if($in !== NULL) {
       if (is_string($in)) {
@@ -20,7 +20,7 @@ class Log_Content {
       $this->read($fp, $limit);
     }
   }
-  
+
   function read($fp, &$limit = PHP_INT_MAX) {
     while(!feof($fp) && $limit > 0) {
       $tag = Protobuf::read_varint($fp, $limit);
@@ -64,7 +64,7 @@ class Log_Content {
     if (!$this->validateRequired())
       throw new Exception('Required fields are missing');
   }
-  
+
   function write($fp) {
     if (!$this->validateRequired())
       throw new Exception('Required fields are missing');
@@ -79,7 +79,7 @@ class Log_Content {
       fwrite($fp, $this->value_);
     }
   }
-  
+
   public function size() {
     $size = 0;
     if (!is_null($this->key_)) {
@@ -92,20 +92,20 @@ class Log_Content {
     }
     return $size;
   }
-  
+
   public function validateRequired() {
     if ($this->key_ === null) return false;
     if ($this->value_ === null) return false;
     return true;
   }
-  
+
   public function __toString() {
     return ''
          . Protobuf::toString('unknown', $this->_unknown)
          . Protobuf::toString('key_', $this->key_)
          . Protobuf::toString('value_', $this->value_);
   }
-  
+
   // required string key = 1;
 
   private $key_ = null;
@@ -113,7 +113,7 @@ class Log_Content {
   public function hasKey() { return $this->key_ !== null; }
   public function getKey() { if($this->key_ === null) return ""; else return $this->key_; }
   public function setKey($value) { $this->key_ = $value; }
-  
+
   // required string value = 2;
 
   private $value_ = null;
@@ -121,14 +121,14 @@ class Log_Content {
   public function hasValue() { return $this->value_ !== null; }
   public function getValue() { if($this->value_ === null) return ""; else return $this->value_; }
   public function setValue($value) { $this->value_ = $value; }
-  
+
   // @@protoc_insertion_point(class_scope:Log.Content)
 }
 
 // message Log
-class Log {
+class Aliyun_Log {
   private $_unknown;
-  
+
   function __construct($in = NULL, &$limit = PHP_INT_MAX) {
     if($in !== NULL) {
       if (is_string($in)) {
@@ -143,7 +143,7 @@ class Log {
       $this->read($fp, $limit);
     }
   }
-  
+
   function read($fp, &$limit = PHP_INT_MAX) {
     while(!feof($fp) && $limit > 0) {
       $tag = Protobuf::read_varint($fp, $limit);
@@ -158,7 +158,7 @@ class Log {
           if ($tmp === false)
             throw new Exception('Protobuf::read_varint returned false');
           $this->time_ = $tmp;
-          
+
           break;
         case 2:
           ASSERT('$wire == 2');
@@ -176,7 +176,7 @@ class Log {
     if (!$this->validateRequired())
       throw new Exception('Required fields are missing');
   }
-  
+
   function write($fp) {
     if (!$this->validateRequired())
       throw new Exception('Required fields are missing');
@@ -191,7 +191,7 @@ class Log {
         $v->write($fp);
       }
   }
-  
+
   public function size() {
     $size = 0;
     if (!is_null($this->time_)) {
@@ -204,19 +204,19 @@ class Log {
       }
     return $size;
   }
-  
+
   public function validateRequired() {
     if ($this->time_ === null) return false;
     return true;
   }
-  
+
   public function __toString() {
     return ''
          . Protobuf::toString('unknown', $this->_unknown)
          . Protobuf::toString('time_', $this->time_)
          . Protobuf::toString('contents_', $this->contents_);
   }
-  
+
   // required uint32 time = 1;
 
   private $time_ = null;
@@ -224,7 +224,7 @@ class Log {
   public function hasTime() { return $this->time_ !== null; }
   public function getTime() { if($this->time_ === null) return 0; else return $this->time_; }
   public function setTime($value) { $this->time_ = $value; }
-  
+
   // repeated .Log.Content contents = 2;
 
   private $contents_ = null;
@@ -235,14 +235,14 @@ class Log {
   public function setContents($index, $value) {$this->contents_[$index] = $value;	}
   public function addContents($value) { $this->contents_[] = $value; }
   public function addAllContents(array $values) { foreach($values as $value) {$this->contents_[] = $value;} }
-  
+
   // @@protoc_insertion_point(class_scope:Log)
 }
 
 // message LogGroup
 class LogGroup {
   private $_unknown;
-  
+
   function __construct($in = NULL, &$limit = PHP_INT_MAX) {
     if($in !== NULL) {
       if (is_string($in)) {
@@ -257,7 +257,7 @@ class LogGroup {
       $this->read($fp, $limit);
     }
   }
-  
+
   function read($fp, &$limit = PHP_INT_MAX) {
     while(!feof($fp) && $limit > 0) {
       $tag = Protobuf::read_varint($fp, $limit);
@@ -272,7 +272,7 @@ class LogGroup {
           if ($len === false)
             throw new Exception('Protobuf::read_varint returned false');
           $limit-=$len;
-          $this->logs_[] = new Log($fp, $len);
+          $this->logs_[] = new Aliyun_Log($fp, $len);
           ASSERT('$len == 0');
           break;
         case 2:
@@ -324,7 +324,7 @@ class LogGroup {
     if (!$this->validateRequired())
       throw new Exception('Required fields are missing');
   }
-  
+
   function write($fp) {
     if (!$this->validateRequired())
       throw new Exception('Required fields are missing');
@@ -350,7 +350,7 @@ class LogGroup {
       fwrite($fp, $this->source_);
     }
   }
-  
+
   public function size() {
     $size = 0;
     if (!is_null($this->logs_))
@@ -372,11 +372,11 @@ class LogGroup {
     }
     return $size;
   }
-  
+
   public function validateRequired() {
     return true;
   }
-  
+
   public function __toString() {
     return ''
          . Protobuf::toString('unknown', $this->_unknown)
@@ -385,7 +385,7 @@ class LogGroup {
          . Protobuf::toString('topic_', $this->topic_)
          . Protobuf::toString('source_', $this->source_);
   }
-  
+
   // repeated .Log logs = 1;
 
   private $logs_ = null;
@@ -396,7 +396,7 @@ class LogGroup {
   public function setLogs($index, $value) {$this->logs_[$index] = $value;	}
   public function addLogs($value) { $this->logs_[] = $value; }
   public function addAllLogs(array $values) { foreach($values as $value) {$this->logs_[] = $value;} }
-  
+
   // optional string reserved = 2;
 
   private $reserved_ = null;
@@ -404,7 +404,7 @@ class LogGroup {
   public function hasReserved() { return $this->reserved_ !== null; }
   public function getReserved() { if($this->reserved_ === null) return ""; else return $this->reserved_; }
   public function setReserved($value) { $this->reserved_ = $value; }
-  
+
   // optional string topic = 3;
 
   private $topic_ = null;
@@ -412,7 +412,7 @@ class LogGroup {
   public function hasTopic() { return $this->topic_ !== null; }
   public function getTopic() { if($this->topic_ === null) return ""; else return $this->topic_; }
   public function setTopic($value) { $this->topic_ = $value; }
-  
+
   // optional string source = 4;
 
   private $source_ = null;
@@ -420,14 +420,14 @@ class LogGroup {
   public function hasSource() { return $this->source_ !== null; }
   public function getSource() { if($this->source_ === null) return ""; else return $this->source_; }
   public function setSource($value) { $this->source_ = $value; }
-  
+
   // @@protoc_insertion_point(class_scope:LogGroup)
 }
 
 // message LogPackage
 class LogPackage {
   private $_unknown;
-  
+
   function __construct($in = NULL, &$limit = PHP_INT_MAX) {
     if($in !== NULL) {
       if (is_string($in)) {
@@ -442,7 +442,7 @@ class LogPackage {
       $this->read($fp, $limit);
     }
   }
-  
+
   function read($fp, &$limit = PHP_INT_MAX) {
     while(!feof($fp) && $limit > 0) {
       $tag = Protobuf::read_varint($fp, $limit);
@@ -471,7 +471,7 @@ class LogPackage {
           if ($tmp === false)
             throw new Exception('Protobuf::read_varint returned false');
           $this->uncompressSize_ = $tmp;
-          
+
           break;
         default:
           $this->_unknown[$field . '-' . Protobuf::get_wiretype($wire)][] = Protobuf::read_field($fp, $wire, $limit);
@@ -480,7 +480,7 @@ class LogPackage {
     if (!$this->validateRequired())
       throw new Exception('Required fields are missing');
   }
-  
+
   function write($fp) {
     if (!$this->validateRequired())
       throw new Exception('Required fields are missing');
@@ -494,7 +494,7 @@ class LogPackage {
       Protobuf::write_varint($fp, $this->uncompressSize_);
     }
   }
-  
+
   public function size() {
     $size = 0;
     if (!is_null($this->data_)) {
@@ -506,19 +506,19 @@ class LogPackage {
     }
     return $size;
   }
-  
+
   public function validateRequired() {
     if ($this->data_ === null) return false;
     return true;
   }
-  
+
   public function __toString() {
     return ''
          . Protobuf::toString('unknown', $this->_unknown)
          . Protobuf::toString('data_', $this->data_)
          . Protobuf::toString('uncompressSize_', $this->uncompressSize_);
   }
-  
+
   // required bytes data = 1;
 
   private $data_ = null;
@@ -526,7 +526,7 @@ class LogPackage {
   public function hasData() { return $this->data_ !== null; }
   public function getData() { if($this->data_ === null) return ""; else return $this->data_; }
   public function setData($value) { $this->data_ = $value; }
-  
+
   // optional int32 uncompress_size = 2;
 
   private $uncompressSize_ = null;
@@ -534,14 +534,14 @@ class LogPackage {
   public function hasUncompressSize() { return $this->uncompressSize_ !== null; }
   public function getUncompressSize() { if($this->uncompressSize_ === null) return 0; else return $this->uncompressSize_; }
   public function setUncompressSize($value) { $this->uncompressSize_ = $value; }
-  
+
   // @@protoc_insertion_point(class_scope:LogPackage)
 }
 
 // message LogPackageList
 class LogPackageList {
   private $_unknown;
-  
+
   function __construct($in = NULL, &$limit = PHP_INT_MAX) {
     if($in !== NULL) {
       if (is_string($in)) {
@@ -556,7 +556,7 @@ class LogPackageList {
       $this->read($fp, $limit);
     }
   }
-  
+
   function read($fp, &$limit = PHP_INT_MAX) {
     while(!feof($fp) && $limit > 0) {
       $tag = Protobuf::read_varint($fp, $limit);
@@ -581,7 +581,7 @@ class LogPackageList {
     if (!$this->validateRequired())
       throw new Exception('Required fields are missing');
   }
-  
+
   function write($fp) {
     if (!$this->validateRequired())
       throw new Exception('Required fields are missing');
@@ -592,7 +592,7 @@ class LogPackageList {
         $v->write($fp);
       }
   }
-  
+
   public function size() {
     $size = 0;
     if (!is_null($this->packages_))
@@ -602,17 +602,17 @@ class LogPackageList {
       }
     return $size;
   }
-  
+
   public function validateRequired() {
     return true;
   }
-  
+
   public function __toString() {
     return ''
          . Protobuf::toString('unknown', $this->_unknown)
          . Protobuf::toString('packages_', $this->packages_);
   }
-  
+
   // repeated .LogPackage packages = 1;
 
   private $packages_ = null;
@@ -623,7 +623,7 @@ class LogPackageList {
   public function setPackages($index, $value) {$this->packages_[$index] = $value;	}
   public function addPackages($value) { $this->packages_[] = $value; }
   public function addAllPackages(array $values) { foreach($values as $value) {$this->packages_[] = $value;} }
-  
+
   // @@protoc_insertion_point(class_scope:LogPackageList)
 }
 
