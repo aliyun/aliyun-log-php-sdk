@@ -24,19 +24,9 @@ if(!defined('USER_AGENT'))
 class Aliyun_Log_Client {
 
     /**
-     * @var string aliyun accessKey
+     *@var Aliyun_Log_Models_CredentialsProvider credentialsProvider
      */
-    protected $accessKey;
-    
-    /**
-     * @var string aliyun accessKeyId
-     */
-    protected $accessKeyId;
-
-    /**
-     *@var string aliyun sts token
-     */
-    protected $stsToken;
+    protected $credentialsProvider;
 
     /**
      * @var string LOG endpoint
@@ -64,7 +54,9 @@ class Aliyun_Log_Client {
     protected $source;
     
     /**
-     * Aliyun_Log_Client constructor
+     * Aliyun_Log_Client constructor.
+     *
+     * Either $accessKeyId/$accessKeySecret or $credentialsProvider must be provided.
      *
      * @param string $endpoint
      *            LOG host name, for example, http://cn-hangzhou.sls.aliyuncs.com
@@ -72,12 +64,30 @@ class Aliyun_Log_Client {
      *            aliyun accessKeyId
      * @param string $accessKey
      *            aliyun accessKey
+     * @param string $token
+     *            aliyun token
+     * @param Aliyun_Log_Models_CredentialsProvider $credentialsProvider
      */
-    public function __construct($endpoint, $accessKeyId, $accessKey,$token = "") {
-        $this->setEndpoint ( $endpoint ); // set $this->logHost
-        $this->accessKeyId = $accessKeyId;
-        $this->accessKey = $accessKey;
-        $this->stsToken = $token;
+    public function __construct(
+        string $endpoint,
+        string $accessKeyId = "",
+        string $accessKey = "",
+        string $token = "",
+        Aliyun_Log_Models_CredentialsProvider $credentialsProvider = null
+    ) {
+        $this->setEndpoint($endpoint); // set $this->logHost
+        if (!is_null($credentialsProvider)) {
+            $this->credentialsProvider = $credentialsProvider;
+        } else {
+            if (empty($accessKeyId) || empty($accessKey)) {
+                throw new Aliyun_Log_Exception("InvalidAccessKey", "accessKeyId or accessKeySecret is empty", "");
+            }
+            $this->credentialsProvider = new Aliyun_Log_Models_StaticCredentialsProvider(
+                $accessKeyId,
+                $accessKey,
+                $token
+            );
+        }
         $this->source = Aliyun_Log_Util::getLocalIp();
     }
     private function setEndpoint($endpoint) {
@@ -186,6 +196,17 @@ class Aliyun_Log_Client {
      * @throws Aliyun_Log_Exception
      */
     private function send($method, $project, $body, $resource, $params, $headers) {
+        $credentials = null;
+        try {
+            $credentials = $this->credentialsProvider->getCredentials();
+        } catch (Exception $ex) {
+            throw new Aliyun_Log_Exception(
+                'InvalidCredentials',
+                'Fail to get credentials:' . $ex->getMessage(),
+                ''
+            );
+        }
+
         if ($body) {
             $headers ['Content-Length'] = strlen ( $body );
             if(isset($headers ["x-log-bodyrawsize"])==false)
@@ -199,13 +220,13 @@ class Aliyun_Log_Client {
         
         $headers ['x-log-apiversion'] = API_VERSION;
         $headers ['x-log-signaturemethod'] = 'hmac-sha1';
-        if(strlen($this->stsToken) >0)
-            $headers ['x-acs-security-token'] = $this -> stsToken;
+        if(strlen($credentials->getSecurityToken()) >0)
+            $headers ['x-acs-security-token'] = $credentials->getSecurityToken();
         if(is_null($project))$headers ['Host'] = $this->logHost;
         else $headers ['Host'] = "$project.$this->logHost";
         $headers ['Date'] = $this->GetGMT ();
-        $signature = Aliyun_Log_Util::getRequestAuthorization ( $method, $resource, $this->accessKey,$this->stsToken, $params, $headers );
-        $headers ['Authorization'] = "LOG $this->accessKeyId:$signature";
+        $signature = Aliyun_Log_Util::getRequestAuthorization ( $method, $resource, $credentials->getAccessKeySecret(), $credentials->getSecurityToken(), $params, $headers );
+        $headers ['Authorization'] = "LOG ".$credentials->getAccessKeyId().":$signature";
         
         $url = $resource;
         if ($params)
@@ -738,7 +759,7 @@ class Aliyun_Log_Client {
      * Get logs from Log service.
      * Unsuccessful opertaion will cause an Aliyun_Log_Exception.
      *
-     * @param Aliyun_Log_Models_GetProjectLogsRequest $request the GetLogs request parameters class.
+     * @param Aliyun_Log_Models_ProjectSqlRequest $request the GetLogs request parameters class.
      * @throws Aliyun_Log_Exception
      * @return Aliyun_Log_Models_GetLogsResponse
      */
