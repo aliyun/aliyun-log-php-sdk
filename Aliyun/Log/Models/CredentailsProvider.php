@@ -6,7 +6,7 @@
  */
 
 
-class Aliyun_Log_Models_Credentails
+class Aliyun_Log_Models_Credentials
 {
     /**
      * @var string
@@ -72,36 +72,12 @@ class Aliyun_Log_Models_Credentails
     }
 }
 
-interface Aliyun_Log_Models_CredentailsProvider
+interface Aliyun_Log_Models_CredentialsProvider
 {
     /**
-     * @return Aliyun_Log_Models_Credentails
+     * @return Aliyun_Log_Models_Credentials
      * @throws Exception
      */
-    public function getCredentials(): Aliyun_Log_Models_Credentails;
+    public function getCredentials(): Aliyun_Log_Models_Credentials;
 }
 
-class Aliyun_Log_Models_StaticCredentailsProvider implements Aliyun_Log_Models_CredentailsProvider
-{
-    /**
-     * @var Aliyun_Log_Models_Credentails
-     */
-    private $credentials;
-
-    /**
-     * @param string $accessKeyId
-     * @param string $accessKeySecret
-     * @param string $securityToken
-     */
-    public function __construct(string $accessKeyId, string $accessKeySecret, string $securityToken = '')
-    {
-        $this->credentials = new Aliyun_Log_Models_Credentails($accessKeyId, $accessKeySecret, $securityToken);
-    }
-    /**
-     * @return Aliyun_Log_Models_Credentails
-     */
-    public function getCredentials(): Aliyun_Log_Models_Credentails
-    {
-        return $this->credentials;
-    }
-}

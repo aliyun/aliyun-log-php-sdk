@@ -24,7 +24,7 @@ if(!defined('USER_AGENT'))
 class Aliyun_Log_Client {
 
     /**
-     *@var Aliyun_Log_Models_CredentailsProvider credentialsProvider
+     *@var Aliyun_Log_Models_CredentialsProvider credentialsProvider
      */
     protected $credentialsProvider;
 
@@ -66,23 +66,23 @@ class Aliyun_Log_Client {
      *            aliyun accessKey
      * @param string $token
      *            aliyun token
-     * @param Aliyun_Log_Models_CredentailsProvider $credentialsProvider
+     * @param Aliyun_Log_Models_CredentialsProvider $credentialsProvider
      */
     public function __construct(
         string $endpoint,
         string $accessKeyId = "",
         string $accessKey = "",
         string $token = "",
-        Aliyun_Log_Models_CredentailsProvider $credentialsProvider = null
+        Aliyun_Log_Models_CredentialsProvider $credentialsProvider = null
     ) {
         $this->setEndpoint($endpoint); // set $this->logHost
         if (!is_null($credentialsProvider)) {
             $this->credentialsProvider = $credentialsProvider;
         } else {
-            if (empty($accessKeyId) || empty($accessKeySecret)) {
+            if (empty($accessKeyId) || empty($accessKey)) {
                 throw new Aliyun_Log_Exception("InvalidAccessKey", "accessKeyId or accessKeySecret is empty", "");
             }
-            $this->credentialsProvider = new Aliyun_Log_Models_StaticCredentailsProvider(
+            $this->credentialsProvider = new Aliyun_Log_Models_StaticCredentialsProvider(
                 $accessKeyId,
                 $accessKey,
                 $token
@@ -196,9 +196,9 @@ class Aliyun_Log_Client {
      * @throws Aliyun_Log_Exception
      */
     private function send($method, $project, $body, $resource, $params, $headers) {
-        $credentails = null;
+        $credentials = null;
         try {
-            $credentails = $this->credentialsProvider->getCredentials();
+            $credentials = $this->credentialsProvider->getCredentials();
         } catch (Exception $ex) {
             throw new Aliyun_Log_Exception(
                 'InvalidCredentials',
@@ -220,13 +220,13 @@ class Aliyun_Log_Client {
         
         $headers ['x-log-apiversion'] = API_VERSION;
         $headers ['x-log-signaturemethod'] = 'hmac-sha1';
-        if(strlen($credentails->getSecurityToken()) >0)
-            $headers ['x-acs-security-token'] = $credentails->getSecurityToken();
+        if(strlen($credentials->getSecurityToken()) >0)
+            $headers ['x-acs-security-token'] = $credentials->getSecurityToken();
         if(is_null($project))$headers ['Host'] = $this->logHost;
         else $headers ['Host'] = "$project.$this->logHost";
         $headers ['Date'] = $this->GetGMT ();
-        $signature = Aliyun_Log_Util::getRequestAuthorization ( $method, $resource, $credentails->getAccessKeySecret(), $credentails->getSecurityToken(), $params, $headers );
-        $headers ['Authorization'] = "LOG ".$credentails->getAccessKeyId().":$signature";
+        $signature = Aliyun_Log_Util::getRequestAuthorization ( $method, $resource, $credentials->getAccessKeySecret(), $credentials->getSecurityToken(), $params, $headers );
+        $headers ['Authorization'] = "LOG ".$credentials->getAccessKeyId().":$signature";
         
         $url = $resource;
         if ($params)
