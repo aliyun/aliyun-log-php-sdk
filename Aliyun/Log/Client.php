@@ -52,6 +52,11 @@ class Aliyun_Log_Client {
      * @var string the local machine ip address.
      */
     protected $source;
+
+    /**
+     * @var bool use https or use http.
+     */
+    protected $useHttps;
     
     /**
      * Aliyun_Log_Client constructor.
@@ -91,23 +96,25 @@ class Aliyun_Log_Client {
         $this->source = Aliyun_Log_Util::getLocalIp();
     }
     private function setEndpoint($endpoint) {
-        $pos = strpos ( $endpoint, "://" );
-        if ($pos !== false) { // be careful, !==
-            $pos += 3;
-            $endpoint = substr ( $endpoint, $pos );
+        if (strpos($endpoint, '://') === false) {
+            $endpoint = 'http://' . $endpoint; // default use http
         }
-        $pos = strpos ( $endpoint, "/" );
-        if ($pos !== false) // be careful, !==
-            $endpoint = substr ( $endpoint, 0, $pos );
-        $pos = strpos ( $endpoint, ':' );
-        if ($pos !== false) { // be careful, !==
-            $this->port = ( int ) substr ( $endpoint, $pos + 1 );
-            $endpoint = substr ( $endpoint, 0, $pos );
-        } else
-            $this->port = 80;
-        $this->isRowIp = Aliyun_Log_Util::isIp ( $endpoint );
-        $this->logHost = $endpoint;
-        $this->endpoint = $endpoint . ':' . ( string ) $this->port;
+        $urlComponents = parse_url($endpoint);
+        if ($urlComponents === false || !isset($urlComponents['host'])) {
+            throw new InvalidArgumentException("Invalid endpoint: $endpoint");
+        }
+
+        $this->useHttps = isset($urlComponents['scheme']) && $urlComponents['scheme'] === 'https';
+        $this->logHost = $urlComponents['host'];
+
+        if (isset($urlComponents['port'])) {
+            $this->port = $urlComponents['port'];
+            $this->endpoint = $this->logHost . ':' . $this->port;
+        } else {
+            $this->port = $this->useHttps ? 443 : 80;
+            $this->endpoint = $this->logHost;
+        }
+        $this->isRowIp = Aliyun_Log_Util::isIp($this->logHost);
     }
      
     /**
@@ -228,17 +235,23 @@ class Aliyun_Log_Client {
         $signature = Aliyun_Log_Util::getRequestAuthorization ( $method, $resource, $credentials->getAccessKeySecret(), $credentials->getSecurityToken(), $params, $headers );
         $headers ['Authorization'] = "LOG ".$credentials->getAccessKeyId().":$signature";
         
-        $url = $resource;
-        if ($params)
-            $url .= '?' . Aliyun_Log_Util::urlEncode ( $params );
-        if ($this->isRowIp)
-            $url = "http://$this->endpoint$url";
-        else{
-          if(is_null($project))
-              $url = "http://$this->endpoint$url";
-          else  $url = "http://$project.$this->endpoint$url";           
-        }
+        $url = $this->buildUrl($project, $resource, $params);
         return $this->sendRequest ( $method, $url, $body, $headers );
+    }
+
+    private function buildUrl($project, $resource, $params) {
+        $url = $resource;
+        $schema = $this->useHttps ? "https://" : "http://";
+        if ($params) {
+            $url .= '?' . Aliyun_Log_Util::urlEncode($params);
+        }
+        if ($this->isRowIp) {
+            return "$schema$this->endpoint$url";
+        }
+        if (is_null($project)) {
+            return "$schema$this->endpoint$url";
+        }
+        return "$schema$project.$this->endpoint$url";
     }
     
     /**
