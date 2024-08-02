@@ -11,6 +11,7 @@
     "php": ">=7.1.7"
   },
   "require-dev": {
+    "phpunit/phpunit": "^11.2"
   },
   "authors": [
     {
@@ -33,5 +34,5 @@
   },
   "name": "alibabacloud/aliyun-log-php-sdk",
   "license": "MIT",
-  "version": "0.6.4"
+  "version": "0.6.5"
 }
