@@ -10,10 +10,10 @@ require_once realpath ( dirname ( __FILE__ ) . '/requestcore.class.php' );
 require_once realpath ( dirname ( __FILE__ ) . '/sls.proto.php' );
 require_once realpath ( dirname ( __FILE__ ) . '/protocolbuffers.inc.php' );
 
-if(!defined('API_VERSION'))
-    define('API_VERSION', '0.6.0');
-if(!defined('USER_AGENT'))
-    define('USER_AGENT', 'log-php-sdk-v-0.6.0');
+if(!defined('SLS_API_VERSION'))
+    define('SLS_API_VERSION', '0.6.0');
+if(!defined('SLS_USER_AGENT'))
+    define('SLS_USER_AGENT', 'log-php-sdk-v-0.6.0');
 
 /**
  * Aliyun_Log_Client class is the main class in the SDK. It can be used to
@@ -153,7 +153,7 @@ class Aliyun_Log_Client {
         foreach ( $headers as $key => $value )
             $request->add_header ( $key, $value );
         $request->set_method ( $method );
-        $request->set_useragent(USER_AGENT);
+        $request->set_useragent(SLS_USER_AGENT);
         if ($method == "POST" || $method == "PUT")
             $request->set_body ( $body );
         $request->send_request ();
@@ -225,7 +225,7 @@ class Aliyun_Log_Client {
             $headers ['Content-Type'] = ''; // If not set, http request will add automatically.
         }
         
-        $headers ['x-log-apiversion'] = API_VERSION;
+        $headers ['x-log-apiversion'] = SLS_API_VERSION;
         $headers ['x-log-signaturemethod'] = 'hmac-sha1';
         if(strlen($credentials->getSecurityToken()) >0)
             $headers ['x-acs-security-token'] = $credentials->getSecurityToken();

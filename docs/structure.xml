@@ -2991,8 +2991,8 @@ All rights reserved</description>
       <tag name="package" line="0" description="SLS_PHP_SDK"/>
     </docblock>
     <constant namespace="" line="14" package="SLS_PHP_SDK">
-      <name>API_VERSION</name>
-      <full_name>\API_VERSION</full_name>
+      <name>SLS_API_VERSION</name>
+      <full_name>\SLS_API_VERSION</full_name>
       <value>'0.4.0'</value>
       <docblock line="14">
         <description></description>
@@ -3001,8 +3001,8 @@ All rights reserved</description>
       </docblock>
     </constant>
     <constant namespace="" line="16" package="SLS_PHP_SDK">
-      <name>USER_AGENT</name>
-      <full_name>\USER_AGENT</full_name>
+      <name>SLS_USER_AGENT</name>
+      <full_name>\SLS_USER_AGENT</full_name>
       <value>'sls-php-sdk-v-0.4.1'</value>
       <docblock line="16">
         <description></description>
