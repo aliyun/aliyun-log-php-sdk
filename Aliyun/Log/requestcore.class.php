@@ -832,7 +832,7 @@ class RequestCore
 
 		if ($this->response === false)
 		{
-			throw new RequestCore_Exception('cURL resource: ' . (string) $curl_handle . '; cURL error: ' . curl_error($curl_handle) . ' (' . curl_errno($curl_handle) . ')');
+			throw new RequestCore_Exception('cURL error: ' . curl_error($curl_handle) . ' (' . curl_errno($curl_handle) . ')');
 		}
 
 		$parsed_response = $this->process_response($curl_handle, $this->response);
