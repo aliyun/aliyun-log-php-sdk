@@ -64,8 +64,8 @@ class Aliyun_Log_Models_ProjectSqlResponse extends Aliyun_Log_Models_Response {
         $this->progress = $header ['x-log-progress'];
         $this->processedRows = $header['x-log-processed-rows'];
         $this->elapsedMilli = $header['x-log-elapsed-millisecond'];
-        $this->cpuSec = $header['x-log-cpu-sec'];
-        $this->cpuCores = $header['x-log-cpu-cores'];
+        $this->cpuSec = $header['x-log-cpu-sec']??0;
+        $this->cpuCores = $header['x-log-cpu-cores']??0;
         $this->logs = array ();
         foreach ( $resp  as $data ) {
             $contents = $data;
