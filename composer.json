@@ -34,5 +34,5 @@
   },
   "name": "alibabacloud/aliyun-log-php-sdk",
   "license": "MIT",
-  "version": "0.6.7"
+  "version": "0.6.8"
 }
