@@ -473,7 +473,7 @@ class RequestCore
 	 * The user-defined callback function should accept three arguments:
 	 *
 	 * <ul>
-	 * 	<li><code>$curl_handle</code> - <code>resource</code> - Required - The cURL handle resource that represents the in-progress transfer.</li>
+	 * 	<li><code>$curl_handle</code> - <code>resource|\CurlHandle</code> - Required - The cURL handle that represents the in-progress transfer.</li>
 	 * 	<li><code>$file_handle</code> - <code>resource</code> - Required - The file handle resource that represents the file on the local file system.</li>
 	 * 	<li><code>$length</code> - <code>integer</code> - Required - The length in kilobytes of the data chunk that was transferred.</li>
 	 * </ul>
@@ -498,7 +498,7 @@ class RequestCore
 	 * The user-defined callback function should accept two arguments:
 	 *
 	 * <ul>
-	 * 	<li><code>$curl_handle</code> - <code>resource</code> - Required - The cURL handle resource that represents the in-progress transfer.</li>
+	 * 	<li><code>$curl_handle</code> - <code>resource|\CurlHandle</code> - Required - The cURL handle that represents the in-progress transfer.</li>
 	 * 	<li><code>$length</code> - <code>integer</code> - Required - The length in kilobytes of the data chunk that was transferred.</li>
 	 * </ul>
 	 *
@@ -522,7 +522,7 @@ class RequestCore
 	/**
 	 * A callback function that is invoked by cURL for streaming up.
 	 *
-	 * @param resource $curl_handle (Required) The cURL handle for the request.
+	 * @param resource|\CurlHandle $curl_handle (Required) The cURL handle for the request.
 	 * @param resource $file_handle (Required) The open file handle resource.
 	 * @param integer $length (Required) The maximum number of bytes to read.
 	 * @return binary Binary data from a stream.
@@ -562,7 +562,7 @@ class RequestCore
 	/**
 	 * A callback function that is invoked by cURL for streaming down.
 	 *
-	 * @param resource $curl_handle (Required) The cURL handle for the request.
+	 * @param resource|\CurlHandle $curl_handle (Required) The cURL handle for the request.
 	 * @param binary $data (Required) The data to write.
 	 * @return integer The number of bytes written.
 	 */
@@ -597,11 +597,15 @@ class RequestCore
 	 * Prepares and adds the details of the cURL request. This can be passed along to a <php:curl_multi_exec()>
 	 * function.
 	 *
-	 * @return resource The handle for the cURL object.
+	 * @return resource|\CurlHandle The handle for the cURL request.
 	 */
 	public function prep_request()
 	{
 		$curl_handle = curl_init();
+		if ($curl_handle === false)
+		{
+			throw new RequestCore_Exception('Unable to initialize cURL.');
+		}
 
 		// Set default options.
 		curl_setopt($curl_handle, CURLOPT_URL, $this->request_url);
@@ -754,7 +758,7 @@ class RequestCore
 	 * data stored in the `curl_handle` and `response` properties unless replacement data is passed in via
 	 * parameters.
 	 *
-	 * @param resource $curl_handle (Optional) The reference to the already executed cURL request.
+	 * @param resource|\CurlHandle $curl_handle (Optional) The reference to the already executed cURL request.
 	 * @param string $response (Optional) The actual response content itself that needs to be parsed.
 	 * @return ResponseCore A <ResponseCore> object containing a parsed HTTP response.
 	 */
@@ -806,16 +810,99 @@ class RequestCore
 
     public static function isCurlResource($curlHandle): bool
     {
-        if (\PHP_VERSION_ID < 80000) {
-            return is_resource($curlHandle);
-        } else {
-            if(is_object($curlHandle) && get_class($curlHandle) == \CurlHandle::class) {
-                return true;
-            } else {
-                return false;
-            }
+        if (is_resource($curlHandle)) {
+            return true;
         }
+
+        return \PHP_VERSION_ID >= 80000 && $curlHandle instanceof \CurlHandle;
     }
+
+	/**
+	 * Returns a stable string key for both pre-PHP 8 cURL resources and PHP 8+ CurlHandle objects.
+	 *
+	 * @param resource|\CurlHandle $curl_handle
+	 * @return string
+	 */
+	private static function get_curl_handle_key($curl_handle)
+	{
+		if (is_resource($curl_handle))
+		{
+			return 'resource:' . (int) $curl_handle;
+		}
+
+		if (is_object($curl_handle))
+		{
+			return 'object:' . spl_object_hash($curl_handle);
+		}
+
+		return gettype($curl_handle) . ':' . var_export($curl_handle, true);
+	}
+
+	/**
+	 * Describes a cURL handle without relying on object-to-string conversion.
+	 *
+	 * @param resource|\CurlHandle $curl_handle
+	 * @return string
+	 */
+	private static function describe_curl_handle($curl_handle)
+	{
+		if (is_resource($curl_handle))
+		{
+			return 'resource #' . (int) $curl_handle;
+		}
+
+		if (is_object($curl_handle))
+		{
+			return get_class($curl_handle) . ' #' . spl_object_hash($curl_handle);
+		}
+
+		return gettype($curl_handle);
+	}
+
+	/**
+	 * Builds a useful transport error while the cURL handle is still valid.
+	 *
+	 * @param resource|\CurlHandle $curl_handle
+	 * @param integer|null $error_code
+	 * @return string
+	 */
+	private static function get_curl_error_message($curl_handle, $error_code = null)
+	{
+		if ($error_code === null)
+		{
+			$error_code = curl_errno($curl_handle);
+		}
+
+		$error_message = curl_error($curl_handle);
+		if ($error_message === '' && function_exists('curl_strerror'))
+		{
+			$error_message = curl_strerror($error_code);
+		}
+
+		if (!is_string($error_message) || $error_message === '')
+		{
+			$error_message = 'Unknown cURL error';
+		}
+
+		return 'cURL handle: ' . self::describe_curl_handle($curl_handle) . '; cURL error: ' . $error_message . ' (' . (int) $error_code . ')';
+	}
+
+	/**
+	 * Builds an error for a failed cURL multi operation.
+	 *
+	 * @param integer $error_code
+	 * @return string
+	 */
+	private static function get_curl_multi_error_message($error_code)
+	{
+		$error_message = function_exists('curl_multi_strerror') ? curl_multi_strerror($error_code) : '';
+		if (!is_string($error_message) || $error_message === '')
+		{
+			$error_message = 'Unknown cURL multi error';
+		}
+
+		return 'cURL multi error: ' . $error_message . ' (' . (int) $error_code . ')';
+	}
 
 	/**
 	 * Sends the request, calling necessary utility functions to update built-in properties.
@@ -828,23 +915,28 @@ class RequestCore
 		set_time_limit(0);
 
 		$curl_handle = $this->prep_request();
-		$this->response = curl_exec($curl_handle);
-
-		if ($this->response === false)
+		try
 		{
-			throw new RequestCore_Exception('cURL resource: ' . (string) $curl_handle . '; cURL error: ' . curl_error($curl_handle) . ' (' . curl_errno($curl_handle) . ')');
+			$this->response = curl_exec($curl_handle);
+
+			if ($this->response === false)
+			{
+				throw new RequestCore_Exception(self::get_curl_error_message($curl_handle));
+			}
+
+			$parsed_response = $this->process_response($curl_handle, $this->response);
+
+			if ($parse)
+			{
+				return $parsed_response;
+			}
+
+			return $this->response;
 		}
-
-		$parsed_response = $this->process_response($curl_handle, $this->response);
-
-		curl_close($curl_handle);
-
-		if ($parse)
+		finally
 		{
-			return $parsed_response;
+			curl_close($curl_handle);
 		}
-
-		return $this->response;
 	}
 
 	/**
@@ -870,70 +962,142 @@ class RequestCore
 
 		// Initialize
 		$handle_list = $handles;
+		foreach ($handle_list as $handle)
+		{
+			if (!self::isCurlResource($handle))
+			{
+				throw new RequestCore_Exception('Invalid cURL handle supplied.');
+			}
+		}
+
 		$http = new $this->request_class();
 		$multi_handle = curl_multi_init();
+		if ($multi_handle === false)
+		{
+			throw new RequestCore_Exception('Unable to initialize cURL multi handle.');
+		}
+
 		$handles_post = array();
+		$attached_handles = array();
+		$open_handles = array();
 		$added = count($handles);
-		$last_handle = null;
-		$count = 0;
 		$i = 0;
 
-		// Loop through the cURL handles and add as many as it set by the limit parameter.
-		while ($i < $added)
+		foreach ($handle_list as $handle)
 		{
-			if ($limit > 0 && $i >= $limit) break;
-			curl_multi_add_handle($multi_handle, array_shift($handles));
-			$i++;
+			$open_handles[self::get_curl_handle_key($handle)] = $handle;
 		}
 
-		do
+		try
 		{
-			$active = false;
-
-			// Start executing and wait for a response.
-			while (($status = curl_multi_exec($multi_handle, $active)) === CURLM_CALL_MULTI_PERFORM)
+			// Loop through the cURL handles and add as many as it set by the limit parameter.
+			while ($i < $added)
 			{
-				// Start looking for possible responses immediately when we have to add more handles
-				if (count($handles) > 0) break;
-			}
+				if ($limit > 0 && $i >= $limit) break;
 
-			// Figure out which requests finished.
-			$to_process = array();
-
-			while ($done = curl_multi_info_read($multi_handle))
-			{
-				// Since curl_errno() isn't reliable for handles that were in multirequests, we check the 'result' of the info read, which contains the curl error number, (listed here http://curl.haxx.se/libcurl/c/libcurl-errors.html )
-				if ($done['result'] > 0)
+				$handle = array_shift($handles);
+				$status = curl_multi_add_handle($multi_handle, $handle);
+				if ($status !== CURLM_OK)
 				{
-					throw new RequestCore_Exception('cURL resource: ' . (string) $done['handle'] . '; cURL error: ' . curl_error($done['handle']) . ' (' . $done['result'] . ')');
+					throw new RequestCore_Exception(self::get_curl_multi_error_message($status));
 				}
 
-				// Because curl_multi_info_read() might return more than one message about a request, we check to see if this request is already in our array of completed requests
-				elseif (!isset($to_process[(int) $done['handle']]))
-				{
-					$to_process[(int) $done['handle']] = $done;
-				}
+				$attached_handles[self::get_curl_handle_key($handle)] = $handle;
+				$i++;
 			}
 
-			// Actually deal with the request
-			foreach ($to_process as $pkey => $done)
+			do
 			{
-				$response = $http->process_response($done['handle'], curl_multi_getcontent($done['handle']));
-				$key = array_search($done['handle'], $handle_list, true);
-				$handles_post[$key] = $response;
+				$active = false;
 
-				if (count($handles) > 0)
+				// Start executing and wait for a response.
+				do
 				{
-					curl_multi_add_handle($multi_handle, array_shift($handles));
+					$status = curl_multi_exec($multi_handle, $active);
+				}
+				while ($status === CURLM_CALL_MULTI_PERFORM);
+
+				if ($status !== CURLM_OK)
+				{
+					throw new RequestCore_Exception(self::get_curl_multi_error_message($status));
 				}
 
-				curl_multi_remove_handle($multi_handle, $done['handle']);
-				curl_close($done['handle']);
+				// Figure out which requests finished.
+				$to_process = array();
+
+				while ($done = curl_multi_info_read($multi_handle))
+				{
+					// Since curl_errno() isn't reliable for handles that were in multirequests, use the result from curl_multi_info_read().
+					if ($done['result'] > 0)
+					{
+						throw new RequestCore_Exception(self::get_curl_error_message($done['handle'], $done['result']));
+					}
+
+					// curl_multi_info_read() can report a handle more than once.
+					$done_key = self::get_curl_handle_key($done['handle']);
+					if (!isset($to_process[$done_key]))
+					{
+						$to_process[$done_key] = $done;
+					}
+				}
+
+				// Actually deal with the request.
+				foreach ($to_process as $done)
+				{
+					$response = $http->process_response($done['handle'], curl_multi_getcontent($done['handle']));
+					$key = array_search($done['handle'], $handle_list, true);
+					$handles_post[$key] = $response;
+
+					if (count($handles) > 0)
+					{
+						$handle = array_shift($handles);
+						$status = curl_multi_add_handle($multi_handle, $handle);
+						if ($status !== CURLM_OK)
+						{
+							throw new RequestCore_Exception(self::get_curl_multi_error_message($status));
+						}
+
+						$attached_handles[self::get_curl_handle_key($handle)] = $handle;
+					}
+
+					$status = curl_multi_remove_handle($multi_handle, $done['handle']);
+					if ($status !== CURLM_OK)
+					{
+						throw new RequestCore_Exception(self::get_curl_multi_error_message($status));
+					}
+
+					$done_key = self::get_curl_handle_key($done['handle']);
+					unset($attached_handles[$done_key]);
+					curl_close($done['handle']);
+					unset($open_handles[$done_key]);
+				}
+
+				if ($active && count($to_process) === 0)
+				{
+					$selected = curl_multi_select($multi_handle, 1.0);
+					if ($selected === -1)
+					{
+						// Older libcurl versions can return -1 even though transfers are still active.
+						usleep(1000);
+					}
+				}
 			}
+			while ($active || count($handles_post) < $added);
 		}
-		while ($active || count($handles_post) < $added);
+		finally
+		{
+			foreach ($attached_handles as $handle)
+			{
+				curl_multi_remove_handle($multi_handle, $handle);
+			}
 
-		curl_multi_close($multi_handle);
+			foreach ($open_handles as $handle)
+			{
+				curl_close($handle);
+			}
+
+			curl_multi_close($multi_handle);
+		}
 
 		ksort($handles_post, SORT_NUMERIC);
 		return $handles_post;
